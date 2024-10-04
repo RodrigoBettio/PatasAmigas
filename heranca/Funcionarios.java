@@ -8,6 +8,17 @@ public class Funcionarios extends Pessoa {
     private Float salario;
     private String departamento;
 
+    public Funcionarios(String nome, String nascimento, String genero, String CPF, String logradouro, String numero, String bairro, String cidade, String estado, String pais, String telefone, String email, String hashsenha, int id_funcionario, String data_contratacao, String cargo, Float salario, String departamento) {
+
+        super(nome, nascimento, genero, CPF, logradouro, numero, bairro, cidade, estado, pais, telefone, email, hashsenha);
+
+        this.id_funcionario = id_funcionario;
+        this.data_contratacao = data_contratacao;
+        this.cargo = cargo;
+        this.salario = salario;
+        this.departamento = departamento;
+    }
+
     public int getId_funcionario() {
         return id_funcionario;
     }

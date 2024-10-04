@@ -3,7 +3,7 @@ package heranca;
 public class Pessoa {
 
     private String nome, nascimento, genero, CPF, logradouro, numero, bairro, cidade, estado, pais, telefone, email, hashsenha;
-    
+
     public Pessoa(String nome, String nascimento, String genero, String CPF, String logradouro, String numero,
             String bairro, String cidade, String estado, String pais, String telefone, String email, String hashsenha) {
         this.nome = nome;
@@ -26,19 +26,17 @@ public class Pessoa {
 
     }
 
-    
     @Override
     public String toString() {
-    return "Nome: " + nome +
-           "\nNascimento: " + nascimento +
-           "\nGênero: " + genero +
-           "\nCPF: " + CPF +
-           "\nEndereço: " + logradouro + ", " + numero + ", " + bairro + ", " + cidade + ", " + estado + ", " + pais +
-           "\nTelefone: " + telefone +
-           "\nEmail: " + email +
-           "\nHash da senha: " + hashsenha;
-}
-
+        return "Nome: " + nome
+                + "\nNascimento: " + nascimento
+                + "\nGênero: " + genero
+                + "\nCPF: " + CPF
+                + "\nEndereço: " + logradouro + ", " + numero + ", " + bairro + ", " + cidade + ", " + estado + ", " + pais
+                + "\nTelefone: " + telefone
+                + "\nEmail: " + email
+                + "\nHash da senha: " + hashsenha;
+    }
 
     public String getNome() {
         return nome;

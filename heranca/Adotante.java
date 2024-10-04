@@ -7,6 +7,15 @@ public class Adotante extends Pessoa {
     private String historico_adocoes;
     private Boolean status;
 
+    public Adotante(String nome, String nascimento, String genero, String CPF, String logradouro, String numero, String bairro, String cidade, String estado, String pais, String telefone, String email, String hashsenha, String id_adotante, String preferencia_adocao, String historico_adocoes, Boolean status) {
+        super(nome, nascimento, genero, CPF, logradouro, numero, bairro, cidade, estado, pais, telefone, email, hashsenha);
+
+        this.id_adotante = id_adotante;
+        this.preferencia_adocao = preferencia_adocao;
+        this.historico_adocoes = historico_adocoes;
+        this.status = status;
+    }
+
     public String getId_adotante() {
         return id_adotante;
     }

@@ -7,6 +7,16 @@ public class Tutores extends Pessoa {
     private String historico;
     private Boolean status;
 
+    public Tutores(String nome, String nascimento, String genero, String CPF, String logradouro, String numero,String bairro, String cidade, String estado, String pais, String telefone, String email,String hashsenha, int id_tutor, int animais_custodia, String historico, Boolean status) {
+
+        super(nome, nascimento, genero, CPF, logradouro, numero, bairro, cidade, estado, pais, telefone, email, hashsenha);
+
+        this.id_tutor = id_tutor;
+        this.animais_custodia = animais_custodia;
+        this.historico = historico;
+        this.status = status;
+    }
+
     public int getId_tutor() {
         return id_tutor;
     }
