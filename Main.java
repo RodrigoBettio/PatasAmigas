@@ -101,6 +101,7 @@ public class Main {
 
                 System.out.print("Quantos animais estão sob sua custódia? ");
                 int animaisCustodia = scanner.nextInt();
+                scanner.nextLine(); // Consumir a nova linha para tirar do buffer
 
                 System.out.print("Digite o histórico do Tutor: ");
                 String historico = scanner.nextLine();
@@ -127,9 +128,11 @@ public class Main {
                 novaPessoa = new Adotante(nome, nascimento, genero, CPF, logradouro, numero, bairro, cidade, estado, pais, telefone, email, hashsenha, id_adotante, preferenciaAdocao, historicoAdocao, statusAdotante);
                 break;
 
+
             case 3:
                 System.out.print("Digite o ID do funcionário: ");
                 int id_funcionario = scanner.nextInt();
+                scanner.nextLine(); // Consumir a nova linha para tirar do buffer
 
                 System.out.print("Digite a data de contratação: ");
                 String dataContratacao = scanner.nextLine();
@@ -139,6 +142,7 @@ public class Main {
 
                 System.out.print("Digite o salário do funcionário: ");
                 float salario = scanner.nextFloat();
+                scanner.nextLine(); // Consumir a nova linha para tirar do buffer
 
                 System.out.print("Digite o departamento do funcionário: ");
                 String departamento = scanner.nextLine();
