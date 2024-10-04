@@ -8,27 +8,42 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int escolha = 0;
 
-        Pessoa novapessoa = cadastro_pessoa();
-        novapessoa.ToString();
+        do {
+            System.out.println("--- Menu ---");
+            System.out.println("1. Cadastrar pessoa");
+            System.out.println("2. Visualizar pessoas cadastradas");
+            System.out.println("3. Sair");
+            System.out.print("Escolha uma opção: ");
+            escolha = scanner.nextInt();
+            scanner.nextLine(); // Consumir a nova linha
+
+            switch (escolha) {
+                case 1:
+                    CadastrarPessoa();
+                    System.out.println("Pessoa cadastrada com sucesso!");
+                    break;
+
+                case 2:
+                    VisualizarPessoa();
+                    break;
+
+                case 3:
+                    System.out.println("Saindo...");
+                    break;
+
+                default:
+                    System.out.println("Opção inválida! Tente novamente.");
+            }
+        } while (escolha != 3);
+        scanner.close();
 
     }
 
-    public static Pessoa cadastro_pessoa() {
-
-        String nome;
-        String nascimento;
-        String genero;
-        String CPF;
-        String logradouro;
-        String numero;
-        String bairro;
-        String cidade;
-        String estado;
-        String pais;
-        String telefone;
-        String email;
-        String hashsenha;
+    public static Pessoa CadastrarPessoa() {
+        String nome, nascimento, genero, CPF, logradouro, numero, bairro, cidade, estado, pais, telefone, email, hashsenha;
         try (Scanner scanner = new Scanner(System.in)) {
             System.out.print("Digite o nome: ");
             nome = scanner.nextLine();
@@ -61,6 +76,10 @@ public class Main {
         return new Pessoa(nome, nascimento, genero, CPF, logradouro, numero, bairro, cidade, estado, pais, telefone,
                 email, hashsenha);
 
+    }
+
+    public static void VisualizarPessoa(){
+        System.out.println("Olá");
     }
 
     public static String generateHash(String input) {

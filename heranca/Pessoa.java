@@ -2,20 +2,8 @@ package heranca;
 
 public class Pessoa {
 
-    private String nome;
-    private String nascimento;
-    private String genero;
-    private String CPF;
-    private String logradouro;
-    private String numero;
-    private String bairro;
-    private String cidade;
-    private String estado;
-    private String pais;
-    private String telefone;
-    private String email;
-    private String hashsenha;
-
+    private String nome, nascimento, genero, CPF, logradouro, numero, bairro, cidade, estado, pais, telefone, email, hashsenha;
+    
     public Pessoa(String nome, String nascimento, String genero, String CPF, String logradouro, String numero,
             String bairro, String cidade, String estado, String pais, String telefone, String email, String hashsenha) {
         this.nome = nome;
@@ -38,16 +26,19 @@ public class Pessoa {
 
     }
 
-    public void ToString() {
-        System.out.println("Nome: " + nome);
-        System.out.println("Nascimento: " + nascimento);
-        System.out.println("Gênero: " + genero);
-        System.out.println("CPF: " + CPF);
-        System.out.println("Endereço: " + logradouro + ", " + numero + ", " + bairro + ", " + cidade + ", " + estado + ", " + pais);
-        System.out.println("Telefone: " + telefone);
-        System.out.println("Email: " + email);
-        System.out.println("Hash da senha: " + hashsenha);
-    }
+    
+    @Override
+    public String toString() {
+    return "Nome: " + nome +
+           "\nNascimento: " + nascimento +
+           "\nGênero: " + genero +
+           "\nCPF: " + CPF +
+           "\nEndereço: " + logradouro + ", " + numero + ", " + bairro + ", " + cidade + ", " + estado + ", " + pais +
+           "\nTelefone: " + telefone +
+           "\nEmail: " + email +
+           "\nHash da senha: " + hashsenha;
+}
+
 
     public String getNome() {
         return nome;
