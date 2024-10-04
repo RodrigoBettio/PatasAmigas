@@ -114,8 +114,9 @@ public class Main {
 
             case 2:
                 System.out.print("Digite o ID do adotante: ");
-                String id_adotante = scanner.nextLine();
-
+                int id_adotante = scanner.nextInt();
+                scanner.nextLine(); // Consumir a nova linha para tirar do buffer
+                
                 System.out.print("Qual a sua preferência de adoção?");
                 String preferenciaAdocao = scanner.nextLine();
 
@@ -163,7 +164,7 @@ public class Main {
             System.out.println("---- Pessoas ----");
             System.out.println(pessoa);
 
-            if (pessoa instanceof Tutores tutor) {
+            if (pessoa instanceof Tutores tutor) { 
 
                 System.out.printf("\n%s é um Tutor\n", pessoa.getNome());
                 System.out.println("Tutor ID: " + tutor.getId_tutor());

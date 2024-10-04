@@ -2,12 +2,12 @@ package heranca;
 
 public class Adotante extends Pessoa {
 
-    private String id_adotante;
+    private int id_adotante;
     private String preferencia_adocao;
     private String historico_adocoes;
     private Boolean status;
 
-    public Adotante(String nome, String nascimento, String genero, String CPF, String logradouro, String numero, String bairro, String cidade, String estado, String pais, String telefone, String email, String hashsenha, String id_adotante, String preferencia_adocao, String historico_adocoes, Boolean status) {
+    public Adotante(String nome, String nascimento, String genero, String CPF, String logradouro, String numero, String bairro, String cidade, String estado, String pais, String telefone, String email, String hashsenha, int id_adotante, String preferencia_adocao, String historico_adocoes, Boolean status) {
         super(nome, nascimento, genero, CPF, logradouro, numero, bairro, cidade, estado, pais, telefone, email, hashsenha);
 
         this.id_adotante = id_adotante;
@@ -16,11 +16,11 @@ public class Adotante extends Pessoa {
         this.status = status;
     }
 
-    public String getId_adotante() {
+    public int getId_adotante() {
         return id_adotante;
     }
 
-    public void setId_adotante(String id_adotante) {
+    public void setId_adotante(int id_adotante) {
         this.id_adotante = id_adotante;
     }
 
