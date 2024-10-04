@@ -3,13 +3,15 @@ import heranca.*;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
 
+    private static ArrayList<Pessoa> listaPessoas = new ArrayList<>();
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        int escolha = 0;
+        int escolha;
 
         do {
             System.out.println("--- Menu ---");
@@ -18,7 +20,7 @@ public class Main {
             System.out.println("3. Sair");
             System.out.print("Escolha uma opção: ");
             escolha = scanner.nextInt();
-            scanner.nextLine(); // Consumir a nova linha
+            scanner.nextLine(); // Consumir a nova linha para tirar do buffer
 
             switch (escolha) {
                 case 1:
@@ -46,38 +48,56 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         
         String nome, nascimento, genero, CPF, logradouro, numero, bairro, cidade, estado, pais, telefone, email, hashsenha;
+
         System.out.print("Digite o nome: ");
         nome = scanner.nextLine();
+
         System.out.print("Digite a data de nascimento: ");
         nascimento = scanner.nextLine();
+
         System.out.println("Digite o gênero : ('M' para masculino, 'F' para feminino e 'O' para outros)");
         genero = scanner.nextLine();
+
         System.out.println("Digite o CPF: (ex.: 123.123.123-12)");
         CPF = scanner.nextLine();
+
         System.out.print("Digite o logradouro: ");
         logradouro = scanner.nextLine();
+
         System.out.print("Digite o número: ");
         numero = scanner.nextLine();
+
         System.out.print("Digite o bairro: ");
         bairro = scanner.nextLine();
+
         System.out.print("Digite a cidade: ");
         cidade = scanner.nextLine();
+
         System.out.print("Digite o estado: ");
         estado = scanner.nextLine();
+
         System.out.print("Digite o país: ");
         pais = scanner.nextLine();
+
         System.out.println("Digite o telefone: (ex.: '11 11111-1111')");
         telefone = scanner.nextLine();
+
         System.out.print("Digite o email: ");
         email = scanner.nextLine();
+
         System.out.println("Digite a senha: ");
         String senha = scanner.nextLine();
         hashsenha = generateHash(senha);
-        return new Pessoa(nome, nascimento, genero, CPF, logradouro, numero, bairro, cidade, estado, pais, telefone, email, hashsenha);
+
+        Pessoa novaPessoa = new Pessoa(nome, nascimento, genero, CPF, logradouro, numero, bairro, cidade, estado, pais, telefone, email, hashsenha);
+        listaPessoas.add(novaPessoa); 
+        return novaPessoa;
     }
 
     public static void VisualizarPessoa(){
-        System.out.println("Olá");
+        for (Pessoa pessoa : listaPessoas) {
+            System.out.println(pessoa);
+        }
     }
 
     public static String generateHash(String input) {
