@@ -128,7 +128,6 @@ public class Main {
                 novaPessoa = new Adotante(nome, nascimento, genero, CPF, logradouro, numero, bairro, cidade, estado, pais, telefone, email, hashsenha, id_adotante, preferenciaAdocao, historicoAdocao, statusAdotante);
                 break;
 
-
             case 3:
                 System.out.print("Digite o ID do funcionário: ");
                 int id_funcionario = scanner.nextInt();
@@ -161,7 +160,34 @@ public class Main {
 
     public static void VisualizarPessoa() {
         for (Pessoa pessoa : listaPessoas) {
+            System.out.println("---- Pessoas ----");
             System.out.println(pessoa);
+
+            if (pessoa instanceof Tutores tutor) {
+
+                System.out.printf("\n%s é um Tutor\n", pessoa.getNome());
+                System.out.println("Tutor ID: " + tutor.getId_tutor());
+                System.out.println("Animais sob Custódia:" + tutor.getAnimais_custodia());
+                System.out.printf("Historico de %s: %s\n", pessoa.getNome(), tutor.getHistorico());
+                System.out.printf("O status de %s eh: %b\n", pessoa.getNome(), tutor.getStatus());
+
+            } else if (pessoa instanceof Adotante adotante) {
+
+                System.out.printf("\n%s é um Adotante\n", pessoa.getNome());
+                System.out.println("ID do Adotante: " + adotante.getId_adotante());
+                System.out.println("Preferência de adoção: " + adotante.getPreferencia_adocao());
+                System.out.println("Histórico de adoções: " + adotante.getHistorico_adocoes());
+                System.out.printf("O status de %s é: %b\n", pessoa.getNome(), adotante.getStatus());
+
+            } else if (pessoa instanceof Funcionarios funcionario) {
+
+                System.out.printf("\n%s é um Funcionário\n", pessoa.getNome());
+                System.out.println("ID do Funcionário: " + funcionario.getId_funcionario());
+                System.out.println("Data de contratação: " + funcionario.getData_contratacao());
+                System.out.println("Cargo: " + funcionario.getCargo());
+                System.out.printf("Salário: R$ %.2f\n", funcionario.getSalario());
+                System.out.println("Departamento: " + funcionario.getDepartamento());
+            }
         }
     }
 
