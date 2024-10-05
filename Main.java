@@ -14,6 +14,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         int escolha;
 
+        // Exibe o menu somente ate o momento em que o usuário escolhe a opção 'Sair'
         do {
             System.out.println("--- Menu ---");
             System.out.println("1. Cadastrar pessoa");
@@ -23,6 +24,7 @@ public class Main {
             escolha = scanner.nextInt();
             scanner.nextLine(); // Consumir a nova linha para tirar do buffer
 
+            // Switch Case para definir as ações de acordo com a escolha
             switch (escolha) {
                 case 1:
                     CadastrarPessoa();
@@ -45,6 +47,7 @@ public class Main {
 
     }
 
+    // Cadastro de pessoa e definição do tipo (tutor adotante ou funcionário)
     public static Pessoa CadastrarPessoa() {
         Scanner scanner = new Scanner(System.in);
 
@@ -94,6 +97,8 @@ public class Main {
         int tipoPessoa = scanner.nextInt();
         Pessoa novaPessoa = null;
 
+
+        // Switch Case para exibir e cadastrar os atributos específicos de cada tipo de pessoa
         switch (tipoPessoa) {
             case 1:
                 System.out.print("Digite o id do Tutor: ");
@@ -154,11 +159,15 @@ public class Main {
                 System.out.println("Tipo de pessoa inválido.");
         }
 
+        // Adiciona a nova pessoa na lista de pessoas e retorna a nova pessoa
         listaPessoas.add(novaPessoa);
         return novaPessoa;
 
     }
 
+
+    // Exibição dos dados da pessoa cadastrada
+    // Operador 'instanceof' utilizado para verificar a qual das subclasses da classe 'Pessoa' o objeto 'pessoa' pertence e exibir seus dados específicos
     public static void VisualizarPessoa() {
         for (Pessoa pessoa : listaPessoas) {
             System.out.println("---- Pessoas ----");
@@ -192,6 +201,8 @@ public class Main {
         }
     }
 
+
+    // Função que gera o hash SHA-256 da string (senha do usuário)
     public static String generateHash(String input) {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
@@ -202,6 +213,7 @@ public class Main {
         }
     }
 
+    // Função auxiliar que converte o array de bytes em uma string hexadecimal
     private static String bytesToHex(byte[] hash) {
         StringBuilder hexString = new StringBuilder(2 * hash.length);
         for (byte b : hash) {

@@ -2,14 +2,18 @@ package heranca;
 
 public class Funcionarios extends Pessoa {
 
+    // Atributos privados da classe Funcionarios
     private int id_funcionario;
     private String data_contratacao;
     private String cargo;
     private Float salario;
     private String departamento;
 
+
+    // Construtor da classe Funcionarios
     public Funcionarios(String nome, String nascimento, String genero, String CPF, String logradouro, String numero, String bairro, String cidade, String estado, String pais, String telefone, String email, String hashsenha, int id_funcionario, String data_contratacao, String cargo, Float salario, String departamento) {
 
+        // Chama o construtor da classe Pessoa para inicializar os atributos que foram herdados
         super(nome, nascimento, genero, CPF, logradouro, numero, bairro, cidade, estado, pais, telefone, email, hashsenha);
 
         this.id_funcionario = id_funcionario;
@@ -19,10 +23,14 @@ public class Funcionarios extends Pessoa {
         this.departamento = departamento;
     }
 
+
+    // Chama o construtor
     public int getId_funcionario() {
         return id_funcionario;
     }
 
+
+    // Getters e Setters
     public void setId_funcionario(int id_funcionario) {
         this.id_funcionario = id_funcionario;
     }

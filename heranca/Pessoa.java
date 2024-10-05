@@ -4,6 +4,8 @@ public class Pessoa {
 
     private String nome, nascimento, genero, CPF, logradouro, numero, bairro, cidade, estado, pais, telefone, email, hashsenha;
 
+
+    // Construtor da classe Pessoa
     public Pessoa(String nome, String nascimento, String genero, String CPF, String logradouro, String numero,
             String bairro, String cidade, String estado, String pais, String telefone, String email, String hashsenha) {
         this.nome = nome;
@@ -22,10 +24,13 @@ public class Pessoa {
 
     }
 
+
+    // Chama o construtor
     public Pessoa() {
 
     }
 
+    // Sobreescrita Tostring para exibir os dados da pessoa cadastrada
     @Override
     public String toString() {
         return "Nome: " + nome
@@ -38,6 +43,8 @@ public class Pessoa {
                 + "\nHash da senha: " + hashsenha;
     }
 
+
+    // Getters e Setters
     public String getNome() {
         return nome;
     }
