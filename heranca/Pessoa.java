@@ -1,10 +1,12 @@
 package heranca;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Pessoa {
 
     private String nome, nascimento, genero, CPF, logradouro, numero, bairro, cidade, estado, pais, telefone, email, hashsenha;
 
-
+    private List<Object> papeis;
     // Construtor da classe Pessoa
     public Pessoa(String nome, String nascimento, String genero, String CPF, String logradouro, String numero,
             String bairro, String cidade, String estado, String pais, String telefone, String email, String hashsenha) {
@@ -21,9 +23,18 @@ public class Pessoa {
         this.telefone = telefone;
         this.email = email;
         this.hashsenha = hashsenha;
+        this.papeis = new ArrayList<>();
 
     }
 
+    public void adicionarPapel(Object papel) {
+        papeis.add(papel); // Adiciona cada papel na lista 
+    }
+
+    // Acessar a lista de papeis
+    public List<Object> getPapeis() {
+        return papeis;
+    }
 
     // Chama o construtor
     public Pessoa() {

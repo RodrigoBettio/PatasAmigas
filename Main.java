@@ -1,4 +1,3 @@
-
 import heranca.*;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -14,7 +13,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         int escolha;
 
-        // Exibe o menu somente ate o momento em que o usuário escolhe a opção 'Sair'
+        // Exibe o menu somente até o momento em que o usuário escolhe a opção 'Sair'
         do {
             System.out.println("--- Menu ---");
             System.out.println("1. Cadastrar pessoa");
@@ -44,7 +43,6 @@ public class Main {
             }
         } while (escolha != 3);
         scanner.close();
-
     }
 
     // Cadastro de pessoa e definição do tipo (tutor adotante ou funcionário)
@@ -93,9 +91,10 @@ public class Main {
         String senha = scanner.nextLine();
         hashsenha = generateHash(senha);
 
-         // Inicializa uma nova pessoa
+        // Inicializa uma nova pessoa
         Pessoa novaPessoa = new Pessoa(nome, nascimento, genero, CPF, logradouro, numero, bairro, cidade, estado, pais, telefone, email, hashsenha);
 
+        // Pergunta se a pessoa é tutor
         System.out.print("Essa pessoa é um tutor? (true/false): ");
         boolean ehTutor = scanner.nextBoolean();
 
@@ -114,9 +113,10 @@ public class Main {
             boolean statusTutor = scanner.nextBoolean();
 
             // Cria um objeto Tutor e o adiciona à pessoa
-            novaPessoa = new Tutores(nome, nascimento, genero, CPF, logradouro, numero, bairro, cidade, estado, pais, telefone, email, hashsenha, id_tutor, animaisCustodia, historico, statusTutor);
+            novaPessoa.adicionarPapel(new Tutores(nome, nascimento, genero, CPF, logradouro, numero, bairro, cidade, estado, pais, telefone, email, hashsenha, id_tutor, animaisCustodia, historico, statusTutor));
         }
 
+        // Pergunta se a pessoa é adotante
         System.out.print("Essa pessoa é um adotante? (true/false): ");
         boolean ehAdotante = scanner.nextBoolean();
 
@@ -135,9 +135,10 @@ public class Main {
             boolean statusAdotante = scanner.nextBoolean();
 
             // Adiciona os dados do Adotante
-            novaPessoa = new Adotante(nome, nascimento, genero, CPF, logradouro, numero, bairro, cidade, estado, pais, telefone, email, hashsenha, id_adotante, preferenciaAdocao, historicoAdocao, statusAdotante);
+            novaPessoa.adicionarPapel(new Adotante(nome, nascimento, genero, CPF, logradouro, numero, bairro, cidade, estado, pais, telefone, email, hashsenha, id_adotante, preferenciaAdocao, historicoAdocao, statusAdotante));
         }
 
+        // Pergunta se a pessoa é funcionário
         System.out.print("Essa pessoa é um funcionário? (true/false): ");
         boolean ehFuncionario = scanner.nextBoolean();
 
@@ -160,45 +161,48 @@ public class Main {
             String departamento = scanner.nextLine();
 
             // Adiciona os dados do Funcionário
-            novaPessoa = new Funcionarios(nome, nascimento, genero, CPF, logradouro, numero, bairro, cidade, estado, pais, telefone, email, hashsenha, id_funcionario, dataContratacao, cargo, salario, departamento);
+            novaPessoa.adicionarPapel(new Funcionarios(nome, nascimento, genero, CPF, logradouro, numero, bairro, cidade, estado, pais, telefone, email, hashsenha, id_funcionario, dataContratacao, cargo, salario, departamento));
         }
 
-// Adiciona a nova pessoa na lista de pessoas
+        // Adiciona a nova pessoa na lista de pessoas
         listaPessoas.add(novaPessoa);
         return novaPessoa;
     }
 
     // Exibição dos dados da pessoa cadastrada
-    // Operador 'instanceof' utilizado para verificar a qual das subclasses da classe 'Pessoa' o objeto 'pessoa' pertence e exibir seus dados específicos
     public static void VisualizarPessoa() {
         for (Pessoa pessoa : listaPessoas) {
             System.out.println("---- Pessoas ----");
             System.out.println(pessoa);
 
-            if (pessoa instanceof Tutores tutor) {
+            for (Object papel : pessoa.getPapeis()) {
 
-                System.out.printf("\n%s é um Tutor\n", pessoa.getNome());
-                System.out.println("Tutor ID: " + tutor.getId_tutor());
-                System.out.println("Animais sob Custódia:" + tutor.getAnimais_custodia());
-                System.out.printf("Historico de %s: %s\n", pessoa.getNome(), tutor.getHistorico());
-                System.out.printf("O status de %s eh: %b\n", pessoa.getNome(), tutor.getStatus());
+                if (papel instanceof Tutores tutor) {
 
-            } else if (pessoa instanceof Adotante adotante) {
-
-                System.out.printf("\n%s é um Adotante\n", pessoa.getNome());
-                System.out.println("ID do Adotante: " + adotante.getId_adotante());
-                System.out.println("Preferência de adoção: " + adotante.getPreferencia_adocao());
-                System.out.println("Histórico de adoções: " + adotante.getHistorico_adocoes());
-                System.out.printf("O status de %s é: %b\n", pessoa.getNome(), adotante.getStatus());
-
-            } else if (pessoa instanceof Funcionarios funcionario) {
-
-                System.out.printf("\n%s é um Funcionário\n", pessoa.getNome());
-                System.out.println("ID do Funcionário: " + funcionario.getId_funcionario());
-                System.out.println("Data de contratação: " + funcionario.getData_contratacao());
-                System.out.println("Cargo: " + funcionario.getCargo());
-                System.out.printf("Salário: R$ %.2f\n", funcionario.getSalario());
-                System.out.println("Departamento: " + funcionario.getDepartamento());
+                    System.out.printf("\n%s é um Tutor\n", pessoa.getNome());
+                    System.out.println("Tutor ID: " + tutor.getId_tutor());
+                    System.out.println("Animais sob Custódia:" + tutor.getAnimais_custodia());
+                    System.out.printf("Historico de %s: %s\n", pessoa.getNome(), tutor.getHistorico());
+                    System.out.printf("O status de %s eh: %b\n", pessoa.getNome(), tutor.getStatus());
+    
+                } else if (papel instanceof Adotante adotante) {
+    
+                    System.out.printf("\n%s é um Adotante\n", pessoa.getNome());
+                    System.out.println("ID do Adotante: " + adotante.getId_adotante());
+                    System.out.println("Preferência de adoção: " + adotante.getPreferencia_adocao());
+                    System.out.println("Histórico de adoções: " + adotante.getHistorico_adocoes());
+                    System.out.printf("O status de %s é: %b\n", pessoa.getNome(), adotante.getStatus());
+    
+                } else if (papel instanceof Funcionarios funcionario) {
+    
+                    System.out.printf("\n%s é um Funcionário\n", pessoa.getNome());
+                    System.out.println("ID do Funcionário: " + funcionario.getId_funcionario());
+                    System.out.println("Data de contratação: " + funcionario.getData_contratacao());
+                    System.out.println("Cargo: " + funcionario.getCargo());
+                    System.out.printf("Salário: R$ %.2f\n", funcionario.getSalario());
+                    System.out.println("Departamento: " + funcionario.getDepartamento());
+                    System.out.println();
+                }
             }
         }
     }
@@ -226,5 +230,4 @@ public class Main {
         }
         return hexString.toString();
     }
-
 }
