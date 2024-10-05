@@ -91,6 +91,8 @@ public class Main {
         String senha = scanner.nextLine();
         hashsenha = generateHash(senha);
 
+        System.out.println();
+
         // Inicializa uma nova pessoa
         Pessoa novaPessoa = new Pessoa(nome, nascimento, genero, CPF, logradouro, numero, bairro, cidade, estado, pais, telefone, email, hashsenha);
 
@@ -183,7 +185,7 @@ public class Main {
                     System.out.println("Tutor ID: " + tutor.getId_tutor());
                     System.out.println("Animais sob Custódia:" + tutor.getAnimais_custodia());
                     System.out.printf("Historico de %s: %s\n", pessoa.getNome(), tutor.getHistorico());
-                    System.out.printf("O status de %s eh: %b\n", pessoa.getNome(), tutor.getStatus());
+                    System.out.printf("O status de %s é: %s\n", pessoa.getNome(), tutor.getStatus() ? "Ativo" : "Inativo"); //Ternario para criar if/else na exibição do status do boolean
     
                 } else if (papel instanceof Adotante adotante) {
     
@@ -191,7 +193,7 @@ public class Main {
                     System.out.println("ID do Adotante: " + adotante.getId_adotante());
                     System.out.println("Preferência de adoção: " + adotante.getPreferencia_adocao());
                     System.out.println("Histórico de adoções: " + adotante.getHistorico_adocoes());
-                    System.out.printf("O status de %s é: %b\n", pessoa.getNome(), adotante.getStatus());
+                    System.out.printf("O status de %s é: %b\n", pessoa.getNome(), adotante.getStatus() ? "Ativo": "Inativo");
     
                 } else if (papel instanceof Funcionarios funcionario) {
     
