@@ -93,78 +93,80 @@ public class Main {
         String senha = scanner.nextLine();
         hashsenha = generateHash(senha);
 
-        System.out.print("Tipo de pessoa (1 - Tutor, 2 - Adotante, 3 - Funcionário): ");
-        int tipoPessoa = scanner.nextInt();
-        Pessoa novaPessoa = null;
+         // Inicializa uma nova pessoa
+        Pessoa novaPessoa = new Pessoa(nome, nascimento, genero, CPF, logradouro, numero, bairro, cidade, estado, pais, telefone, email, hashsenha);
 
+        System.out.print("Essa pessoa é um tutor? (true/false): ");
+        boolean ehTutor = scanner.nextBoolean();
 
-        // Switch Case para exibir e cadastrar os atributos específicos de cada tipo de pessoa
-        switch (tipoPessoa) {
-            case 1:
-                System.out.print("Digite o id do Tutor: ");
-                int id_tutor = scanner.nextInt();
+        if (ehTutor) {
+            System.out.print("Digite o id do Tutor: ");
+            int id_tutor = scanner.nextInt();
 
-                System.out.print("Quantos animais estão sob sua custódia? ");
-                int animaisCustodia = scanner.nextInt();
-                scanner.nextLine(); // Consumir a nova linha para tirar do buffer
+            System.out.print("Quantos animais estão sob sua custódia? ");
+            int animaisCustodia = scanner.nextInt();
+            scanner.nextLine(); // Consumir a nova linha para tirar do buffer
 
-                System.out.print("Digite o histórico do Tutor: ");
-                String historico = scanner.nextLine();
+            System.out.print("Digite o histórico do Tutor: ");
+            String historico = scanner.nextLine();
 
-                System.out.print("Tutor está ativo? (true/false): ");
-                boolean statusTutor = scanner.nextBoolean();
+            System.out.print("Tutor está ativo? (true/false): ");
+            boolean statusTutor = scanner.nextBoolean();
 
-                novaPessoa = new Tutores(nome, nascimento, genero, CPF, logradouro, numero, bairro, cidade, estado, pais, telefone, email, hashsenha, id_tutor, animaisCustodia, historico, statusTutor);
-                break;
-
-            case 2:
-                System.out.print("Digite o ID do adotante: ");
-                int id_adotante = scanner.nextInt();
-                scanner.nextLine(); // Consumir a nova linha para tirar do buffer
-                
-                System.out.print("Qual a sua preferência de adoção?");
-                String preferenciaAdocao = scanner.nextLine();
-
-                System.out.print("Digite o histórico das adoções: ");
-                String historicoAdocao = scanner.nextLine();
-
-                System.out.print("O adotante está ativo? (true/false):");
-                boolean statusAdotante = scanner.nextBoolean();
-
-                novaPessoa = new Adotante(nome, nascimento, genero, CPF, logradouro, numero, bairro, cidade, estado, pais, telefone, email, hashsenha, id_adotante, preferenciaAdocao, historicoAdocao, statusAdotante);
-                break;
-
-            case 3:
-                System.out.print("Digite o ID do funcionário: ");
-                int id_funcionario = scanner.nextInt();
-                scanner.nextLine(); // Consumir a nova linha para tirar do buffer
-
-                System.out.print("Digite a data de contratação: ");
-                String dataContratacao = scanner.nextLine();
-
-                System.out.print("Digite o cargo do funcionário: ");
-                String cargo = scanner.nextLine();
-
-                System.out.print("Digite o salário do funcionário: ");
-                float salario = scanner.nextFloat();
-                scanner.nextLine(); // Consumir a nova linha para tirar do buffer
-
-                System.out.print("Digite o departamento do funcionário: ");
-                String departamento = scanner.nextLine();
-
-                novaPessoa = new Funcionarios(nome, nascimento, genero, CPF, logradouro, numero, bairro, cidade, estado, pais, telefone, email, hashsenha, id_funcionario, dataContratacao, cargo, salario, departamento);
-                break;
-
-            default:
-                System.out.println("Tipo de pessoa inválido.");
+            // Cria um objeto Tutor e o adiciona à pessoa
+            novaPessoa = new Tutores(nome, nascimento, genero, CPF, logradouro, numero, bairro, cidade, estado, pais, telefone, email, hashsenha, id_tutor, animaisCustodia, historico, statusTutor);
         }
 
-        // Adiciona a nova pessoa na lista de pessoas e retorna a nova pessoa
+        System.out.print("Essa pessoa é um adotante? (true/false): ");
+        boolean ehAdotante = scanner.nextBoolean();
+
+        if (ehAdotante) {
+            System.out.print("Digite o ID do adotante: ");
+            int id_adotante = scanner.nextInt();
+            scanner.nextLine(); // Consumir a nova linha para tirar do buffer
+
+            System.out.print("Qual a sua preferência de adoção? ");
+            String preferenciaAdocao = scanner.nextLine();
+
+            System.out.print("Digite o histórico das adoções: ");
+            String historicoAdocao = scanner.nextLine();
+
+            System.out.print("O adotante está ativo? (true/false): ");
+            boolean statusAdotante = scanner.nextBoolean();
+
+            // Adiciona os dados do Adotante
+            novaPessoa = new Adotante(nome, nascimento, genero, CPF, logradouro, numero, bairro, cidade, estado, pais, telefone, email, hashsenha, id_adotante, preferenciaAdocao, historicoAdocao, statusAdotante);
+        }
+
+        System.out.print("Essa pessoa é um funcionário? (true/false): ");
+        boolean ehFuncionario = scanner.nextBoolean();
+
+        if (ehFuncionario) {
+            System.out.print("Digite o ID do funcionário: ");
+            int id_funcionario = scanner.nextInt();
+            scanner.nextLine(); // Consumir a nova linha para tirar do buffer
+
+            System.out.print("Digite a data de contratação: ");
+            String dataContratacao = scanner.nextLine();
+
+            System.out.print("Digite o cargo do funcionário: ");
+            String cargo = scanner.nextLine();
+
+            System.out.print("Digite o salário do funcionário: ");
+            float salario = scanner.nextFloat();
+            scanner.nextLine(); // Consumir a nova linha para tirar do buffer
+
+            System.out.print("Digite o departamento do funcionário: ");
+            String departamento = scanner.nextLine();
+
+            // Adiciona os dados do Funcionário
+            novaPessoa = new Funcionarios(nome, nascimento, genero, CPF, logradouro, numero, bairro, cidade, estado, pais, telefone, email, hashsenha, id_funcionario, dataContratacao, cargo, salario, departamento);
+        }
+
+// Adiciona a nova pessoa na lista de pessoas
         listaPessoas.add(novaPessoa);
         return novaPessoa;
-
     }
-
 
     // Exibição dos dados da pessoa cadastrada
     // Operador 'instanceof' utilizado para verificar a qual das subclasses da classe 'Pessoa' o objeto 'pessoa' pertence e exibir seus dados específicos
@@ -173,7 +175,7 @@ public class Main {
             System.out.println("---- Pessoas ----");
             System.out.println(pessoa);
 
-            if (pessoa instanceof Tutores tutor) { 
+            if (pessoa instanceof Tutores tutor) {
 
                 System.out.printf("\n%s é um Tutor\n", pessoa.getNome());
                 System.out.println("Tutor ID: " + tutor.getId_tutor());
@@ -200,7 +202,6 @@ public class Main {
             }
         }
     }
-
 
     // Função que gera o hash SHA-256 da string (senha do usuário)
     public static String generateHash(String input) {
