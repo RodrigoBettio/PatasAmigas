@@ -1,3 +1,4 @@
+
 import heranca.*;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -15,10 +16,12 @@ public class Main {
 
         // Exibe o menu somente até o momento em que o usuário escolhe a opção 'Sair'
         do {
-            System.out.println("--- Menu ---");
+            System.out.println();
+            System.out.println("---- Menu ----");
             System.out.println("1. Cadastrar pessoa");
-            System.out.println("2. Visualizar pessoas cadastradas");
-            System.out.println("3. Sair");
+            System.out.println("2. Editar pessoas cadastradas");
+            System.out.println("3. Visualizar pessoas cadastradas");
+            System.out.println("4. Sair");
             System.out.print("Escolha uma opção: ");
             escolha = scanner.nextInt();
             scanner.nextLine(); // Consumir a nova linha para tirar do buffer
@@ -26,15 +29,24 @@ public class Main {
             // Switch Case para definir as ações de acordo com a escolha
             switch (escolha) {
                 case 1:
+                    System.out.println();
                     CadastrarPessoa();
                     System.out.println("Pessoa cadastrada com sucesso!");
                     break;
 
                 case 2:
-                    VisualizarPessoa();
+                    System.out.println();
+                    EditarPessoa();
+                    System.out.println("Pessoa editada com sucesso!");
+                    
                     break;
 
                 case 3:
+                    System.out.println();
+                    VisualizarPessoa();
+                    break;
+
+                case 4:
                     System.out.println("Saindo...");
                     break;
 
@@ -186,17 +198,17 @@ public class Main {
                     System.out.println("Animais sob Custódia:" + tutor.getAnimais_custodia());
                     System.out.printf("Historico de %s: %s\n", pessoa.getNome(), tutor.getHistorico());
                     System.out.printf("O status de %s é: %s\n", pessoa.getNome(), tutor.getStatus() ? "Ativo" : "Inativo"); //Ternario para criar if/else na exibição do status do boolean
-    
+
                 } else if (papel instanceof Adotante adotante) {
-    
+
                     System.out.printf("\n%s é um Adotante\n", pessoa.getNome());
                     System.out.println("ID do Adotante: " + adotante.getId_adotante());
                     System.out.println("Preferência de adoção: " + adotante.getPreferencia_adocao());
                     System.out.println("Histórico de adoções: " + adotante.getHistorico_adocoes());
-                    System.out.printf("O status de %s é: %b\n", pessoa.getNome(), adotante.getStatus() ? "Ativo": "Inativo");
-    
+                    System.out.printf("O status de %s é: %b\n", pessoa.getNome(), adotante.getStatus() ? "Ativo" : "Inativo");
+
                 } else if (papel instanceof Funcionarios funcionario) {
-    
+
                     System.out.printf("\n%s é um Funcionário\n", pessoa.getNome());
                     System.out.println("ID do Funcionário: " + funcionario.getId_funcionario());
                     System.out.println("Data de contratação: " + funcionario.getData_contratacao());
@@ -207,6 +219,26 @@ public class Main {
                 }
             }
         }
+    }
+
+    public static void EditarPessoa() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("---- Pessoas Cadastradas ----");
+
+        for (int i = 0; i < listaPessoas.size(); i++) {
+            Pessoa pessoa = listaPessoas.get(i);
+            System.out.println((i + 1) + ". " + pessoa.getNome());
+        }
+
+        
+        System.out.print("Escolha a pessoa que deseja editar: ");
+        int escolha = scanner.nextInt();
+        scanner.nextLine(); // Consumir a nova linha do buffer
+
+        Pessoa pessoaSelecionada = listaPessoas.get(escolha - 1); // -1 para começar em 0 na lista
+
+        System.out.println("Você escolheu editar: " + pessoaSelecionada.getNome());
     }
 
     // Função que gera o hash SHA-256 da string (senha do usuário)
