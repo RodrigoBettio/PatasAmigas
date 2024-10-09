@@ -30,13 +30,13 @@ public class Main {
             switch (escolha) {
                 case 1:
                     System.out.println();
-                    CadastrarPessoa();
+                    CadastrarPessoa(scanner);
                     System.out.println("Pessoa cadastrada com sucesso!");
                     break;
 
                 case 2:
                     System.out.println();
-                    EditarPessoa();
+                    EditarPessoa(scanner);
                     System.out.println("Pessoa editada com sucesso!");
                     
                     break;
@@ -53,13 +53,13 @@ public class Main {
                 default:
                     System.out.println("Opção inválida! Tente novamente.");
             }
-        } while (escolha != 3);
+        } while (escolha != 4);
         scanner.close();
     }
 
     // Cadastro de pessoa e definição do tipo (tutor adotante ou funcionário)
-    public static Pessoa CadastrarPessoa() {
-        Scanner scanner = new Scanner(System.in);
+    public static Pessoa CadastrarPessoa(Scanner scanner) {
+        
 
         String nome, nascimento, genero, CPF, logradouro, numero, bairro, cidade, estado, pais, telefone, email, hashsenha;
 
@@ -218,11 +218,12 @@ public class Main {
                     System.out.println();
                 }
             }
+            
         }
     }
 
-    public static void EditarPessoa() {
-        Scanner scanner = new Scanner(System.in);
+    public static void EditarPessoa(Scanner scanner) {
+        
 
         System.out.println("---- Pessoas Cadastradas ----");
 
@@ -264,4 +265,5 @@ public class Main {
         }
         return hexString.toString();
     }
+    
 }
