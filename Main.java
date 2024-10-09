@@ -69,10 +69,10 @@ public class Main {
         System.out.print("Digite a data de nascimento: ");
         nascimento = scanner.nextLine();
 
-        System.out.println("Digite o gênero : ('M' para masculino, 'F' para feminino e 'O' para outros)");
+        System.out.print("Digite o gênero : ('M' para masculino, 'F' para feminino e 'O' para outros)");
         genero = scanner.nextLine();
 
-        System.out.println("Digite o CPF: (ex.: 123.123.123-12)");
+        System.out.print("Digite o CPF: (ex.: 123.123.123-12)");
         CPF = scanner.nextLine();
 
         System.out.print("Digite o logradouro: ");
@@ -93,13 +93,13 @@ public class Main {
         System.out.print("Digite o país: ");
         pais = scanner.nextLine();
 
-        System.out.println("Digite o telefone: (ex.: '11 11111-1111')");
+        System.out.print("Digite o telefone: (ex.: '11 11111-1111')");
         telefone = scanner.nextLine();
 
         System.out.print("Digite o email: ");
         email = scanner.nextLine();
 
-        System.out.println("Digite a senha: ");
+        System.out.print("Digite a senha: ");
         String senha = scanner.nextLine();
         hashsenha = generateHash(senha);
 
@@ -109,8 +109,9 @@ public class Main {
         Pessoa novaPessoa = new Pessoa(nome, nascimento, genero, CPF, logradouro, numero, bairro, cidade, estado, pais, telefone, email, hashsenha);
 
         // Pergunta se a pessoa é tutor
-        System.out.print("Essa pessoa é um tutor? (true/false): ");
-        boolean ehTutor = scanner.nextBoolean();
+        System.out.print("Essa pessoa é um tutor? (s/n)\n");
+        String resposta = scanner.nextLine();
+        boolean ehTutor = resposta.equalsIgnoreCase("s");
 
         if (ehTutor) {
             System.out.print("Digite o id do Tutor: ");
@@ -123,16 +124,19 @@ public class Main {
             System.out.print("Digite o histórico do Tutor: ");
             String historico = scanner.nextLine();
 
-            System.out.print("Tutor está ativo? (true/false): ");
-            boolean statusTutor = scanner.nextBoolean();
+            System.out.print("Tutor está ativo? (s/n) ");
+            resposta = scanner.nextLine();
+            boolean statusTutor = resposta.equalsIgnoreCase("s");
 
             // Cria um objeto Tutor e o adiciona à pessoa
             novaPessoa.adicionarPapel(new Tutores(nome, nascimento, genero, CPF, logradouro, numero, bairro, cidade, estado, pais, telefone, email, hashsenha, id_tutor, animaisCustodia, historico, statusTutor));
         }
 
         // Pergunta se a pessoa é adotante
-        System.out.print("Essa pessoa é um adotante? (true/false): ");
-        boolean ehAdotante = scanner.nextBoolean();
+        System.out.print("Essa pessoa é um adotante? (s/n)\n");
+        resposta = scanner.nextLine();
+
+        boolean ehAdotante = resposta.equalsIgnoreCase("s");
 
         if (ehAdotante) {
             System.out.print("Digite o ID do adotante: ");
@@ -145,16 +149,20 @@ public class Main {
             System.out.print("Digite o histórico das adoções: ");
             String historicoAdocao = scanner.nextLine();
 
-            System.out.print("O adotante está ativo? (true/false): ");
-            boolean statusAdotante = scanner.nextBoolean();
+            System.out.print("O adotante está ativo? (s/n)");
+            resposta = scanner.nextLine();
+
+            boolean statusAdotante = resposta.equalsIgnoreCase("s");
 
             // Adiciona os dados do Adotante
             novaPessoa.adicionarPapel(new Adotante(nome, nascimento, genero, CPF, logradouro, numero, bairro, cidade, estado, pais, telefone, email, hashsenha, id_adotante, preferenciaAdocao, historicoAdocao, statusAdotante));
         }
 
         // Pergunta se a pessoa é funcionário
-        System.out.print("Essa pessoa é um funcionário? (true/false): ");
-        boolean ehFuncionario = scanner.nextBoolean();
+        System.out.print("Essa pessoa é um funcionário? (s/n)\n");
+        resposta = scanner.nextLine();
+
+        boolean ehFuncionario = resposta.equalsIgnoreCase("s");
 
         if (ehFuncionario) {
             System.out.print("Digite o ID do funcionário: ");
