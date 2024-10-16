@@ -36,14 +36,15 @@ public class Main {
 
                 case 2:
                     System.out.println();
+                    VisualizarPessoa();
                     EditarPessoa(scanner);
                     System.out.println("Pessoa editada com sucesso!");
-                    
+
                     break;
 
                 case 3:
                     System.out.println();
-                    VisualizarPessoa();
+                    ExibirDetalhes();
                     break;
 
                 case 4:
@@ -59,7 +60,6 @@ public class Main {
 
     // Cadastro de pessoa e definição do tipo (tutor adotante ou funcionário)
     public static Pessoa CadastrarPessoa(Scanner scanner) {
-        
 
         String nome, nascimento, genero, CPF, logradouro, numero, bairro, cidade, estado, pais, telefone, email, hashsenha;
 
@@ -192,19 +192,26 @@ public class Main {
     }
 
     // Exibição dos dados da pessoa cadastrada
+    public static void ExibirDetalhes() {
+        for (Pessoa pessoa : listaPessoas) {
+            for (Papel papel : pessoa.getPapeis()) {
+                papel.exibirDetalhes();
+            }
+        }
+
+    }
+
     public static void VisualizarPessoa() {
         for (Pessoa pessoa : listaPessoas) {
             System.out.println("---- Pessoas ----");
             System.out.println(pessoa);
-
-            for (Papel papel : pessoa.getPapeis()) {
-                papel.exibirDetalhes();
         }
+        ExibirDetalhes();
+
     }
-}
 
     public static void EditarPessoa(Scanner scanner) {
-        
+
         System.out.println("---- Pessoas Cadastradas ----");
 
         for (int i = 0; i < listaPessoas.size(); i++) {
@@ -212,7 +219,6 @@ public class Main {
             System.out.println((i + 1) + ". " + pessoa.getNome());
         }
 
-        
         System.out.print("Escolha a pessoa que deseja editar: ");
         int escolha = scanner.nextInt();
         scanner.nextLine(); // Consumir a nova linha do buffer
@@ -245,5 +251,5 @@ public class Main {
         }
         return hexString.toString();
     }
-    
+
 }
