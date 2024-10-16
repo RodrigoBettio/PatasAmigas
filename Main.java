@@ -36,15 +36,14 @@ public class Main {
 
                 case 2:
                     System.out.println();
-                    VisualizarPessoa();
+                    EscolherPessoa(scanner);
                     EditarPessoa(scanner);
                     System.out.println("Pessoa editada com sucesso!");
-
                     break;
 
                 case 3:
                     System.out.println();
-                    ExibirDetalhes();
+                    VisualizarPessoa();
                     break;
 
                 case 4:
@@ -191,26 +190,18 @@ public class Main {
         return novaPessoa;
     }
 
-    // Exibição dos dados da pessoa cadastrada
-    public static void ExibirDetalhes() {
-        for (Pessoa pessoa : listaPessoas) {
-            for (Papel papel : pessoa.getPapeis()) {
-                papel.exibirDetalhes();
-            }
-        }
-
-    }
-
     public static void VisualizarPessoa() {
         for (Pessoa pessoa : listaPessoas) {
             System.out.println("---- Pessoas ----");
             System.out.println(pessoa);
-        }
-        ExibirDetalhes();
 
+            for (Papel papel : pessoa.getPapeis()) {
+                papel.exibirDetalhes();
+            }
+        }
     }
 
-    public static void EditarPessoa(Scanner scanner) {
+    public static void EscolherPessoa(Scanner scanner) {
 
         System.out.println("---- Pessoas Cadastradas ----");
 
