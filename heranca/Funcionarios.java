@@ -1,6 +1,6 @@
 package heranca;
 
-public class Funcionarios extends Pessoa {
+public class Funcionarios extends Pessoa implements Papel {
 
     // Atributos privados da classe Funcionarios
     private int id_funcionario;
@@ -23,6 +23,15 @@ public class Funcionarios extends Pessoa {
         this.departamento = departamento;
     }
 
+    @Override
+    public void exibirDetalhes(){
+    System.out.println("ID do Funcionário: " + id_funcionario);
+    System.out.println("Data de contratação: " + data_contratacao);
+    System.out.println("Cargo: " + cargo);
+    System.out.printf("Salário: R$ %.2f\n", salario);
+    System.out.println("Departamento: " + departamento);
+
+    }
 
     // Chama o construtor
     public int getId_funcionario() {

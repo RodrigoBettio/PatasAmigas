@@ -1,6 +1,6 @@
 package heranca;
 
-public class Adotante extends Pessoa {
+public class Adotante extends Pessoa implements Papel {
 
     // Atributos privados da classe Adotantes
     private int id_adotante;
@@ -19,6 +19,14 @@ public class Adotante extends Pessoa {
         this.preferencia_adocao = preferencia_adocao;
         this.historico_adocoes = historico_adocoes;
         this.status = status;
+    }
+
+    @Override
+    public void exibirDetalhes() {
+        System.out.println("ID do Adotante: " + id_adotante );
+        System.out.println("Preferência de adoção: " + preferencia_adocao);
+        System.out.println("Histórico de adoções: " + historico_adocoes);
+        System.out.printf("O status de %s é: %b\n", this.getNome(), status ? "Ativo" : "Inativo");
     }
 
 

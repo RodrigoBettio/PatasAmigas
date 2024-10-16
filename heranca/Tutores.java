@@ -1,6 +1,6 @@
 package heranca;
 
-public class Tutores extends Pessoa {
+public class Tutores extends Pessoa implements Papel {
 
     // Atributos privados da classe Tutores
     private int id_tutor;
@@ -18,6 +18,15 @@ public class Tutores extends Pessoa {
         this.animais_custodia = animais_custodia;
         this.historico = historico;
         this.status = status;
+    }
+
+    @Override
+    public void exibirDetalhes() {
+        System.out.println("Tutor ID: " + id_tutor);
+        System.out.println("Animais sob Custódia:" + animais_custodia);
+        System.out.printf("Historico de %s: %s\n", this.getNome(), historico);
+        System.out.printf("O status de %s é: %s\n", this.getNome(), status ? "Ativo" : "Inativo");
+        //Perguntar a diferença pro Quirino de usar status e de usar o construtor com o this.getStatus()
     }
 
     // Chama o construtor

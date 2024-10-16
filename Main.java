@@ -197,42 +197,14 @@ public class Main {
             System.out.println("---- Pessoas ----");
             System.out.println(pessoa);
 
-            for (Object papel : pessoa.getPapeis()) {
-
-                if (papel instanceof Tutores tutor) {
-
-                    System.out.printf("\n%s é um Tutor\n", pessoa.getNome());
-                    System.out.println("Tutor ID: " + tutor.getId_tutor());
-                    System.out.println("Animais sob Custódia:" + tutor.getAnimais_custodia());
-                    System.out.printf("Historico de %s: %s\n", pessoa.getNome(), tutor.getHistorico());
-                    System.out.printf("O status de %s é: %s\n", pessoa.getNome(), tutor.getStatus() ? "Ativo" : "Inativo"); //Ternario para criar if/else na exibição do status do boolean
-
-                } else if (papel instanceof Adotante adotante) {
-
-                    System.out.printf("\n%s é um Adotante\n", pessoa.getNome());
-                    System.out.println("ID do Adotante: " + adotante.getId_adotante());
-                    System.out.println("Preferência de adoção: " + adotante.getPreferencia_adocao());
-                    System.out.println("Histórico de adoções: " + adotante.getHistorico_adocoes());
-                    System.out.printf("O status de %s é: %b\n", pessoa.getNome(), adotante.getStatus() ? "Ativo" : "Inativo");
-
-                } else if (papel instanceof Funcionarios funcionario) {
-
-                    System.out.printf("\n%s é um Funcionário\n", pessoa.getNome());
-                    System.out.println("ID do Funcionário: " + funcionario.getId_funcionario());
-                    System.out.println("Data de contratação: " + funcionario.getData_contratacao());
-                    System.out.println("Cargo: " + funcionario.getCargo());
-                    System.out.printf("Salário: R$ %.2f\n", funcionario.getSalario());
-                    System.out.println("Departamento: " + funcionario.getDepartamento());
-                    System.out.println();
-                }
-            }
-            
+            for (Papel papel : pessoa.getPapeis()) {
+                papel.exibirDetalhes();
         }
     }
+}
 
     public static void EditarPessoa(Scanner scanner) {
         
-
         System.out.println("---- Pessoas Cadastradas ----");
 
         for (int i = 0; i < listaPessoas.size(); i++) {
