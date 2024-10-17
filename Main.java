@@ -37,7 +37,7 @@ public class Main {
                 case 2:
                     System.out.println();
                     Pessoa pessoa = EscolherPessoa(scanner);
-                    EditarPessoa(scanner,pessoa);
+                    EditarPessoa(scanner, pessoa);
                     System.out.println("Pessoa editada com sucesso!");
                     break;
 
@@ -213,8 +213,8 @@ public class Main {
         System.out.print("Escolha a pessoa que deseja editar: ");
         int escolha = scanner.nextInt();
         scanner.nextLine(); // Consumir a nova linha do buffer
-        
-        if (escolha > 0 && escolha <= listaPessoas.size()){
+
+        if (escolha > 0 && escolha <= listaPessoas.size()) {
             Pessoa pessoaSelecionada = listaPessoas.get(escolha - 1);
             return pessoaSelecionada;
         } else {
@@ -222,10 +222,9 @@ public class Main {
             return null;
         }
 
-        
     }
 
-    public static void EditarPessoa(Scanner scanner, Pessoa pessoa){
+    public static void EditarPessoa(Scanner scanner, Pessoa pessoa) {
 
         System.out.println("Editando informações de " + pessoa.getNome());
         System.out.println("Escolha o atributo que deseja editar:");
@@ -237,7 +236,7 @@ public class Main {
         System.out.println("6 - Telefone");
         System.out.println("7 - Email");
         System.out.println("8 - Senha");
-        
+
         // Verifica o tipo específico de pessoa (Adotante, Funcionario, Tutor)
         if (pessoa instanceof Adotante) {
             System.out.println("9 - Preferência de adoção");
@@ -257,6 +256,78 @@ public class Main {
         System.out.println("Digite o número do campo que deseja editar:");
         int opcao = scanner.nextInt();
         scanner.nextLine(); // Consumir a nova linha para tirar do buffer
+
+        switch (opcao) {
+
+            case 1:
+                System.out.println("Digite o novo nome: ");
+                String novoNome = scanner.nextLine();
+                pessoa.setNome(novoNome);
+                break;
+
+            case 2:
+                System.out.println("Digite a nova data de nascimento:");
+                String novaData = scanner.nextLine();
+                pessoa.setNascimento(novaData);
+                break;
+
+            case 3:
+                System.out.println("Digite o novo gênero:");
+                String novoGenero = scanner.nextLine();
+                pessoa.setGenero(novoGenero);
+                break;
+
+            case 4:
+                System.out.println("Digite o novo CPF:");
+                String novoCPF = scanner.nextLine();
+                pessoa.setCPF(novoCPF);
+                break;
+
+            case 5:
+                System.out.println("Digite o novo logradouro:");
+                String logradouro = scanner.nextLine();
+                pessoa.setLogradouro(logradouro);
+
+                System.out.println("Digite o novo número:");
+                String numero = scanner.nextLine();
+                pessoa.setNumero(numero);
+
+                System.out.println("Digite o novo bairro:");
+                String bairro = scanner.nextLine();
+                pessoa.setBairro(bairro);
+
+                System.out.println("Digite a nova cidade:");
+                String cidade = scanner.nextLine();
+                pessoa.setCidade(cidade);
+
+                System.out.println("Digite o novo estado:");
+                String estado = scanner.nextLine();
+                pessoa.setEstado(estado);
+
+                System.out.println("Digite o novo país:");
+                String pais = scanner.nextLine();
+                pessoa.setPais(pais);
+                break;
+
+            case 6:
+                System.out.println("Digite o novo telefone:");
+                String telefone = scanner.nextLine();
+                pessoa.setTelefone(telefone);
+                break;
+
+            case 7:
+                System.out.println("Digite o novo email:");
+                String email = scanner.nextLine();
+                pessoa.setEmail(email);
+                break;
+
+            case 8:
+                System.out.println("Digite a nova senha:");
+                String novaSenha = scanner.nextLine();
+                pessoa.setHashsenha(novaSenha);
+                break;
+
+        }
     }
 
     // Função que gera o hash SHA-256 da string (senha do usuário)
