@@ -21,7 +21,8 @@ public class Main {
             System.out.println("1. Cadastrar pessoa");
             System.out.println("2. Editar pessoas cadastradas");
             System.out.println("3. Visualizar pessoas cadastradas");
-            System.out.println("4. Sair");
+            System.out.println("4. Buscar");
+            System.out.println("5. Sair");
             System.out.print("Escolha uma opção: ");
             escolha = scanner.nextInt();
             scanner.nextLine(); // Consumir a nova linha para tirar do buffer
@@ -47,20 +48,25 @@ public class Main {
                     break;
 
                 case 4:
+                    buscaPorFiltro(scanner);
+                    break;
+
+                case 5:
                     System.out.println("Saindo...");
                     break;
 
                 default:
                     System.out.println("Opção inválida! Tente novamente.");
             }
-        } while (escolha != 4);
+        } while (escolha != 5);
         scanner.close();
     }
 
     // Cadastro de pessoa e definição do tipo (tutor adotante ou funcionário)
     public static Pessoa CadastrarPessoa(Scanner scanner) {
 
-        String nome, nascimento, genero, CPF, logradouro, numero, bairro, cidade, estado, pais, telefone, email, hashsenha;
+        String nome, nascimento, genero, CPF, logradouro, numero, bairro, cidade, estado, pais, telefone, email,
+                hashsenha;
 
         System.out.print("Digite o nome: ");
         nome = scanner.nextLine();
@@ -105,7 +111,8 @@ public class Main {
         System.out.println();
 
         // Inicializa uma nova pessoa
-        Pessoa novaPessoa = new Pessoa(nome, nascimento, genero, CPF, logradouro, numero, bairro, cidade, estado, pais, telefone, email, hashsenha);
+        Pessoa novaPessoa = new Pessoa(nome, nascimento, genero, CPF, logradouro, numero, bairro, cidade, estado, pais,
+                telefone, email, hashsenha);
 
         // Pergunta se a pessoa é tutor
         System.out.print("Essa pessoa é um tutor? (s/n)\n");
@@ -128,7 +135,8 @@ public class Main {
             boolean statusTutor = resposta.equalsIgnoreCase("s");
 
             // Cria um objeto Tutor e o adiciona à pessoa
-            novaPessoa.adicionarPapel(new Tutores(nome, nascimento, genero, CPF, logradouro, numero, bairro, cidade, estado, pais, telefone, email, hashsenha, id_tutor, animaisCustodia, historico, statusTutor));
+            novaPessoa.adicionarPapel(new Tutores(nome, nascimento, genero, CPF, logradouro, numero, bairro, cidade,
+                    estado, pais, telefone, email, hashsenha, id_tutor, animaisCustodia, historico, statusTutor));
         }
 
         // Pergunta se a pessoa é adotante
@@ -154,7 +162,9 @@ public class Main {
             boolean statusAdotante = resposta.equalsIgnoreCase("s");
 
             // Adiciona os dados do Adotante
-            novaPessoa.adicionarPapel(new Adotante(nome, nascimento, genero, CPF, logradouro, numero, bairro, cidade, estado, pais, telefone, email, hashsenha, id_adotante, preferenciaAdocao, historicoAdocao, statusAdotante));
+            novaPessoa.adicionarPapel(new Adotante(nome, nascimento, genero, CPF, logradouro, numero, bairro, cidade,
+                    estado, pais, telefone, email, hashsenha, id_adotante, preferenciaAdocao, historicoAdocao,
+                    statusAdotante));
         }
 
         // Pergunta se a pessoa é funcionário
@@ -182,7 +192,9 @@ public class Main {
             String departamento = scanner.nextLine();
 
             // Adiciona os dados do Funcionário
-            novaPessoa.adicionarPapel(new Funcionarios(nome, nascimento, genero, CPF, logradouro, numero, bairro, cidade, estado, pais, telefone, email, hashsenha, id_funcionario, dataContratacao, cargo, salario, departamento));
+            novaPessoa.adicionarPapel(
+                    new Funcionarios(nome, nascimento, genero, CPF, logradouro, numero, bairro, cidade, estado, pais,
+                            telefone, email, hashsenha, id_funcionario, dataContratacao, cargo, salario, departamento));
         }
 
         // Adiciona a nova pessoa na lista de pessoas
@@ -400,7 +412,6 @@ public class Main {
                     System.out.println("Digite o novo status (true para ativo, false para inativo):");
                     String resposta = scanner.nextLine();
 
-
                     Boolean status = resposta.equalsIgnoreCase("ativo");
 
                     tutor.setStatus(status);
@@ -423,6 +434,60 @@ public class Main {
                 System.out.println("Opção inválida!");
                 break;
         }
+    }
+
+    public static void buscaPorFiltro(Scanner scanner) {
+
+        System.out.println();
+        System.out.println("O que você quer buscar?\n");
+        System.out.println("1. Pessoa");
+        System.out.println("2. Animal\n");
+        System.out.print("Escolha uma opção: ");
+        Integer opcaoBusca = scanner.nextInt();
+        scanner.nextLine();
+
+        switch (opcaoBusca) {
+            case 1:
+                filtrarPessoa(scanner);
+                break;
+            case 2:
+                filtrarAnimal(scanner);
+                break;
+            default:
+            System.out.println("Opção inválida!");
+            buscaPorFiltro(scanner);
+                break;
+        }
+    }
+
+    public static void filtrarPessoa(Scanner scanner){
+
+        System.out.println("Digite um nome para buscar: ");
+        String escolhaNome = scanner.nextLine();
+
+        // Filtra a lista de pessoas pelo nome
+        Pessoa pessoaEncontrada = listaPessoas.stream()
+                .filter(p -> p.getNome().equalsIgnoreCase(escolhaNome))
+                .findFirst()
+                .orElse(null);
+
+        // Verifica se a pessoa foi encontrada
+        if (pessoaEncontrada != null) {
+            System.out.println("Pessoa encontrada: \n\n" + pessoaEncontrada);
+        } else {
+            System.out.println("Nenhuma pessoa com o nome '" + escolhaNome + "' foi encontrada.");
+        }
+    }
+
+    
+    public static String filtrarAnimal(Scanner scanner){
+
+        System.out.println("Qual é a especie do animal?");
+        //String escolhaEspecie = scanner.nextLine();
+
+        String resultadoBusca = "oie";
+
+        return resultadoBusca;
     }
 
     // Função que gera o hash SHA-256 da string (senha do usuário)
