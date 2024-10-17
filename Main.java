@@ -226,6 +226,7 @@ public class Main {
 
     public static void EditarPessoa(Scanner scanner, Pessoa pessoa) {
 
+        System.out.println();
         System.out.println("Editando informações de " + pessoa.getNome());
         System.out.println("Escolha o atributo que deseja editar:");
         System.out.println("1 - Nome");
@@ -327,6 +328,100 @@ public class Main {
                 pessoa.setHashsenha(novaSenha);
                 break;
 
+            case 9:
+
+                if (pessoa instanceof Adotante) {
+                    Adotante adotante = (Adotante) pessoa;
+                    System.out.println("Digite a nova preferência de adoção:");
+                    String preferencia = scanner.nextLine();
+
+                    adotante.setPreferencia_adocao(preferencia);
+
+                } else if (pessoa instanceof Funcionarios) {
+                    Funcionarios funcionario = (Funcionarios) pessoa;
+                    System.out.println("Digite a nova data de contratação:");
+                    String dataContratacao = scanner.nextLine();
+
+                    funcionario.setData_contratacao(dataContratacao);
+
+                } else if (pessoa instanceof Tutores) {
+                    Tutores tutor = (Tutores) pessoa;
+                    System.out.println("Digite o novo número de animais sob custódia:");
+                    int animaisCustodia = scanner.nextInt();
+                    tutor.setAnimais_custodia(animaisCustodia);
+                }
+                break;
+
+            case 10:
+
+                if (pessoa instanceof Adotante) {
+                    Adotante adotante = (Adotante) pessoa;
+                    System.out.println("Digite o novo histórico de adoções:");
+                    String historico = scanner.nextLine();
+
+                    adotante.setHistorico_adocoes(historico);
+
+                } else if (pessoa instanceof Funcionarios) {
+                    Funcionarios funcionario = (Funcionarios) pessoa;
+                    System.out.println("Digite o novo cargo:");
+                    String cargo = scanner.nextLine();
+
+                    funcionario.setCargo(cargo);
+
+                } else if (pessoa instanceof Tutores) {
+                    Tutores tutor = (Tutores) pessoa;
+                    System.out.println("Digite o novo histórico:");
+                    String historico = scanner.nextLine();
+
+                    tutor.setHistorico(historico);
+                }
+                break;
+
+            case 11:
+
+                if (pessoa instanceof Adotante) {
+                    Adotante adotante = (Adotante) pessoa;
+                    System.out.println("Digite o novo status (Ativo ou Inativo):");
+                    String resposta = scanner.nextLine();
+
+                    Boolean status = resposta.equalsIgnoreCase("ativo");
+
+                    adotante.setStatus(status);
+
+                } else if (pessoa instanceof Funcionarios) {
+                    Funcionarios funcionario = (Funcionarios) pessoa;
+                    System.out.println("Digite o novo salário:");
+                    Float salario = scanner.nextFloat();
+
+                    funcionario.setSalario(salario);
+
+                } else if (pessoa instanceof Tutores) {
+                    Tutores tutor = (Tutores) pessoa;
+                    System.out.println("Digite o novo status (true para ativo, false para inativo):");
+                    String resposta = scanner.nextLine();
+
+
+                    Boolean status = resposta.equalsIgnoreCase("ativo");
+
+                    tutor.setStatus(status);
+                }
+                break;
+
+            case 12:
+
+                if (pessoa instanceof Funcionarios) {
+
+                    Funcionarios funcionario = (Funcionarios) pessoa;
+                    System.out.println("Digite o novo departamento:");
+                    String departamento = scanner.nextLine();
+
+                    funcionario.setDepartamento(departamento);
+                }
+                break;
+
+            default:
+                System.out.println("Opção inválida!");
+                break;
         }
     }
 
