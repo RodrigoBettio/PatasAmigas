@@ -36,14 +36,14 @@ public class Main {
 
                 case 2:
                     System.out.println();
-                    EscolherPessoa(scanner);
-                    EditarPessoa(scanner);
+                    Pessoa pessoa = EscolherPessoa(scanner);
+                    EditarPessoa(scanner,pessoa);
                     System.out.println("Pessoa editada com sucesso!");
                     break;
 
                 case 3:
                     System.out.println();
-                    VisualizarPessoa();
+                    VisualizarDadosPessoa();
                     break;
 
                 case 4:
@@ -190,7 +190,7 @@ public class Main {
         return novaPessoa;
     }
 
-    public static void VisualizarPessoa() {
+    public static void VisualizarDadosPessoa() {
         for (Pessoa pessoa : listaPessoas) {
             System.out.println("---- Pessoas ----");
             System.out.println(pessoa);
@@ -201,7 +201,7 @@ public class Main {
         }
     }
 
-    public static void EscolherPessoa(Scanner scanner) {
+    public static Pessoa EscolherPessoa(Scanner scanner) {
 
         System.out.println("---- Pessoas Cadastradas ----");
 
@@ -213,10 +213,50 @@ public class Main {
         System.out.print("Escolha a pessoa que deseja editar: ");
         int escolha = scanner.nextInt();
         scanner.nextLine(); // Consumir a nova linha do buffer
+        
+        if (escolha > 0 && escolha <= listaPessoas.size()){
+            Pessoa pessoaSelecionada = listaPessoas.get(escolha - 1);
+            return pessoaSelecionada;
+        } else {
+            System.out.println("Essa pessoa não existe. Tente novamente");
+            return null;
+        }
 
-        Pessoa pessoaSelecionada = listaPessoas.get(escolha - 1); // -1 para começar em 0 na lista
+        
+    }
 
-        System.out.println("Você escolheu editar: " + pessoaSelecionada.getNome());
+    public static void EditarPessoa(Scanner scanner, Pessoa pessoa){
+
+        System.out.println("Editando informações de " + pessoa.getNome());
+        System.out.println("Escolha o atributo que deseja editar:");
+        System.out.println("1 - Nome");
+        System.out.println("2 - Data de nascimento");
+        System.out.println("3 - Gênero");
+        System.out.println("4 - CPF");
+        System.out.println("5 - Endereço (Logradouro, Número, Bairro, Cidade, Estado, País)");
+        System.out.println("6 - Telefone");
+        System.out.println("7 - Email");
+        System.out.println("8 - Senha");
+        
+        // Verifica o tipo específico de pessoa (Adotante, Funcionario, Tutor)
+        if (pessoa instanceof Adotante) {
+            System.out.println("9 - Preferência de adoção");
+            System.out.println("10 - Histórico de adoções");
+            System.out.println("11 - Status");
+        } else if (pessoa instanceof Funcionarios) {
+            System.out.println("9 - Data de contratação");
+            System.out.println("10 - Cargo");
+            System.out.println("11 - Salário");
+            System.out.println("12 - Departamento");
+        } else if (pessoa instanceof Tutores) {
+            System.out.println("9 - Animais sob custódia");
+            System.out.println("10 - Histórico");
+            System.out.println("11 - Status");
+        }
+
+        System.out.println("Digite o número do campo que deseja editar:");
+        int opcao = scanner.nextInt();
+        scanner.nextLine(); // Consumir a nova linha para tirar do buffer
     }
 
     // Função que gera o hash SHA-256 da string (senha do usuário)
