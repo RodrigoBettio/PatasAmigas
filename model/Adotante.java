@@ -1,4 +1,4 @@
-package heranca;
+package model;
 
 public class Adotante extends Pessoa implements Papel {
 

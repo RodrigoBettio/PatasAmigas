@@ -1,4 +1,4 @@
-package heranca;
+package model;
 
 public class Tutores extends Pessoa implements Papel {
 
