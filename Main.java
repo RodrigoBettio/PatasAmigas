@@ -128,7 +128,7 @@ public class Main {
             scanner.nextLine(); // Consumir a nova linha para tirar do buffer
 
             System.out.print("Digite o histórico do Tutor: ");
-            String historico = scanner.nextLine();
+            String historico_tutor = scanner.nextLine();
 
             System.out.print("Tutor está ativo? (s/n) ");
             resposta = scanner.nextLine();
@@ -136,7 +136,7 @@ public class Main {
 
             // Cria um objeto Tutor e o adiciona à pessoa
             novaPessoa.adicionarPapel(new Tutores(nome, nascimento, genero, CPF, logradouro, numero, bairro, cidade,
-                    estado, pais, telefone, email, hashsenha, id_tutor, animaisCustodia, historico, statusTutor));
+                    estado, pais, telefone, email, hashsenha, id_tutor, animaisCustodia, historico_tutor, statusTutor));
         }
 
         // Pergunta se a pessoa é adotante
@@ -153,17 +153,23 @@ public class Main {
             System.out.print("Qual a sua preferência de adoção? ");
             String preferenciaAdocao = scanner.nextLine();
 
-            System.out.print("Digite o histórico das adoções: ");
-            String historicoAdocao = scanner.nextLine();
+            System.out.print("Digite a descrição do histórico: ");
+            String descricaoHistorico = scanner.nextLine();
+        
+            System.out.print("Digite o número de adoções: ");
+            int numeroAdocoes = Integer.parseInt(scanner.nextLine());
 
             System.out.print("O adotante está ativo? (s/n)");
             resposta = scanner.nextLine();
 
             boolean statusAdotante = resposta.equalsIgnoreCase("s");
 
+
+            // Adiciona os dados do histórico
+            HistoricoAdotante historico_adotante = new HistoricoAdotante(descricaoHistorico, numeroAdocoes);
             // Adiciona os dados do Adotante
             novaPessoa.adicionarPapel(new Adotante(nome, nascimento, genero, CPF, logradouro, numero, bairro, cidade,
-                    estado, pais, telefone, email, hashsenha, id_adotante, preferenciaAdocao, historicoAdocao,
+                    estado, pais, telefone, email, hashsenha, id_adotante, preferenciaAdocao, historico_adotante,
                     statusAdotante));
         }
 
@@ -368,10 +374,14 @@ public class Main {
 
                 if (pessoa instanceof Adotante) {
                     Adotante adotante = (Adotante) pessoa;
-                    System.out.println("Digite o novo histórico de adoções:");
-                    String historico = scanner.nextLine();
+                    System.out.print("Digite a nova descrição do histórico: ");
+                    String descricaoHistorico = scanner.nextLine();
+                    System.out.print("Digite o novo número de adoções: ");
+                    int numeroAdocoes = Integer.parseInt(scanner.nextLine());
+                    
+                    HistoricoAdotante historico_adotante = new HistoricoAdotante(descricaoHistorico, numeroAdocoes);
 
-                    adotante.setHistorico_adocoes(historico);
+                    adotante.setHistorico_adotante(historico_adotante);
 
                 } else if (pessoa instanceof Funcionarios) {
                     Funcionarios funcionario = (Funcionarios) pessoa;
@@ -385,7 +395,7 @@ public class Main {
                     System.out.println("Digite o novo histórico:");
                     String historico = scanner.nextLine();
 
-                    tutor.setHistorico(historico);
+                    tutor.setHistorico_tutor(historico);
                 }
                 break;
 
