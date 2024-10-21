@@ -1,4 +1,4 @@
-package heranca;
+package model;
 
 public class HistoricoAdotante {
     private String descricao;

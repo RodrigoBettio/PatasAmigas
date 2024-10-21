@@ -1,4 +1,4 @@
-package heranca;
+package model;
 
 public class Funcionarios extends Pessoa implements Papel {
 
