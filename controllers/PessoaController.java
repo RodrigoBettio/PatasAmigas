@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import funcoes_compartilhadas.Funcoes;
+
 import model.Adotante;
 import model.Funcionarios;
 import model.Papel;
@@ -57,7 +58,7 @@ public class PessoaController {
 
         System.out.print("Digite a senha: ");
         String senha = scanner.nextLine();
-        hashsenha = generateHash(senha);
+        hashsenha = Funcoes.generateHash(senha);
 
         System.out.println();
 
@@ -387,4 +388,22 @@ public class PessoaController {
         }
     }
     
+    public static void filtrarPessoa(Scanner scanner){
+
+        System.out.println("Digite um nome para buscar: ");
+        String escolhaNome = scanner.nextLine();
+
+        // Filtra a lista de pessoas pelo nome
+        Pessoa pessoaEncontrada = listaPessoas.stream()
+                .filter(p -> p.getNome().equalsIgnoreCase(escolhaNome))
+                .findFirst()
+                .orElse(null);
+
+        // Verifica se a pessoa foi encontrada
+        if (pessoaEncontrada != null) {
+            System.out.println("Pessoa encontrada: \n\n" + pessoaEncontrada);
+        } else {
+            System.out.println("Nenhuma pessoa com o nome '" + escolhaNome + "' foi encontrada.");
+        }
+    }
 }
