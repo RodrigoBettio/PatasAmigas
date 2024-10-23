@@ -34,7 +34,7 @@ public class Main {
 
                 case 3:
                     System.out.println();
-                    PessoaController.VisualizarDadosPessoa();
+                    PessoaController.VisualizarDadosPessoa(scanner);
                     break;
 
                 case 4:

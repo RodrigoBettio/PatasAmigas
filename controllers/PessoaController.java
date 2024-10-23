@@ -209,14 +209,29 @@ public class PessoaController {
         return novaPessoa;
     }
 
-    public static void VisualizarDadosPessoa() {
-        for (Pessoa pessoa : listaPessoas) {
-            System.out.println("---- Pessoas ----");
-            System.out.println(pessoa);
+    public static void VisualizarDadosPessoa(Scanner scanner) {
 
-            for (Papel papel : pessoa.getPapeis()) {
+        // Lista todas as pessoas em ordem numerada
+        System.out.println("---- Lista de Pessoas ----");
+        for (int i = 0; i < listaPessoas.size(); i++) {
+            System.out.println((i + 1) + ". " + listaPessoas.get(i).getNome()); 
+        }
+
+        System.out.println("Escolha o número da pessoa para ver os detalhes:");
+        int escolha = scanner.nextInt();
+
+        
+        if (escolha > 0 && escolha <= listaPessoas.size()) {
+            Pessoa pessoaEscolhida = listaPessoas.get(escolha - 1);
+            
+            System.out.println("---- Detalhes da Pessoa ----");
+            System.out.println(pessoaEscolhida);
+
+            for (Papel papel : pessoaEscolhida.getPapeis()) {
                 papel.exibirDetalhes();
             }
+        } else {
+            System.out.println("Escolha inválida.");
         }
     }
 
