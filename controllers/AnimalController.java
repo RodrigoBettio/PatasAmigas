@@ -1,8 +1,7 @@
 package controllers;
 
-import java.util.Scanner;
 import java.util.ArrayList;
-
+import java.util.Scanner;
 import model.Animal;
 
 public class AnimalController {
@@ -31,18 +30,17 @@ public class AnimalController {
         if (sabeIdade) {
             System.out.println("\nCerto, digite aqui a idade do animal: (apenas números)");
             idade = scanner.nextInt();
+            scanner.nextLine();
         } else {
             System.out.println("\nTudo certo! Vamos pular essa etapa.");
+            scanner.nextLine();
             idade = null;
         }
 
-        scanner.nextLine();
-        System.out
-                .println("\nJá estamos finalizando! Mas precisamos saber do histórico do animal, você tem conhecimento?" +
-                        "\nDigite aqui sua resposta: ");
+        System.out.println("\nJá estamos finalizando! Mas precisamos saber do histórico do animal, você tem conhecimento?\nDigite sua resposta:");  
         historico = scanner.nextLine();
 
-        System.out.println("\nPor último, ele está sob a tutoria de quem?" + "\nDigite o nome da pessoa: ");
+        System.out.println("\nPor último, ele está sob a tutoria de quem? \nDigite o nome da pessoa:" );
         tutor = scanner.nextLine();
 
         Animal novoAnimal = new Animal(id, idade, nome, especie, historico, null, tutor);

@@ -1,10 +1,8 @@
 package controllers;
 
+import funcoes_compartilhadas.Funcoes;
 import java.util.ArrayList;
 import java.util.Scanner;
-
-import funcoes_compartilhadas.Funcoes;
-
 import model.Adotante;
 import model.Funcionarios;
 import model.HistoricoAdotante;
@@ -14,9 +12,9 @@ import model.Tutores;
 
 public class PessoaController {
 
-     private static ArrayList<Pessoa> listaPessoas = new ArrayList<>();
+    private static ArrayList<Pessoa> listaPessoas = new ArrayList<>();
 
-      public static Pessoa CadastrarPessoa(Scanner scanner) {
+    public static Pessoa CadastrarPessoa(Scanner scanner) {
 
         String nome, nascimento, genero, CPF, logradouro, numero, bairro, cidade, estado, pais, telefone, email,
                 hashsenha;
@@ -108,7 +106,7 @@ public class PessoaController {
 
             System.out.print("Digite a descrição do histórico: ");
             String descricaoHistorico = scanner.nextLine();
-        
+
             System.out.print("Digite o número de adoções: ");
             int numeroAdocoes = Integer.parseInt(scanner.nextLine());
 
@@ -116,7 +114,6 @@ public class PessoaController {
             resposta = scanner.nextLine();
 
             boolean statusAdotante = resposta.equalsIgnoreCase("s");
-
 
             // Adiciona os dados do histórico
             HistoricoAdotante historico_adotante = new HistoricoAdotante(descricaoHistorico, numeroAdocoes);
@@ -161,7 +158,7 @@ public class PessoaController {
         return novaPessoa;
     }
 
-      public static void VisualizarDadosPessoa() {
+    public static void VisualizarDadosPessoa() {
         for (Pessoa pessoa : listaPessoas) {
             System.out.println("---- Pessoas ----");
             System.out.println(pessoa);
@@ -209,20 +206,8 @@ public class PessoaController {
         System.out.println("7 - Email");
         System.out.println("8 - Senha");
 
-        // Verifica o tipo específico de pessoa (Adotante, Funcionario, Tutor)
-        if (pessoa instanceof Adotante) {
-            System.out.println("9 - Preferência de adoção");
-            System.out.println("10 - Histórico de adoções");
-            System.out.println("11 - Status");
-        } else if (pessoa instanceof Funcionarios) {
-            System.out.println("9 - Data de contratação");
-            System.out.println("10 - Cargo");
-            System.out.println("11 - Salário");
-            System.out.println("12 - Departamento");
-        } else if (pessoa instanceof Tutores) {
-            System.out.println("9 - Animais sob custódia");
-            System.out.println("10 - Histórico");
-            System.out.println("11 - Status");
+        for (Papel papel : pessoa.getPapeis()) {
+            papel.exibirDetalhesParaEscolha();
         }
 
         System.out.println("Digite o número do campo que deseja editar:");
@@ -300,107 +285,17 @@ public class PessoaController {
                 break;
 
             case 9:
-
-                if (pessoa instanceof Adotante) {
-                    Adotante adotante = (Adotante) pessoa;
-                    System.out.println("Digite a nova preferência de adoção:");
-                    String preferencia = scanner.nextLine();
-
-                    adotante.setPreferencia_adocao(preferencia);
-
-                } else if (pessoa instanceof Funcionarios) {
-                    Funcionarios funcionario = (Funcionarios) pessoa;
-                    System.out.println("Digite a nova data de contratação:");
-                    String dataContratacao = scanner.nextLine();
-
-                    funcionario.setData_contratacao(dataContratacao);
-
-                } else if (pessoa instanceof Tutores) {
-                    Tutores tutor = (Tutores) pessoa;
-                    System.out.println("Digite o novo número de animais sob custódia:");
-                    int animaisCustodia = scanner.nextInt();
-                    tutor.setAnimais_custodia(animaisCustodia);
+                for (Papel papel : pessoa.getPapeis()) {
+                    papel.editarDetalhes(opcao, scanner);
                 }
-                break;
-
-                case 10:
-
-                if (pessoa instanceof Adotante) {
-                    Adotante adotante = (Adotante) pessoa;
-                    System.out.print("Digite a nova descrição do histórico: ");
-                    String descricaoHistorico = scanner.nextLine();
-                    System.out.print("Digite o novo número de adoções: ");
-                    int numeroAdocoes = Integer.parseInt(scanner.nextLine());
-                    
-                    HistoricoAdotante historico_adotante = new HistoricoAdotante(descricaoHistorico, numeroAdocoes);
-
-                    adotante.setHistorico_adotante(historico_adotante);
-
-                } else if (pessoa instanceof Funcionarios) {
-                    Funcionarios funcionario = (Funcionarios) pessoa;
-                    System.out.println("Digite o novo cargo:");
-                    String cargo = scanner.nextLine();
-
-                    funcionario.setCargo(cargo);
-
-                } else if (pessoa instanceof Tutores) {
-                    Tutores tutor = (Tutores) pessoa;
-                    System.out.println("Digite o novo histórico:");
-                    String historico = scanner.nextLine();
-
-                    tutor.setHistorico_tutor(historico);
-                }
-                break;
-
-
-            case 11:
-
-                if (pessoa instanceof Adotante) {
-                    Adotante adotante = (Adotante) pessoa;
-                    System.out.println("Digite o novo status (Ativo ou Inativo):");
-                    String resposta = scanner.nextLine();
-
-                    Boolean status = resposta.equalsIgnoreCase("ativo");
-
-                    adotante.setStatus(status);
-
-                } else if (pessoa instanceof Funcionarios) {
-                    Funcionarios funcionario = (Funcionarios) pessoa;
-                    System.out.println("Digite o novo salário:");
-                    Float salario = scanner.nextFloat();
-
-                    funcionario.setSalario(salario);
-
-                } else if (pessoa instanceof Tutores) {
-                    Tutores tutor = (Tutores) pessoa;
-                    System.out.println("Digite o novo status (true para ativo, false para inativo):");
-                    String resposta = scanner.nextLine();
-
-                    Boolean status = resposta.equalsIgnoreCase("ativo");
-
-                    tutor.setStatus(status);
-                }
-                break;
-
-            case 12:
-
-                if (pessoa instanceof Funcionarios) {
-
-                    Funcionarios funcionario = (Funcionarios) pessoa;
-                    System.out.println("Digite o novo departamento:");
-                    String departamento = scanner.nextLine();
-
-                    funcionario.setDepartamento(departamento);
-                }
-                break;
 
             default:
                 System.out.println("Opção inválida!");
                 break;
         }
     }
-    
-    public static void filtrarPessoa(Scanner scanner){
+
+    public static void filtrarPessoa(Scanner scanner) {
 
         System.out.println("Digite um nome para buscar: ");
         String escolhaNome = scanner.nextLine();
