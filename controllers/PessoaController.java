@@ -2,6 +2,7 @@ package controllers;
 
 import funcoes_compartilhadas.Funcoes;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import model.Adotante;
 import model.Funcionarios;
@@ -284,10 +285,26 @@ public class PessoaController {
                 pessoa.setHashsenha(novaSenha);
                 break;
 
-            case 9:
-                for (Papel papel : pessoa.getPapeis()) {
-                    papel.editarDetalhes(opcao, scanner);
+            case 9: 
+            case 10:
+            case 11:
+                System.out.println("Escolha o papel que deseja editar:");
+                List<Papel> papeis = pessoa.getPapeis();
+                for (int i = 0; i < papeis.size(); i++) {
+                    System.out.println((i + 1) + " - " + papeis.get(i).getClass().getSimpleName()); 
+                    //Percorre a lista de papéis e usa os métodos getClass() e getSimpleName() para pegar o nome da classe e retornar em string para facilitar a leitura
                 }
+
+                int escolhaPapel = scanner.nextInt() - 1; 
+                scanner.nextLine(); // Consumir a nova linha
+
+                if (escolhaPapel >= 0 && escolhaPapel < papeis.size()) {
+                    Papel papelSelecionado = papeis.get(escolhaPapel);
+                    papelSelecionado.editarDetalhes(opcao, scanner);
+                } else {
+                    System.out.println("Opção de papel inválida!");
+                }
+                break;
 
             default:
                 System.out.println("Opção inválida!");
@@ -295,7 +312,7 @@ public class PessoaController {
         }
     }
 
-    public static void filtrarPessoa(Scanner scanner) {
+    public static void FiltrarPessoa(Scanner scanner) {
 
         System.out.println("Digite um nome para buscar: ");
         String escolhaNome = scanner.nextLine();

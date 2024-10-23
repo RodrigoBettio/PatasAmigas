@@ -43,7 +43,7 @@ public class Main {
                     break;
 
                 case 5:
-                    FiltroView.buscaPorFiltro(scanner);
+                    FiltroView.BuscaPorFiltro(scanner);
                     break;
 
                 case 6:

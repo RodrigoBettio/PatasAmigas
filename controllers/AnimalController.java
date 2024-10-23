@@ -49,7 +49,7 @@ public class AnimalController {
         return novoAnimal;
     }
 
-    public static void filtrarAnimal(Scanner scanner) {
+    public static void FiltrarAnimal(Scanner scanner) {
 
         System.out.println("Qual é a especie do animal?");
         String escolhaEspecie = scanner.nextLine();
