@@ -15,9 +15,9 @@ import model.Tutores;
 
 public class PessoaController {
 
-     private static ArrayList<Pessoa> listaPessoas = new ArrayList<>();
+    private static ArrayList<Pessoa> listaPessoas = new ArrayList<>();
 
-      public static Pessoa CadastrarPessoa(Scanner scanner) {
+    public static Pessoa CadastrarPessoa(Scanner scanner) {
 
         String nome, nascimento, genero, CPF, logradouro, numero, bairro, cidade, estado, pais, telefone, email,
                 hashsenha;
@@ -81,9 +81,9 @@ public class PessoaController {
             int animaisCustodia = scanner.nextInt();
             scanner.nextLine(); // Consumir a nova linha para tirar do buffer
 
-            System.out.print("Digite a descrição do histórico do adotante: ");
+            System.out.print("Digite a descrição do histórico do tutor: ");
             String descricaoHistoricoT = scanner.nextLine();
-        
+
             System.out.print("Digite o número de adoções realizadas: ");
             int numeroAdocoesT = Integer.parseInt(scanner.nextLine());
 
@@ -91,12 +91,12 @@ public class PessoaController {
             resposta = scanner.nextLine();
             boolean statusTutor = resposta.equalsIgnoreCase("s");
 
-            
             // Adiciona os dados do histórico
             HistoricoTutor historico_tutor = new HistoricoTutor(descricaoHistoricoT, numeroAdocoesT);
 
             // Cria um objeto Tutor e o adiciona à pessoa
-            novaPessoa.adicionarPapel(new Tutores(nome, nascimento, genero, CPF, logradouro, numero, bairro, cidade, estado, pais, telefone, email, hashsenha, id_tutor, animaisCustodia, historico_tutor, statusTutor));
+            novaPessoa.adicionarPapel(new Tutores(nome, nascimento, genero, CPF, logradouro, numero, bairro, cidade,
+                    estado, pais, telefone, email, hashsenha, id_tutor, animaisCustodia, historico_tutor, statusTutor));
         }
 
         // Pergunta se a pessoa é adotante
@@ -115,7 +115,7 @@ public class PessoaController {
 
             System.out.print("Digite a descrição do histórico do adotante: ");
             String descricaoHistorico = scanner.nextLine();
-        
+
             System.out.print("Digite o número de adoções realizadas: ");
             int numeroAdocoes = Integer.parseInt(scanner.nextLine());
 
@@ -123,7 +123,6 @@ public class PessoaController {
             resposta = scanner.nextLine();
 
             boolean statusAdotante = resposta.equalsIgnoreCase("s");
-
 
             // Adiciona os dados do histórico
             HistoricoAdotante historico_adotante = new HistoricoAdotante(descricaoHistorico, numeroAdocoes);
@@ -168,7 +167,7 @@ public class PessoaController {
         return novaPessoa;
     }
 
-      public static void VisualizarDadosPessoa() {
+    public static void VisualizarDadosPessoa() {
         for (Pessoa pessoa : listaPessoas) {
             System.out.println("---- Pessoas ----");
             System.out.println(pessoa);
@@ -330,7 +329,7 @@ public class PessoaController {
                 }
                 break;
 
-                case 10:
+            case 10:
 
                 if (pessoa instanceof Adotante) {
                     Adotante adotante = (Adotante) pessoa;
@@ -338,7 +337,7 @@ public class PessoaController {
                     String descricaoHistorico = scanner.nextLine();
                     System.out.print("Digite o novo número de adoções: ");
                     int numeroAdocoes = Integer.parseInt(scanner.nextLine());
-                    
+
                     HistoricoAdotante historico_adotante = new HistoricoAdotante(descricaoHistorico, numeroAdocoes);
 
                     adotante.setHistorico_adotante(historico_adotante);
@@ -356,14 +355,13 @@ public class PessoaController {
                     String descricaoHistoricoT = scanner.nextLine();
                     System.out.print("Digite o novo número de adoções: ");
                     int numeroAdocoesT = Integer.parseInt(scanner.nextLine());
-                    
+
                     HistoricoTutor historico_tutor = new HistoricoTutor(descricaoHistoricoT, numeroAdocoesT);
 
                     tutor.setHistorico_tutor(historico_tutor);
 
                 }
                 break;
-
 
             case 11:
 
@@ -411,8 +409,8 @@ public class PessoaController {
                 break;
         }
     }
-    
-    public static void filtrarPessoa(Scanner scanner){
+
+    public static void filtrarPessoa(Scanner scanner) {
 
         System.out.println("Digite um nome para buscar: ");
         String escolhaNome = scanner.nextLine();
