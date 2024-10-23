@@ -1,10 +1,9 @@
 
 import controllers.*;
+import java.util.Scanner;
 import model.*;
 import view.FiltroView;
 import view.Menus;
-
-import java.util.Scanner;
 
 public class Main {
 
@@ -27,8 +26,10 @@ public class Main {
                 case 2:
                     System.out.println();
                     Pessoa pessoa = PessoaController.EscolherPessoa(scanner);
-                    PessoaController.EditarPessoa(scanner, pessoa);
-                    System.out.println("Pessoa editada com sucesso!");
+                    if (pessoa != null) {
+                        PessoaController.EditarPessoa(scanner, pessoa);
+                        System.out.println("Pessoa editada com sucesso!");
+                    }
                     break;
 
                 case 3:
@@ -43,7 +44,7 @@ public class Main {
                     break;
 
                 case 5:
-                    FiltroView.buscaPorFiltro(scanner);
+                    FiltroView.BuscaPorFiltro(scanner);
                     break;
 
                 case 6:

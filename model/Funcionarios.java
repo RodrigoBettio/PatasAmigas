@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Scanner;
+
 public class Funcionarios extends Pessoa implements Papel {
 
     // Atributos privados da classe Funcionarios
@@ -31,6 +33,38 @@ public class Funcionarios extends Pessoa implements Papel {
     System.out.printf("Salário: R$ %.2f\n", salario);
     System.out.println("Departamento: " + departamento);
 
+    }
+
+       @Override
+    public void exibirDetalhesParaEscolha() {
+        System.out.println("9 - Cargo");
+        System.out.println("10 - Salario");
+        System.out.println("11 - Departamento");
+    }
+
+    @Override
+    public void editarDetalhes(int opcao, Scanner scanner) {
+        switch (opcao) {
+            case 9:
+                System.out.println("Digite o novo cargo:");
+                this.setCargo(scanner.nextLine());
+                break;
+    
+            case 10:
+                System.out.println("Digite o novo salário:");
+                this.setSalario(scanner.nextFloat());
+                scanner.nextLine(); // Consumir a nova linha
+                break;
+    
+            case 11:
+                System.out.println("Digite o novo departamento:");
+                this.setDepartamento(scanner.nextLine());
+                break;
+    
+            default:
+                System.out.println("Opção inválida.");
+                break;
+        }
     }
 
     // Chama o construtor

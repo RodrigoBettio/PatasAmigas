@@ -1,11 +1,11 @@
 package view;
 
-import java.util.Scanner;
 import controllers.*;
+import java.util.Scanner;
 
 public class FiltroView {
 
-    public static void buscaPorFiltro(Scanner scanner) {
+    public static void BuscaPorFiltro(Scanner scanner) {
 
         System.out.println();
         System.out.println("O que você quer buscar?\n");
@@ -17,14 +17,14 @@ public class FiltroView {
 
         switch (opcaoBusca) {
             case 1:
-                PessoaController.filtrarPessoa(scanner);
+                PessoaController.FiltrarPessoa(scanner);
                 break;
             case 2:
-                AnimalController.filtrarAnimal(scanner);
+                AnimalController.FiltrarAnimal(scanner);
                 break;
             default:
             System.out.println("Opção inválida!");
-            buscaPorFiltro(scanner);
+            BuscaPorFiltro(scanner);
                 break;
         }
     }

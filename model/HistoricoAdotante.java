@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Scanner;
+
 public class HistoricoAdotante {
     private String descricao;
     private int numeroAdocoes;
@@ -9,6 +11,7 @@ public class HistoricoAdotante {
         this.descricao = descricao;
         this.numeroAdocoes = numeroAdocoes;
     }
+
 
     public String getDescricao() {
         return descricao;
@@ -25,6 +28,14 @@ public class HistoricoAdotante {
     public void setNumeroAdocoes(int numeroAdocoes) {
         this.numeroAdocoes = numeroAdocoes;
     }
+
+
+    public void editarHistorico(Scanner scanner) {
+        System.out.println("Digite os novos detalhes do histórico:");
+        String novoHistorico = scanner.nextLine();
+        this.setDescricao(novoHistorico);
+    }
+
 
     @Override
     public String toString() {
