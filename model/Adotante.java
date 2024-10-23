@@ -47,7 +47,7 @@ public class Adotante extends Pessoa implements Papel {
                 break;
     
             case 10:
-                this.historico_adotante.editarDetalhes(scanner);
+                this.historico_adotante.editarHistorico(scanner);
                 break;
     
             case 11:
