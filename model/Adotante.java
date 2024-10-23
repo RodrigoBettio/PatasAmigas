@@ -47,9 +47,7 @@ public class Adotante extends Pessoa implements Papel {
                 break;
     
             case 10:
-                System.out.println("Digite o novo histórico de adoções:");
-                String novoHistorico = scanner.nextLine();
-                this.setHistorico_adotante(new HistoricoAdotante(novoHistorico));
+                this.historico_adotante.editarDetalhes(scanner);
                 break;
     
             case 11:
