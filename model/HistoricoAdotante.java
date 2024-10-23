@@ -28,6 +28,6 @@ public class HistoricoAdotante {
 
     @Override
     public String toString() {
-        return "\nDescricao: " + descricao + " \nNúmero de adoções: " + numeroAdocoes;
+        return "\nDescrição: " + descricao + " \nNúmero de adoções: " + numeroAdocoes;
     }
 }

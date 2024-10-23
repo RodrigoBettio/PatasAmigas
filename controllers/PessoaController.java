@@ -8,6 +8,7 @@ import funcoes_compartilhadas.Funcoes;
 import model.Adotante;
 import model.Funcionarios;
 import model.HistoricoAdotante;
+import model.HistoricoTutor;
 import model.Papel;
 import model.Pessoa;
 import model.Tutores;
@@ -80,16 +81,22 @@ public class PessoaController {
             int animaisCustodia = scanner.nextInt();
             scanner.nextLine(); // Consumir a nova linha para tirar do buffer
 
-            System.out.print("Digite o histórico do Tutor: ");
-            String historico_tutor = scanner.nextLine();
+            System.out.print("Digite a descrição do histórico do adotante: ");
+            String descricaoHistoricoT = scanner.nextLine();
+        
+            System.out.print("Digite o número de adoções realizadas: ");
+            int numeroAdocoesT = Integer.parseInt(scanner.nextLine());
 
             System.out.print("Tutor está ativo? (s/n) ");
             resposta = scanner.nextLine();
             boolean statusTutor = resposta.equalsIgnoreCase("s");
 
+            
+            // Adiciona os dados do histórico
+            HistoricoTutor historico_tutor = new HistoricoTutor(descricaoHistoricoT, numeroAdocoesT);
+
             // Cria um objeto Tutor e o adiciona à pessoa
-            novaPessoa.adicionarPapel(new Tutores(nome, nascimento, genero, CPF, logradouro, numero, bairro, cidade,
-                    estado, pais, telefone, email, hashsenha, id_tutor, animaisCustodia, historico_tutor, statusTutor));
+            novaPessoa.adicionarPapel(new Tutores(nome, nascimento, genero, CPF, logradouro, numero, bairro, cidade, estado, pais, telefone, email, hashsenha, id_tutor, animaisCustodia, historico_tutor, statusTutor));
         }
 
         // Pergunta se a pessoa é adotante
@@ -106,10 +113,10 @@ public class PessoaController {
             System.out.print("Qual a sua preferência de adoção? ");
             String preferenciaAdocao = scanner.nextLine();
 
-            System.out.print("Digite a descrição do histórico: ");
+            System.out.print("Digite a descrição do histórico do adotante: ");
             String descricaoHistorico = scanner.nextLine();
         
-            System.out.print("Digite o número de adoções: ");
+            System.out.print("Digite o número de adoções realizadas: ");
             int numeroAdocoes = Integer.parseInt(scanner.nextLine());
 
             System.out.print("O adotante está ativo? (s/n)");
@@ -345,10 +352,15 @@ public class PessoaController {
 
                 } else if (pessoa instanceof Tutores) {
                     Tutores tutor = (Tutores) pessoa;
-                    System.out.println("Digite o novo histórico:");
-                    String historico = scanner.nextLine();
+                    System.out.print("Digite a nova descrição do histórico: ");
+                    String descricaoHistoricoT = scanner.nextLine();
+                    System.out.print("Digite o novo número de adoções: ");
+                    int numeroAdocoesT = Integer.parseInt(scanner.nextLine());
+                    
+                    HistoricoTutor historico_tutor = new HistoricoTutor(descricaoHistoricoT, numeroAdocoesT);
 
-                    tutor.setHistorico_tutor(historico);
+                    tutor.setHistorico_tutor(historico_tutor);
+
                 }
                 break;
 

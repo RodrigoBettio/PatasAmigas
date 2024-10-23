@@ -23,12 +23,16 @@ public class Adotante extends Pessoa implements Papel {
         this.status = status;
     }
 
+
+
+
     @Override
     public void exibirDetalhes() {
         System.out.println("ID do Adotante: " + id_adotante );
         System.out.println("Preferência de adoção: " + preferencia_adocao);
-        System.out.println("Histórico de adoções: " + historico_adotante.toString());
-        System.out.printf("O status de %s é: %b\n", this.getNome(), status ? "Ativo" : "Inativo");
+        System.out.printf("Historico de adoções de %s: %s\n", this.getNome(),  historico_adotante.toString());
+        System.out.printf("O status de %s é: %s\n", this.getNome(), status ? "Ativo" : "Inativo");
+        //Perguntar a diferença pro Quirino de usar status e de usar o construtor com o this.getStatus()
     }
 
 
