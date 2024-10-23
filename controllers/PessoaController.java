@@ -83,9 +83,10 @@ public class PessoaController {
             System.out.print("Digite o histórico do Tutor: ");
             String historico_tutor = scanner.nextLine();
 
-            System.out.print("Tutor está ativo? (s/n) ");
+            System.out.print("Tutor está ativo? (s/n)\n");
             resposta = scanner.nextLine();
             boolean statusTutor = resposta.equalsIgnoreCase("s");
+            
 
             // Cria um objeto Tutor e o adiciona à pessoa
             novaPessoa.adicionarPapel(new Tutores(nome, nascimento, genero, CPF, logradouro, numero, bairro, cidade,
@@ -93,6 +94,7 @@ public class PessoaController {
         }
 
         // Pergunta se a pessoa é adotante
+        System.out.println();
         System.out.print("Essa pessoa é um adotante? (s/n)\n");
         resposta = scanner.nextLine();
         boolean ehAdotante = resposta.equalsIgnoreCase("s");
@@ -157,6 +159,7 @@ public class PessoaController {
         }
 
         // Pergunta se a pessoa é funcionário
+        System.out.println();
         System.out.print("Essa pessoa é um funcionário? (s/n)\n");
         resposta = scanner.nextLine();
         boolean ehFuncionario = resposta.equalsIgnoreCase("s");
@@ -253,14 +256,12 @@ public class PessoaController {
         System.out.println("6 - Telefone");
         System.out.println("7 - Email");
         System.out.println("8 - Senha");
+        System.out.println("9 - Editar infos de um papel específico");
 
-        for (Papel papel : pessoa.getPapeis()) {
-            papel.exibirDetalhesParaEscolha();
-        }
-
-        System.out.println("Digite o número do campo que deseja editar:");
+        System.out.printf("Digite o número do campo que deseja editar:");
         int opcao = scanner.nextInt();
         scanner.nextLine(); // Consumir a nova linha para tirar do buffer
+        System.out.println();
 
         switch (opcao) {
 
@@ -333,29 +334,36 @@ public class PessoaController {
                 break;
 
             case 9:
-            case 10:
-            case 11:
-                System.out.println("Escolha o papel que deseja editar:");
-                List<Papel> papeis = pessoa.getPapeis();
-                for (int i = 0; i < papeis.size(); i++) {
-                    System.out.println((i + 1) + " - " + papeis.get(i).getClass().getSimpleName());
-                    //Percorre a lista de papéis e usa os métodos getClass() e getSimpleName() para pegar o nome da classe e retornar em string para facilitar a leitura
-                }
-
-                int escolhaPapel = scanner.nextInt() - 1;
-                scanner.nextLine(); // Consumir a nova linha
-
-                if (escolhaPapel >= 0 && escolhaPapel < papeis.size()) {
-                    Papel papelSelecionado = papeis.get(escolhaPapel);
-                    papelSelecionado.editarDetalhes(opcao, scanner);
-                } else {
-                    System.out.println("Opção de papel inválida!");
-                }
+                editarPapeis(scanner, pessoa);
                 break;
 
             default:
                 System.out.println("Opção inválida!");
                 break;
+        }
+    }
+
+    public static void editarPapeis(Scanner scanner, Pessoa pessoa) {
+        List<Papel> papeis = pessoa.getPapeis();
+        if (papeis.isEmpty()) {
+            System.out.println("Esta pessoa não possui papéis.");
+            return;
+        }
+
+        System.out.println("Escolha o papel que deseja editar:");
+        for (int i = 0; i < papeis.size(); i++) {
+            System.out.println((i + 1) + " - " + papeis.get(i).getClass().getSimpleName());
+        }
+        //Percorre a lista de papéis e usa os métodos getClass() e getSimpleName() para pegar o nome da classe e retornar em string para facilitar a leitura
+
+        int escolhaPapel = scanner.nextInt() - 1;
+        scanner.nextLine(); // Consumir a nova linha
+
+        if (escolhaPapel >= 0 && escolhaPapel < papeis.size()) {
+            Papel papelSelecionado = papeis.get(escolhaPapel);
+            papelSelecionado.editarDetalhes(scanner);
+        } else {
+            System.out.println("Opção de papel inválida!");
         }
     }
 

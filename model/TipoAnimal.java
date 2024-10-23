@@ -6,5 +6,3 @@ public enum TipoAnimal {
     COELHO,
     OUTRO
 }
-
-

@@ -32,35 +32,37 @@ public class Adotante extends Pessoa implements Papel {
     }
 
     @Override
-    public void exibirDetalhesParaEscolha() {
-        System.out.println("9 - Preferencia de Adoção");
-        System.out.println("10 - Histórico de Adoção");
-        System.out.println("11 - Status");
-    }
-
-    @Override
-    public void editarDetalhes(int opcao, Scanner scanner) {
+    public void editarDetalhes(Scanner scanner) {
+        System.out.println("Editando informações de Adotante");
+        System.out.println("1 - Preferência de Adoção");
+        System.out.println("2 - Histórico de Adoção");
+        System.out.println("3 - Status (ativo/inativo)");
+        System.out.printf("Escolha o atributo que deseja editar: ");
+        int opcao = scanner.nextInt();
+        scanner.nextLine(); // Consumir a nova linha
+    
         switch (opcao) {
-            case 9:
+            case 1:
                 this.preferencia_adocao.editarPreferencia(scanner);
                 break;
 
-            case 10:
+            case 2:
                 this.historico_adotante.editarHistorico(scanner);
                 break;
 
-            case 11:
+            case 3:
                 System.out.println("Digite o novo status (ativo/inativo):");
                 String resposta = scanner.nextLine();
                 boolean novoStatus = resposta.equalsIgnoreCase("ativo");
                 this.setStatus(novoStatus);
                 break;
-
+                
             default:
                 System.out.println("Opção inválida.");
                 break;
         }
     }
+    
 
     // Chama o construtor
     public int getId_adotante() {
