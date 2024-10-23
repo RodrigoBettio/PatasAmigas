@@ -1,16 +1,18 @@
 package controllers;
 
-import com.sun.tools.javac.Main;
 import funcoes_compartilhadas.Funcoes;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import model.Adotante;
+import model.Animal;
 import model.Funcionarios;
 import model.HistoricoAdotante;
 import model.HistoricoTutor;
 import model.Papel;
 import model.Pessoa;
+import model.PreferenciaAdocao;
 import model.Tutores;
 
 public class PessoaController {
@@ -18,9 +20,7 @@ public class PessoaController {
     private static ArrayList<Pessoa> listaPessoas = new ArrayList<>();
 
     public static Pessoa CadastrarPessoa(Scanner scanner) {
-
-        String nome, nascimento, genero, CPF, logradouro, numero, bairro, cidade, estado, pais, telefone, email,
-                hashsenha;
+        String nome, nascimento, genero, CPF, logradouro, numero, bairro, cidade, estado, pais, telefone, email, hashsenha;
 
         System.out.print("Digite o nome: ");
         nome = scanner.nextLine();
@@ -87,11 +87,9 @@ public class PessoaController {
             System.out.print("Digite o número de adoções realizadas: ");
             int numeroAdocoesT = Integer.parseInt(scanner.nextLine());
 
-            System.out.print("Tutor está ativo? (s/n) ");
+            System.out.print("Tutor está ativo? (s/n)\n");
             resposta = scanner.nextLine();
             boolean statusTutor = resposta.equalsIgnoreCase("s");
-
-            // Adiciona os dados do histórico
             HistoricoTutor historico_tutor = new HistoricoTutor(descricaoHistoricoT, numeroAdocoesT);
 
             // Cria um objeto Tutor e o adiciona à pessoa
@@ -100,9 +98,9 @@ public class PessoaController {
         }
 
         // Pergunta se a pessoa é adotante
+        System.out.println();
         System.out.print("Essa pessoa é um adotante? (s/n)\n");
         resposta = scanner.nextLine();
-
         boolean ehAdotante = resposta.equalsIgnoreCase("s");
 
         if (ehAdotante) {
@@ -110,8 +108,19 @@ public class PessoaController {
             int id_adotante = scanner.nextInt();
             scanner.nextLine(); // Consumir a nova linha para tirar do buffer
 
-            System.out.print("Qual a sua preferência de adoção? ");
-            String preferenciaAdocao = scanner.nextLine();
+            System.out.print("Digite a descrição da preferência de adoção: ");
+            String descricaoPreferencia = scanner.nextLine();
+            //Fazer mais perguntas sobre as preferencias
+
+            PreferenciaAdocao preferenciaAdocao = new PreferenciaAdocao(
+                    descricaoPreferencia,
+                    0, // Defina o número de adoções conforme necessário
+                    null, // TipoAnimal deve ser definido aqui
+                    null, // Idade preferida
+                    null, // Tamanho preferido
+                    null, // Sexo preferido
+                    false // Necessidades especiais
+            );
 
             System.out.print("Digite a descrição do histórico do adotante: ");
             String descricaoHistorico = scanner.nextLine();
@@ -120,23 +129,44 @@ public class PessoaController {
 
             int numeroAdocoes = Integer.parseInt(scanner.nextLine());
 
-            System.out.print("O adotante está ativo? (s/n)");
-            resposta = scanner.nextLine();
+            System.out.print("Qual a data da última adoção (formato: AAAA-MM-DD): ");
+            LocalDate dataUltimaAdocao = LocalDate.parse(scanner.nextLine());
 
-            boolean statusAdotante = resposta.equalsIgnoreCase("s");
+            List<Animal> animaisAdotados = new ArrayList<>();
 
-            // Adiciona os dados do histórico
-            HistoricoAdotante historico_adotante = new HistoricoAdotante(descricaoHistorico, numeroAdocoes);
+            HistoricoAdotante historico_adotante = new HistoricoAdotante(
+                    descricaoHistorico,
+                    numeroAdocoes,
+                    dataUltimaAdocao,
+                    animaisAdotados
+            );
+
             // Adiciona os dados do Adotante
-            novaPessoa.adicionarPapel(new Adotante(nome, nascimento, genero, CPF, logradouro, numero, bairro, cidade,
-                    estado, pais, telefone, email, hashsenha, id_adotante, preferenciaAdocao, historico_adotante,
-                    statusAdotante));
+            novaPessoa.adicionarPapel(new Adotante(
+                    nome,
+                    nascimento,
+                    genero,
+                    CPF,
+                    logradouro,
+                    numero,
+                    bairro,
+                    cidade,
+                    estado,
+                    pais,
+                    telefone,
+                    email,
+                    hashsenha,
+                    id_adotante,
+                    preferenciaAdocao,
+                    historico_adotante,
+                    true
+            ));
         }
 
         // Pergunta se a pessoa é funcionário
+        System.out.println();
         System.out.print("Essa pessoa é um funcionário? (s/n)\n");
         resposta = scanner.nextLine();
-
         boolean ehFuncionario = resposta.equalsIgnoreCase("s");
 
         if (ehFuncionario) {
@@ -157,10 +187,26 @@ public class PessoaController {
             System.out.print("Digite o departamento do funcionário: ");
             String departamento = scanner.nextLine();
 
-            // Adiciona os dados do Funcionário
-            novaPessoa.adicionarPapel(
-                    new Funcionarios(nome, nascimento, genero, CPF, logradouro, numero, bairro, cidade, estado, pais,
-                            telefone, email, hashsenha, id_funcionario, dataContratacao, cargo, salario, departamento));
+            novaPessoa.adicionarPapel(new Funcionarios(
+                    nome,
+                    nascimento,
+                    genero,
+                    CPF,
+                    logradouro,
+                    numero,
+                    bairro,
+                    cidade,
+                    estado,
+                    pais,
+                    telefone,
+                    email,
+                    hashsenha,
+                    id_funcionario,
+                    dataContratacao,
+                    cargo,
+                    salario,
+                    departamento
+            ));
         }
 
         // Adiciona a nova pessoa na lista de pessoas
@@ -168,14 +214,29 @@ public class PessoaController {
         return novaPessoa;
     }
 
-    public static void VisualizarDadosPessoa() {
-        for (Pessoa pessoa : listaPessoas) {
-            System.out.println("---- Pessoas ----");
-            System.out.println(pessoa);
+    public static void VisualizarDadosPessoa(Scanner scanner) {
 
-            for (Papel papel : pessoa.getPapeis()) {
+        // Lista todas as pessoas em ordem numerada
+        System.out.println("---- Lista de Pessoas ----");
+        for (int i = 0; i < listaPessoas.size(); i++) {
+            System.out.println((i + 1) + ". " + listaPessoas.get(i).getNome()); 
+        }
+
+        System.out.println("Escolha o número da pessoa para ver os detalhes:");
+        int escolha = scanner.nextInt();
+
+        
+        if (escolha > 0 && escolha <= listaPessoas.size()) {
+            Pessoa pessoaEscolhida = listaPessoas.get(escolha - 1);
+            
+            System.out.println("---- Detalhes da Pessoa ----");
+            System.out.println(pessoaEscolhida);
+
+            for (Papel papel : pessoaEscolhida.getPapeis()) {
                 papel.exibirDetalhes();
             }
+        } else {
+            System.out.println("Escolha inválida.");
         }
     }
 
@@ -215,14 +276,12 @@ public class PessoaController {
         System.out.println("6 - Telefone");
         System.out.println("7 - Email");
         System.out.println("8 - Senha");
+        System.out.println("9 - Editar infos de um papel específico");
 
-        for (Papel papel : pessoa.getPapeis()) {
-            papel.exibirDetalhesParaEscolha();
-        }
-
-        System.out.println("Digite o número do campo que deseja editar:");
+        System.out.printf("Digite o número do campo que deseja editar:");
         int opcao = scanner.nextInt();
         scanner.nextLine(); // Consumir a nova linha para tirar do buffer
+        System.out.println();
 
         switch (opcao) {
 
@@ -294,86 +353,37 @@ public class PessoaController {
                 pessoa.setHashsenha(novaSenha);
                 break;
 
-            case 9:
-
-                if (pessoa instanceof Adotante) {
-                    Adotante adotante = (Adotante) pessoa;
-                    System.out.println("Digite a nova preferência de adoção:");
-                    String preferencia = scanner.nextLine();
-
-                    adotante.setPreferencia_adocao(preferencia);
-
-                } else if (pessoa instanceof Funcionarios) {
-                    Funcionarios funcionario = (Funcionarios) pessoa;
-                    System.out.println("Digite a nova data de contratação:");
-                    String dataContratacao = scanner.nextLine();
-
-                    funcionario.setData_contratacao(dataContratacao);
-
-                } else if (pessoa instanceof Tutores) {
-                    Tutores tutor = (Tutores) pessoa;
-                    System.out.println("Digite o novo número de animais sob custódia:");
-                    int animaisCustodia = scanner.nextInt();
-                    tutor.setAnimais_custodia(animaisCustodia);
-                }
-                break;
-
-            case 10:
-
-                if (pessoa instanceof Adotante) {
-                    Adotante adotante = (Adotante) pessoa;
-                    System.out.print("Digite a nova descrição do histórico: ");
-                    String descricaoHistorico = scanner.nextLine();
-                    System.out.print("Digite o novo número de adoções: ");
-                    int numeroAdocoes = Integer.parseInt(scanner.nextLine());
-
-                    HistoricoAdotante historico_adotante = new HistoricoAdotante(descricaoHistorico, numeroAdocoes);
-
-                    adotante.setHistorico_adotante(historico_adotante);
-
-                } else if (pessoa instanceof Funcionarios) {
-                    Funcionarios funcionario = (Funcionarios) pessoa;
-                    System.out.println("Digite o novo cargo:");
-                    String cargo = scanner.nextLine();
-
-                    funcionario.setCargo(cargo);
-
-                } else if (pessoa instanceof Tutores) {
-                    Tutores tutor = (Tutores) pessoa;
-                    System.out.print("Digite a nova descrição do histórico: ");
-                    String descricaoHistoricoT = scanner.nextLine();
-                    System.out.print("Digite o novo número de adoções: ");
-                    int numeroAdocoesT = Integer.parseInt(scanner.nextLine());
-
-                    HistoricoTutor historico_tutor = new HistoricoTutor(descricaoHistoricoT, numeroAdocoesT);
-
-                    tutor.setHistorico_tutor(historico_tutor);
-
-                }
-                break;
-
-            case 11:
-                System.out.println("Escolha o papel que deseja editar:");
-                List<Papel> papeis = pessoa.getPapeis();
-                for (int i = 0; i < papeis.size(); i++) {
-                    System.out.println((i + 1) + " - " + papeis.get(i).getClass().getSimpleName()); 
-                    //Percorre a lista de papéis e usa os métodos getClass() e getSimpleName() para pegar o nome da classe e retornar em string para facilitar a leitura
-                }
-
-                int escolhaPapel = scanner.nextInt() - 1; 
-                scanner.nextLine(); // Consumir a nova linha
-
-                if (escolhaPapel >= 0 && escolhaPapel < papeis.size()) {
-                    Papel papelSelecionado = papeis.get(escolhaPapel);
-                    papelSelecionado.editarDetalhes(opcao, scanner);
-                } else {
-                    System.out.println("Opção de papel inválida!");
-                }
+            case 9: 
+                editarPapeis(scanner, pessoa);
                 break;
 
             default:
                 System.out.println("Opção inválida!");
                 break;
+        }
+    }
+
+    public static void editarPapeis(Scanner scanner, Pessoa pessoa) {
+        List<Papel> papeis = pessoa.getPapeis();
+        if (papeis.isEmpty()) {
+            System.out.println("Esta pessoa não possui papéis.");
+            return;
+        }
+
+        System.out.println("Escolha o papel que deseja editar:");
+        for (int i = 0; i < papeis.size(); i++) {
+            System.out.println((i + 1) + " - " + papeis.get(i).getClass().getSimpleName());
+        }
+        //Percorre a lista de papéis e usa os métodos getClass() e getSimpleName() para pegar o nome da classe e retornar em string para facilitar a leitura
+
+        int escolhaPapel = scanner.nextInt() - 1;
+        scanner.nextLine(); // Consumir a nova linha
+
+        if (escolhaPapel >= 0 && escolhaPapel < papeis.size()) {
+            Papel papelSelecionado = papeis.get(escolhaPapel);
+            papelSelecionado.editarDetalhes(scanner);
+        } else {
+            System.out.println("Opção de papel inválida!");
         }
     }
 

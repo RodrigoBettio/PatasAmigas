@@ -11,7 +11,6 @@ public class Funcionarios extends Pessoa implements Papel {
     private Float salario;
     private String departamento;
 
-
     // Construtor da classe Funcionarios
     public Funcionarios(String nome, String nascimento, String genero, String CPF, String logradouro, String numero, String bairro, String cidade, String estado, String pais, String telefone, String email, String hashsenha, int id_funcionario, String data_contratacao, String cargo, Float salario, String departamento) {
 
@@ -26,41 +25,40 @@ public class Funcionarios extends Pessoa implements Papel {
     }
 
     @Override
-    public void exibirDetalhes(){
-    System.out.println("ID do Funcionário: " + id_funcionario);
-    System.out.println("Data de contratação: " + data_contratacao);
-    System.out.println("Cargo: " + cargo);
-    System.out.printf("Salário: R$ %.2f\n", salario);
-    System.out.println("Departamento: " + departamento);
+    public void exibirDetalhes() {
+        System.out.println("ID do Funcionário: " + id_funcionario);
+        System.out.println("Data de contratação: " + data_contratacao);
+        System.out.println("Cargo: " + cargo);
+        System.out.printf("Salário: R$ %.2f\n", salario);
+        System.out.println("Departamento: " + departamento);
 
-    }
-
-       @Override
-    public void exibirDetalhesParaEscolha() {
-        System.out.println("9 - Cargo");
-        System.out.println("10 - Salario");
-        System.out.println("11 - Departamento");
     }
 
     @Override
-    public void editarDetalhes(int opcao, Scanner scanner) {
+    public void editarDetalhes(Scanner scanner) {
+        System.out.println("Editando informações de Funcionário");
+        System.out.println("1 - Cargo");
+        System.out.println("2 - Salário");
+        System.out.println("3 - Departamento");
+        System.out.println();
+        System.out.printf("Escolha o atributo que deseja editar: ");
+        int opcao = scanner.nextInt();
+        scanner.nextLine(); // Consumir a nova linha
+
         switch (opcao) {
-            case 9:
+            case 1:
                 System.out.println("Digite o novo cargo:");
                 this.setCargo(scanner.nextLine());
                 break;
-    
-            case 10:
+            case 2:
                 System.out.println("Digite o novo salário:");
                 this.setSalario(scanner.nextFloat());
                 scanner.nextLine(); // Consumir a nova linha
                 break;
-    
-            case 11:
+            case 3:
                 System.out.println("Digite o novo departamento:");
                 this.setDepartamento(scanner.nextLine());
                 break;
-    
             default:
                 System.out.println("Opção inválida.");
                 break;
@@ -71,7 +69,6 @@ public class Funcionarios extends Pessoa implements Papel {
     public int getId_funcionario() {
         return id_funcionario;
     }
-
 
     // Getters e Setters
     public void setId_funcionario(int id_funcionario) {

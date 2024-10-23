@@ -32,47 +32,46 @@ public class Tutores extends Pessoa implements Papel {
     }
 
     @Override
-    public void exibirDetalhesParaEscolha() {
-        System.out.println("9 - Animais sob custódia");
-        System.out.println("10 - Histórico");
-        System.out.println("11 - Status");
-    }
+    public void editarDetalhes(Scanner scanner) {
+        System.out.println("Editando informações de Tutor");
+        System.out.println("1 - Número de animais sob custódia");
+        System.out.println("2 - Histórico");
+        System.out.println("3 - Status (ativo/inativo)");
+        System.out.println();
+        System.out.printf("Escolha o atributo que deseja editar: ");
+        int opcao = scanner.nextInt();
+        scanner.nextLine(); // Consumir a nova linha
 
-    @Override
-    public void editarDetalhes(int opcao, Scanner scanner) {
         switch (opcao) {
-            case 9:
+            case 1:
                 System.out.println("Digite o novo número de animais sob custódia:");
                 int animaisCustodia = scanner.nextInt();
                 this.setAnimais_custodia(animaisCustodia);
+                break;
+
+            case 2:
+                System.out.print("Digite a nova descrição do histórico: ");
+                String descricaoHistoricoT = scanner.nextLine();
+                System.out.print("Digite o novo número de adoções: ");
+                int numeroAdocoesT = Integer.parseInt(scanner.nextLine());
+
+                HistoricoTutor historico_tutor = new HistoricoTutor(descricaoHistoricoT, numeroAdocoesT);
+
+                this.setHistorico_tutor(historico_tutor);
 
                 break;
 
-            case 10:
-            System.out.print("Digite a nova descrição do histórico: ");
-            String descricaoHistoricoT = scanner.nextLine();
-            System.out.print("Digite o novo número de adoções: ");
-            int numeroAdocoesT = Integer.parseInt(scanner.nextLine());
-
-            HistoricoTutor historico_tutor = new HistoricoTutor(descricaoHistoricoT, numeroAdocoesT);
-
-            this.setHistorico_tutor(historico_tutor);
-
-                break;
-
-            case 11:
+            case 3:
                 System.out.println("Digite o novo status (ativo/inativo):");
                 String resposta = scanner.nextLine();
                 boolean novoStatus = resposta.equalsIgnoreCase("ativo");
                 this.setStatus(novoStatus);
-
                 break;
 
             default:
                 System.out.println("Opção inválida.");
                 break;
         }
-
     }
 
     // Chama o construtor
