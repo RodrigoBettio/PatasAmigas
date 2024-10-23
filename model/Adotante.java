@@ -23,9 +23,6 @@ public class Adotante extends Pessoa implements Papel {
         this.status = status;
     }
 
-
-
-
     @Override
     public void exibirDetalhes() {
         System.out.println("ID do Adotante: " + id_adotante);
@@ -43,7 +40,7 @@ public class Adotante extends Pessoa implements Papel {
         System.out.printf("Escolha o atributo que deseja editar: ");
         int opcao = scanner.nextInt();
         scanner.nextLine(); // Consumir a nova linha
-    
+
         switch (opcao) {
             case 1:
                 this.preferencia_adocao.editarPreferencia(scanner);
@@ -59,13 +56,17 @@ public class Adotante extends Pessoa implements Papel {
                 boolean novoStatus = resposta.equalsIgnoreCase("ativo");
                 this.setStatus(novoStatus);
                 break;
-                
+
             default:
                 System.out.println("Opção inválida.");
                 break;
         }
     }
-    
+
+    @Override
+    public String getNomePapel() {
+        return "Adotante";
+    }
 
     // Chama o construtor
     public int getId_adotante() {

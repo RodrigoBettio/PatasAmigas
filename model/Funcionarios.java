@@ -65,6 +65,11 @@ public class Funcionarios extends Pessoa implements Papel {
         }
     }
 
+    @Override
+    public String getNomePapel() {
+        return "Funcionário";
+    }
+
     // Chama o construtor
     public int getId_funcionario() {
         return id_funcionario;

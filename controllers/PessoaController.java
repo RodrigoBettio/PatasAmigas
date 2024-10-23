@@ -28,10 +28,10 @@ public class PessoaController {
         System.out.print("Digite a data de nascimento: ");
         nascimento = scanner.nextLine();
 
-        System.out.print("Digite o gênero : ('M' para masculino, 'F' para feminino e 'O' para outros)");
+        System.out.print("Digite o gênero : ('M' para masculino, 'F' para feminino e 'O' para outros): ");
         genero = scanner.nextLine();
 
-        System.out.print("Digite o CPF: (ex.: 123.123.123-12)");
+        System.out.print("Digite o CPF: (ex.: 123.123.123-12): ");
         CPF = scanner.nextLine();
 
         System.out.print("Digite o logradouro: ");
@@ -52,7 +52,7 @@ public class PessoaController {
         System.out.print("Digite o país: ");
         pais = scanner.nextLine();
 
-        System.out.print("Digite o telefone: (ex.: '11 11111-1111')");
+        System.out.print("Digite o telefone: (ex.: '11 11111-1111'): ");
         telefone = scanner.nextLine();
 
         System.out.print("Digite o email: ");
@@ -216,25 +216,43 @@ public class PessoaController {
 
     public static void VisualizarDadosPessoa(Scanner scanner) {
 
-        // Lista todas as pessoas em ordem numerada
         System.out.println("---- Lista de Pessoas ----");
         for (int i = 0; i < listaPessoas.size(); i++) {
             System.out.println((i + 1) + ". " + listaPessoas.get(i).getNome()); 
         }
-
+    
         System.out.println("Escolha o número da pessoa para ver os detalhes:");
         int escolha = scanner.nextInt();
-
-        
+    
         if (escolha > 0 && escolha <= listaPessoas.size()) {
             Pessoa pessoaEscolhida = listaPessoas.get(escolha - 1);
-            
-            System.out.println("---- Detalhes da Pessoa ----");
-            System.out.println(pessoaEscolhida);
-
+    
+            // Exibe as infos de pessoas em formato de tabela
+            System.out.printf("\n---- Detalhes de %s ----\n", pessoaEscolhida.getNome());
+            System.out.printf("%-15s %-30s\n", "Atributo", "Valor");
+            System.out.println("------------------------------");
+            System.out.printf("%-15s %-30s\n", "Nome", pessoaEscolhida.getNome());
+            System.out.printf("%-15s %-30s\n", "Nascimento", pessoaEscolhida.getNascimento());
+            System.out.printf("%-15s %-30s\n", "Gênero", pessoaEscolhida.getGenero());
+            System.out.printf("%-15s %-30s\n", "CPF", pessoaEscolhida.getCPF());
+            System.out.printf("%-15s %-30s\n", "Logradouro", pessoaEscolhida.getLogradouro());
+            System.out.printf("%-15s %-30s\n", "Número", pessoaEscolhida.getNumero());
+            System.out.printf("%-15s %-30s\n", "Bairro", pessoaEscolhida.getBairro());
+            System.out.printf("%-15s %-30s\n", "Cidade", pessoaEscolhida.getCidade());
+            System.out.printf("%-15s %-30s\n", "Estado", pessoaEscolhida.getEstado());
+            System.out.printf("%-15s %-30s\n", "País", pessoaEscolhida.getPais());
+            System.out.printf("%-15s %-30s\n", "Telefone", pessoaEscolhida.getTelefone());
+            System.out.printf("%-15s %-30s\n", "E-mail", pessoaEscolhida.getEmail());
+    
+            // Exibe as infos dos papeis em tabela
+            System.out.println("\n---- Infos dos Papeis ----");
             for (Papel papel : pessoaEscolhida.getPapeis()) {
-                papel.exibirDetalhes();
+                System.out.println("\n-----------------------------------------------");
+                System.out.printf("           %s\n", papel.getNomePapel());
+                papel.exibirDetalhes();  
             }
+            
+    
         } else {
             System.out.println("Escolha inválida.");
         }
