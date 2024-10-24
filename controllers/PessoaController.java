@@ -13,6 +13,7 @@ import model.HistoricoTutor;
 import model.Papel;
 import model.Pessoa;
 import model.PreferenciaAdocao;
+import model.TipoAnimal;
 import model.Tutores;
 
 public class PessoaController {
@@ -110,16 +111,32 @@ public class PessoaController {
 
             System.out.print("Digite a descrição da preferência de adoção: ");
             String descricaoPreferencia = scanner.nextLine();
-            //Fazer mais perguntas sobre as preferencias
+
+            System.out.print("Qual o tipo de animal preferido? (CACHORRO, GATO, COELHO) ");
+            TipoAnimal tipoAnimal = TipoAnimal.valueOf(scanner.nextLine().toUpperCase()); 
+            //valueOf é utilizado para converter String em Enum
+
+            System.out.print("Qual a idade preferida do animal? ");
+            String idadePreferida = scanner.nextLine();
+
+            System.out.print("Qual o tamanho preferido do animal? ");
+            String tamanhoPreferido = scanner.nextLine();
+
+            System.out.print("Qual o sexo preferido do animal (M/F)? ");
+            String sexoPreferido = scanner.nextLine();
+
+            System.out.print("Deseja considerar animais com necessidades especiais? (s/n): ");
+            String respostaNecessidadeEspeciais = scanner.nextLine();
+            boolean necessidadeEspeciais = respostaNecessidadeEspeciais.equalsIgnoreCase("s");
 
             PreferenciaAdocao preferenciaAdocao = new PreferenciaAdocao(
                     descricaoPreferencia,
-                    0, // Defina o número de adoções conforme necessário
-                    null, // TipoAnimal deve ser definido aqui
-                    null, // Idade preferida
-                    null, // Tamanho preferido
-                    null, // Sexo preferido
-                    false // Necessidades especiais
+                    0,
+                    tipoAnimal,
+                    idadePreferida,
+                    tamanhoPreferido,
+                    sexoPreferido,
+                    necessidadeEspeciais
             );
 
             System.out.print("Digite a descrição do histórico do adotante: ");
@@ -218,15 +235,15 @@ public class PessoaController {
 
         System.out.println("---- Lista de Pessoas ----");
         for (int i = 0; i < listaPessoas.size(); i++) {
-            System.out.println((i + 1) + ". " + listaPessoas.get(i).getNome()); 
+            System.out.println((i + 1) + ". " + listaPessoas.get(i).getNome());
         }
-    
+
         System.out.println("Escolha o número da pessoa para ver os detalhes:");
         int escolha = scanner.nextInt();
-    
+
         if (escolha > 0 && escolha <= listaPessoas.size()) {
             Pessoa pessoaEscolhida = listaPessoas.get(escolha - 1);
-    
+
             // Exibe as infos de pessoas em formato de tabela
             System.out.printf("\n---- Detalhes de %s ----\n", pessoaEscolhida.getNome());
             System.out.printf("%-15s %-30s\n", "Atributo", "Valor");
@@ -243,16 +260,15 @@ public class PessoaController {
             System.out.printf("%-15s %-30s\n", "País", pessoaEscolhida.getPais());
             System.out.printf("%-15s %-30s\n", "Telefone", pessoaEscolhida.getTelefone());
             System.out.printf("%-15s %-30s\n", "E-mail", pessoaEscolhida.getEmail());
-    
+
             // Exibe as infos dos papeis em tabela
             System.out.println("\n---- Infos dos Papeis ----");
             for (Papel papel : pessoaEscolhida.getPapeis()) {
                 System.out.println("\n-----------------------------------------------");
                 System.out.printf("           %s\n", papel.getNomePapel());
-                papel.exibirDetalhes();  
+                papel.exibirDetalhes();
             }
-            
-    
+
         } else {
             System.out.println("Escolha inválida.");
         }
@@ -371,7 +387,7 @@ public class PessoaController {
                 pessoa.setHashsenha(novaSenha);
                 break;
 
-            case 9: 
+            case 9:
                 editarPapeis(scanner, pessoa);
                 break;
 
