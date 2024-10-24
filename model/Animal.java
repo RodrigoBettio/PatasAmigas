@@ -3,7 +3,6 @@ package model;
 import java.util.Optional;
 
 public class Animal {
-
     private Integer idAnimal;
     private String nome;
     private String especie;

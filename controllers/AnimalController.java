@@ -8,7 +8,7 @@ public class AnimalController {
 
     private static ArrayList<Animal> listaAnimais = new ArrayList<>();
 
-    public static Animal CadastrarAnimal(Scanner scanner) {
+    public static Animal cadastrarAnimal(Scanner scanner) {
 
         String nome, especie, historico, tutor;
         Integer id, idade;
@@ -49,7 +49,7 @@ public class AnimalController {
         return novoAnimal;
     }
 
-    public static void FiltrarAnimal(Scanner scanner) {
+    public static void filtrarAnimal(Scanner scanner) {
 
         System.out.println("Qual é a especie do animal?");
         String escolhaEspecie = scanner.nextLine();
@@ -63,6 +63,33 @@ public class AnimalController {
             System.out.println("Animais dessa espécie encontrados: \n\n" + animalEncontrado);
         } else {
             System.out.println("Nenhum animal da espécie " + escolhaEspecie + " foi encontrado!");
+        }
+    }
+
+    public static void visualizarDadosAnimal(Scanner scanner){
+
+        System.out.println("---- Lista de Animais ----");
+        for (int i = 0; i < listaAnimais.size(); i++) {
+            System.out.println((i + 1) + ". " + listaAnimais.get(i).getNome());
+        }
+
+        System.out.println("Escolha o nome do animal para ver os detalhes:");
+        int escolha = scanner.nextInt();
+
+        if (escolha >0 && escolha <= listaAnimais.size() ) {
+            Animal animalEscolhido = listaAnimais.get(escolha - 1);
+            System.out.printf("\n---- Detalhes de %s ----\n", animalEscolhido.getNome());
+            System.out.printf("%-15s %-30s\n", "Atributo", "Valor");
+            System.out.println("------------------------------");
+
+            System.out.printf("%-15s %-30s\n", "Id:", animalEscolhido.getIdAnimal());
+            System.out.printf("%-15s %-30s\n", "Nome:", animalEscolhido.getNome());
+            System.out.printf("%-15s %-30s\n", "Especie:", animalEscolhido.getEspecie());
+            System.out.printf("%-15s %-30s\n", "Idade:", animalEscolhido.getIdade());
+            System.out.printf("%-15s %-30s\n", "Historico:", animalEscolhido.getHistorico());
+            System.out.printf("%-15s %-30s\n", "Status da Adoção:", animalEscolhido.getStatusAdocao());
+            System.out.printf("%-15s %-30s\n", "Tutor:", animalEscolhido.getTutor());
+            
         }
     }
 }

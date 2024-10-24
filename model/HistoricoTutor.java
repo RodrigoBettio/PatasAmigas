@@ -1,33 +1,33 @@
 package model;
 
 public class HistoricoTutor {
-    private String descricaoT;
-    private int numeroAdocoesT;
+    private String descricaoHistoricoTutor;
+    private int numeroAdocoesTutor;
 
     // Construtor, getters e setters
-    public HistoricoTutor(String descricaoT, int numeroAdocoesT) {
-        this.descricaoT = descricaoT;
-        this.numeroAdocoesT = numeroAdocoesT;
+    public HistoricoTutor(String descricaoHistoricoTutor, int numeroAdocoesTutor) {
+        this.descricaoHistoricoTutor = descricaoHistoricoTutor;
+        this.numeroAdocoesTutor = numeroAdocoesTutor;
     }
 
-    public String getDescricaoT() {
-        return descricaoT;
+    public String getDescricaoHistoricoTutor() {
+        return descricaoHistoricoTutor;
     }
 
-    public void setDescricaoT(String descricaoT) {
-        this.descricaoT = descricaoT;
+    public void setDescricaoHistoricoTutor(String descricaoT) {
+        this.descricaoHistoricoTutor = descricaoT;
     }
 
-    public int getNumeroAdocoesT() {
-        return numeroAdocoesT;
+    public int getNumeroAdocoesTutor() {
+        return numeroAdocoesTutor;
     }
 
     public void setNumeroAdocoes(int numeroAdocoesT) {
-        this.numeroAdocoesT = numeroAdocoesT;
+        this.numeroAdocoesTutor = numeroAdocoesT;
     }
 
     @Override
     public String toString() {
-        return "\nDescricao: " + descricaoT + " \nNúmero de adoções: " + numeroAdocoesT;
+        return "\nDescricao: " + descricaoHistoricoTutor + " \nNúmero de adoções: " + numeroAdocoesTutor;
     }
 }

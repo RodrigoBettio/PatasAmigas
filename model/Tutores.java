@@ -5,29 +5,29 @@ import java.util.Scanner;
 public class Tutores extends Pessoa implements Papel {
 
     // Atributos privados da classe Tutores
-    private int id_tutor;
-    private int animais_custodia;
-    private HistoricoTutor historico_tutor;
+    private int idTutor;
+    private int animaisCustodia;
+    private HistoricoTutor historicoTutor;
     private Boolean status;
 
     // Construtor da classe Tutores
-    public Tutores(String nome, String nascimento, String genero, String CPF, String logradouro, String numero, String bairro, String cidade, String estado, String pais, String telefone, String email, String hashsenha, int id_tutor, int animais_custodia, HistoricoTutor historico_tutor, Boolean status) {
+    public Tutores(String nome, String nascimento, String genero, String CPF, String logradouro, String numero, String bairro, String cidade, String estado, String pais, String telefone, String email, String hashsenha, int idTutor, int animaisCustodia, HistoricoTutor historicoTutor, Boolean status) {
 
         // Chama o construtor da classe Pessoa para inicializar os atributos que foram herdados
         super(nome, nascimento, genero, CPF, logradouro, numero, bairro, cidade, estado, pais, telefone, email, hashsenha);
 
-        this.id_tutor = id_tutor;
-        this.animais_custodia = animais_custodia;
-        this.historico_tutor = historico_tutor;
+        this.idTutor = idTutor;
+        this.animaisCustodia = animaisCustodia;
+        this.historicoTutor = historicoTutor;
         this.status = status;
     }
 
     @Override
     public void exibirDetalhes() {
-        System.out.println("Tutor ID: " + id_tutor);
-        System.out.println("Animais sob Custódia:" + animais_custodia);
-        System.out.printf("Historico de %s: %s\n", this.getNome(), historico_tutor.toString());
-        System.out.printf("O status de %s é: %s\n", this.getNome(), status ? "Ativo" : "Inativo");
+        System.out.printf("%-15s %-30", "Tutor ID: \n" + idTutor);
+        System.out.printf("%-15s %-30","Animais sob Custódia: \n" + animaisCustodia);
+        System.out.printf("%-15s %-30","Historico de %s: %s\n", this.getNome(), historicoTutor.toString());
+        System.out.printf("%-15s %-30","O status de %s é: %s\n", this.getNome(), status ? "Ativo" : "Inativo");
         //Perguntar a diferença pro Quirino de usar status e de usar o construtor com o this.getStatus()
     }
 
@@ -46,7 +46,7 @@ public class Tutores extends Pessoa implements Papel {
             case 1:
                 System.out.println("Digite o novo número de animais sob custódia:");
                 int animaisCustodia = scanner.nextInt();
-                this.setAnimais_custodia(animaisCustodia);
+                this.setAnimaisCustodia(animaisCustodia);
                 break;
 
             case 2:
@@ -57,7 +57,7 @@ public class Tutores extends Pessoa implements Papel {
 
                 HistoricoTutor historico_tutor = new HistoricoTutor(descricaoHistoricoT, numeroAdocoesT);
 
-                this.setHistorico_tutor(historico_tutor);
+                this.setHistoricoTutor(historico_tutor);
 
                 break;
 
@@ -80,29 +80,29 @@ public class Tutores extends Pessoa implements Papel {
     }
 
     // Chama o construtor
-    public int getId_tutor() {
-        return id_tutor;
+    public int getIdTutor() {
+        return idTutor;
     }
 
     // Getters e Setters 
-    public void setId_tutor(int id_tutor) {
-        this.id_tutor = id_tutor;
+    public void setIdTutor(int id_tutor) {
+        this.idTutor = id_tutor;
     }
 
-    public int getAnimais_custodia() {
-        return animais_custodia;
+    public int getAnimaisCustodia() {
+        return animaisCustodia;
     }
 
-    public void setAnimais_custodia(int animais_custodia) {
-        this.animais_custodia = animais_custodia;
+    public void setAnimaisCustodia(int animais_custodia) {
+        this.animaisCustodia = animais_custodia;
     }
 
-    public HistoricoTutor getHistorico_tutor() {
-        return historico_tutor;
+    public HistoricoTutor getHistoricoTutor() {
+        return historicoTutor;
     }
 
-    public void setHistorico_tutor(HistoricoTutor historico_tutor) {
-        this.historico_tutor = historico_tutor;
+    public void setHistoricoTutor(HistoricoTutor historico_tutor) {
+        this.historicoTutor = historico_tutor;
     }
 
     public Boolean getStatus() {

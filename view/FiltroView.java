@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class FiltroView {
 
-    public static void BuscaPorFiltro(Scanner scanner) {
+    public static void buscaPorFiltro(Scanner scanner) {
 
         System.out.println();
         System.out.println("O que você quer buscar?\n");
@@ -17,14 +17,14 @@ public class FiltroView {
 
         switch (opcaoBusca) {
             case 1:
-                PessoaController.FiltrarPessoa(scanner);
+                PessoaController.filtrarPessoa(scanner);
                 break;
             case 2:
-                AnimalController.FiltrarAnimal(scanner);
+                AnimalController.filtrarAnimal(scanner);
                 break;
             default:
             System.out.println("Opção inválida!");
-            BuscaPorFiltro(scanner);
+            buscaPorFiltro(scanner);
                 break;
         }
     }

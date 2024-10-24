@@ -20,7 +20,7 @@ public class PessoaController {
 
     private static ArrayList<Pessoa> listaPessoas = new ArrayList<>();
 
-    public static Pessoa CadastrarPessoa(Scanner scanner) {
+    public static Pessoa cadastrarPessoa(Scanner scanner) {
         String nome, nascimento, genero, CPF, logradouro, numero, bairro, cidade, estado, pais, telefone, email, hashsenha;
 
         System.out.print("Digite o nome: ");
@@ -112,14 +112,14 @@ public class PessoaController {
             System.out.print("Digite a descrição da preferência de adoção: ");
             String descricaoPreferencia = scanner.nextLine();
 
-            System.out.print("Qual o tipo de animal preferido? (CACHORRO, GATO, COELHO) ");
+            System.out.print("Qual o tipo de animal preferido? (CACHORRO, GATO ou COELHO): ");
             TipoAnimal tipoAnimal = TipoAnimal.valueOf(scanner.nextLine().toUpperCase()); 
             //valueOf é utilizado para converter String em Enum
 
-            System.out.print("Qual a idade preferida do animal? ");
+            System.out.print("Qual a idade preferida do animal? (Apenas o número)");
             String idadePreferida = scanner.nextLine();
 
-            System.out.print("Qual o tamanho preferido do animal? ");
+            System.out.print("Qual o tamanho preferido do animal? (Apenas o numero em centimetros) ");
             String tamanhoPreferido = scanner.nextLine();
 
             System.out.print("Qual o sexo preferido do animal (M/F)? ");
@@ -231,7 +231,7 @@ public class PessoaController {
         return novaPessoa;
     }
 
-    public static void VisualizarDadosPessoa(Scanner scanner) {
+    public static void visualizarDadosPessoa(Scanner scanner) {
 
         System.out.println("---- Lista de Pessoas ----");
         for (int i = 0; i < listaPessoas.size(); i++) {
@@ -274,7 +274,7 @@ public class PessoaController {
         }
     }
 
-    public static Pessoa EscolherPessoa(Scanner scanner) {
+    public static Pessoa escolherPessoa(Scanner scanner) {
 
         System.out.println("---- Pessoas Cadastradas ----");
 
@@ -297,7 +297,7 @@ public class PessoaController {
 
     }
 
-    public static void EditarPessoa(Scanner scanner, Pessoa pessoa) {
+    public static void editarPessoa(Scanner scanner, Pessoa pessoa) {
 
         System.out.println();
         System.out.println("Editando informações de " + pessoa.getNome());
@@ -421,7 +421,7 @@ public class PessoaController {
         }
     }
 
-    public static void FiltrarPessoa(Scanner scanner) {
+    public static void filtrarPessoa(Scanner scanner) {
 
         System.out.println("Digite um nome para buscar: ");
         String escolhaNome = scanner.nextLine();

@@ -12,23 +12,23 @@ public class Adotante extends Pessoa implements Papel {
 
     // Construtor da classe Adotante
     public Adotante(String nome, String nascimento, String genero, String CPF, String logradouro, String numero, String bairro, String cidade, String estado, String pais, String telefone, String email, String hashsenha,
-            int id_adotante, PreferenciaAdocao preferencia_adocao, HistoricoAdotante historico_adotante, Boolean status) {
+            int idAdotante, PreferenciaAdocao preferenciaAdocao, HistoricoAdotante historicoAdotante, Boolean status) {
 
         super(nome, nascimento, genero, CPF, logradouro, numero, bairro, cidade, estado, pais, telefone, email, hashsenha);
 
         // Inicializa os atributos específicos de Adotante
-        this.id_adotante = id_adotante;
-        this.preferencia_adocao = preferencia_adocao;
-        this.historico_adotante = historico_adotante;
+        this.id_adotante = idAdotante;
+        this.preferencia_adocao = preferenciaAdocao;
+        this.historico_adotante = historicoAdotante;
         this.status = status;
     }
 
     @Override
     public void exibirDetalhes() {
-        System.out.println("ID do Adotante: " + id_adotante);
-        System.out.println("Preferência de adoção: " + preferencia_adocao);
-        System.out.println("Histórico de adoções: " + historico_adotante.toString());
-        System.out.printf("O status de %s é: %s\n", this.getNome(), status ? "Ativo" : "Inativo");
+        System.out.printf("%-15s %-30","ID do Adotante: \n" + id_adotante);
+        System.out.printf("%-15s %-30","Preferência de adoção: \n" + preferencia_adocao);
+        System.out.printf("%-15s %-30","Histórico de adoções: \n" + historico_adotante.toString());
+        System.out.printf("%-15s %-30","O status de %s é: %s\n", this.getNome(), status ? "Ativo" : "Inativo");
     }
 
     @Override
