@@ -15,12 +15,27 @@ public class Main {
         do {
             escolha = Menus.menu(scanner, escolha);
 
-            // Switch Case para definir as ações de acordo com a escolha
             switch (escolha) {
                 case 1:
+                    int escolhaCadastro = 0;
                     System.out.println();
-                    PessoaController.CadastrarPessoa(scanner);
-                    System.out.println("Pessoa cadastrada com sucesso!");
+                    escolhaCadastro = Menus.MenuCadastro(scanner, escolhaCadastro);
+
+                    switch (escolhaCadastro) {
+                        case 1:
+                            PessoaController.CadastrarPessoa(scanner);
+                            System.out.println("Pessoa cadastrada com sucesso!");
+                            break;
+                        case 2:
+                            System.out.println();
+                            AnimalController.CadastrarAnimal(scanner);
+                            System.out.println("\nAnimal cadastrado com sucesso!!!");
+                            break;
+
+                        default:
+                            System.out.println("Opção Inválida");
+                            break;
+                    }
                     break;
 
                 case 2:
@@ -31,31 +46,21 @@ public class Main {
                         System.out.println("Pessoa editada com sucesso!");
                     }
                     break;
-
                 case 3:
                     System.out.println();
                     PessoaController.VisualizarDadosPessoa(scanner);
                     break;
-
                 case 4:
-                    System.out.println();
-                    AnimalController.CadastrarAnimal(scanner);
-                    System.out.println("\nAnimal cadastrado com sucesso!!!");
-                    break;
-
-                case 5:
                     FiltroView.BuscaPorFiltro(scanner);
                     break;
-
-                case 6:
+                case 5:
                     System.out.println("Saindo...");
                     break;
-
                 default:
                     System.out.println("Opção inválida! Tente novamente.");
             }
 
-        } while (escolha != 6);
+        } while (escolha != 5);
         scanner.close();
     }
 

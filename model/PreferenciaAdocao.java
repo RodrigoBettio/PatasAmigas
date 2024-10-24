@@ -1,6 +1,5 @@
 package model;
 import java.util.Scanner;
-
 public class PreferenciaAdocao {
     private String descricao;
     private int numeroAdocoes;
@@ -18,6 +17,28 @@ public class PreferenciaAdocao {
         this.tamanhoPreferido = tamanhoPreferido;
         this.sexoPreferido = sexoPreferido;
         this.necessidadeEspeciais = necessidadeEspeciais;
+    }
+
+    public void editarPreferencia(Scanner scanner) {
+        System.out.print("Nova descrição: ");
+        this.descricao = scanner.nextLine();
+
+        System.out.print("Novo tipo de animal: ");
+        this.tipoAnimal = TipoAnimal.valueOf(scanner.nextLine().toUpperCase());
+
+        System.out.print("Nova idade preferida: ");
+        this.idadePreferida = scanner.nextLine();
+
+        System.out.print("Novo tamanho preferido: ");
+        this.tamanhoPreferido = scanner.nextLine();
+
+        System.out.print("Novo sexo preferido: ");
+        this.sexoPreferido = scanner.nextLine();
+
+        System.out.print("Deseja considerar animais com necessidades especiais? (s/n): ");
+        String respostaNecessidadeEspeciais = scanner.nextLine();
+        boolean novoNecessidadeEspeciais = respostaNecessidadeEspeciais.equalsIgnoreCase("s");
+        this.necessidadeEspeciais = novoNecessidadeEspeciais;
     }
 
     // Getters e Setters
@@ -77,23 +98,16 @@ public class PreferenciaAdocao {
         this.necessidadeEspeciais = necessidadeEspeciais;
     }
 
-    public void editarPreferencia(Scanner scanner) {
-        System.out.println("Digite os novos detalhes de Preferência:");
-        String novoHistorico = scanner.nextLine();
-        this.setDescricao(novoHistorico);
-    }
-
     // Método toString()
     @Override
     public String toString() {
-        return "Preferências de Adoção: " +
-               "\nDescrição: " + descricao +
-               "\nNúmero de adoções desejadas: " + numeroAdocoes +
-               "\nTipo de Animal: " + tipoAnimal +
-               "\nIdade preferida: " + idadePreferida +
-               "\nTamanho preferido: " + tamanhoPreferido +
-               "\nSexo preferido: " + sexoPreferido +
-               "\nNecessidades Especiais: " + (necessidadeEspeciais ? "Sim" : "Não");
+        return "Preferências de Adoção: "
+                + "\nDescrição: " + descricao
+                + "\nNúmero de adoções desejadas: " + numeroAdocoes
+                + "\nTipo de Animal: " + tipoAnimal
+                + "\nIdade preferida: " + idadePreferida
+                + "\nTamanho preferido: " + tamanhoPreferido
+                + "\nSexo preferido: " + sexoPreferido
+                + "\nNecessidades Especiais: " + (necessidadeEspeciais ? "Sim" : "Não");
     }
 }
-
