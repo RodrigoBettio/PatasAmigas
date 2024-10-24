@@ -1,7 +1,9 @@
 package controllers;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 import model.Animal;
 
 public class AnimalController {
@@ -12,6 +14,7 @@ public class AnimalController {
 
         String nome, especie, historico, tutor;
         Integer id, idade;
+        boolean foiAdotado;
 
         System.out.println("Qual é o ID do animal?");
         id = scanner.nextInt();
@@ -43,7 +46,9 @@ public class AnimalController {
         System.out.println("\nPor último, ele está sob a tutoria de quem? \nDigite o nome da pessoa:" );
         tutor = scanner.nextLine();
 
-        Animal novoAnimal = new Animal(id, idade, nome, especie, historico, null, tutor);
+        foiAdotado = false;
+
+        Animal novoAnimal = new Animal(id, idade, nome, especie, historico, foiAdotado, tutor);
 
         listaAnimais.add(novoAnimal);
         return novoAnimal;
@@ -54,13 +59,13 @@ public class AnimalController {
         System.out.println("Qual é a especie do animal?");
         String escolhaEspecie = scanner.nextLine();
        
-        Animal animalEncontrado = listaAnimais.stream()
+        List<Animal> animaisEncontrados = listaAnimais.stream()
         .filter(a -> a.getEspecie().equalsIgnoreCase(escolhaEspecie))
-        .findFirst()
-        .orElse(null);
+        .collect(Collectors.toList());
 
-        if(animalEncontrado != null){
-            System.out.println("Animais dessa espécie encontrados: \n\n" + animalEncontrado);
+        if(animaisEncontrados != null){
+            System.out.println("Animais dessa espécie encontrados: \n" );
+            animaisEncontrados.forEach(animal -> System.out.println(animal));
         } else {
             System.out.println("Nenhum animal da espécie " + escolhaEspecie + " foi encontrado!");
         }

@@ -82,7 +82,7 @@ public class Animal {
     @Override
     public String toString() {
         return "Animal: " + nome +
-                "especie: " + especie  +
+                ", especie: " + especie  +
                 ", idade: " + idade +
                 ", historico: " + historico  +
                 ", statusAdocao: " + statusAdocao +
