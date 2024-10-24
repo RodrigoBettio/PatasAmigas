@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
+
 import model.Adotante;
 import model.Animal;
 import model.Funcionarios;
@@ -427,14 +429,14 @@ public class PessoaController {
         String escolhaNome = scanner.nextLine();
 
         // Filtra a lista de pessoas pelo nome
-        Pessoa pessoaEncontrada = listaPessoas.stream()
+        List<Pessoa> pessoasEncontradas = listaPessoas.stream()
                 .filter(p -> p.getNome().equalsIgnoreCase(escolhaNome))
-                .findFirst()
-                .orElse(null);
+                .collect(Collectors.toList());
 
         // Verifica se a pessoa foi encontrada
-        if (pessoaEncontrada != null) {
-            System.out.println("Pessoa encontrada: \n\n" + pessoaEncontrada);
+        if (pessoasEncontradas != null) {
+            System.out.println("Pessoas encontradas: \n\n" + pessoasEncontradas);
+            pessoasEncontradas.forEach(pessoa -> System.out.println(pessoa));
         } else {
             System.out.println("Nenhuma pessoa com o nome '" + escolhaNome + "' foi encontrada.");
         }
