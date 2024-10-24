@@ -5,26 +5,26 @@ import java.util.Scanner;
 
 
 public class HistoricoAdotante {
-    private String descricao;
+    private String descricaoAdotante;
     private int numeroAdocoes;
     private LocalDate dataUltimaAdocao;
     private List<Animal> animaisAdotados;
  
 
-    public HistoricoAdotante(String descricao, int numeroAdocoes, LocalDate dataUltimaAdocao, List<Animal> animaisAdotados) {
-        this.descricao = descricao;
+    public HistoricoAdotante(String descricaoAdotante, int numeroAdocoes, LocalDate dataUltimaAdocao, List<Animal> animaisAdotados) {
+        this.descricaoAdotante = descricaoAdotante;
         this.numeroAdocoes = numeroAdocoes;
         this.dataUltimaAdocao = dataUltimaAdocao;
         this.animaisAdotados = animaisAdotados;
     }
 
     // Getters e Setters
-    public String getDescricao() {
-        return descricao;
+    public String getDescricaoAdotante() {
+        return descricaoAdotante;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setDescricaoAdotante(String descricao) {
+        this.descricaoAdotante = descricao;
     }
 
     public int getNumeroAdocoes() {
@@ -55,13 +55,22 @@ public class HistoricoAdotante {
     public void editarHistorico(Scanner scanner) {
         System.out.println("Digite os novos detalhes do histórico:");
         String novoHistorico = scanner.nextLine();
-        this.setDescricao(novoHistorico);
+        this.setDescricaoAdotante(novoHistorico);
+    }
+
+    public String exibirHistoricoAdotante(){
+        return String.format("%-25s %-30s\n%-25s %-30d\n%-25s %-30d\n%-25s %-30d",
+            "Descrição do Histórico:", this.getDescricaoAdotante(),
+            "Número de adoções:", this.getNumeroAdocoes(),
+            "Data Última Adoção", this.getDataUltimaAdocao().toString(),
+            "Animais adotados", this.getAnimaisAdotados());
+
     }
 
     @Override
     public String toString() {
         return "Histórico de Adoções: " +
-               "\nDescrição: " + descricao +
+               "\nDescrição: " + descricaoAdotante +
                "\nNúmero de adoções: " + numeroAdocoes +
                "\nData da última adoção: " + dataUltimaAdocao +
                "\nAnimais adotados: " + animaisAdotados;

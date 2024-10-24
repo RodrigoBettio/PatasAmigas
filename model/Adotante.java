@@ -5,30 +5,32 @@ import java.util.Scanner;
 public class Adotante extends Pessoa implements Papel {
 
     // Atributos privados da classe Adotantes
-    private int id_adotante;
-    private PreferenciaAdocao preferencia_adocao;
-    private HistoricoAdotante historico_adotante;
+    private int idAdotante;
+    private PreferenciaAdocao preferenciaAdocao;
+    private HistoricoAdotante historicoAdotante;
     private Boolean status;
 
     // Construtor da classe Adotante
-    public Adotante(String nome, String nascimento, String genero, String CPF, String logradouro, String numero, String bairro, String cidade, String estado, String pais, String telefone, String email, String hashsenha,
+    public Adotante(String nome, String nascimento, String genero, String CPF, String logradouro, String numero,
+            String bairro, String cidade, String estado, String pais, String telefone, String email, String hashsenha,
             int idAdotante, PreferenciaAdocao preferenciaAdocao, HistoricoAdotante historicoAdotante, Boolean status) {
 
-        super(nome, nascimento, genero, CPF, logradouro, numero, bairro, cidade, estado, pais, telefone, email, hashsenha);
+        super(nome, nascimento, genero, CPF, logradouro, numero, bairro, cidade, estado, pais, telefone, email,
+                hashsenha);
 
         // Inicializa os atributos específicos de Adotante
-        this.id_adotante = idAdotante;
-        this.preferencia_adocao = preferenciaAdocao;
-        this.historico_adotante = historicoAdotante;
+        this.idAdotante = idAdotante;
+        this.preferenciaAdocao = preferenciaAdocao;
+        this.historicoAdotante = historicoAdotante;
         this.status = status;
     }
 
     @Override
     public void exibirDetalhes() {
-        System.out.printf("%-15s %-30","ID do Adotante: \n" + id_adotante);
-        System.out.printf("%-15s %-30","Preferência de adoção: \n" + preferencia_adocao);
-        System.out.printf("%-15s %-30","Histórico de adoções: \n" + historico_adotante.toString());
-        System.out.printf("%-15s %-30","O status de %s é: %s\n", this.getNome(), status ? "Ativo" : "Inativo");
+        System.out.printf("%-15s %-30s\n", "ID do Adotante: ", idAdotante);
+        System.out.printf("%-15s %-30s\n", "Preferência de adoção: ", preferenciaAdocao);
+        System.out.printf(historicoAdotante.exibirHistoricoAdotante()); 
+        System.out.printf("%-15s %-30s\n", "O status de " + this.getNome() + " é:", status ? "Ativo" : "Inativo");
     }
 
     @Override
@@ -43,11 +45,11 @@ public class Adotante extends Pessoa implements Papel {
 
         switch (opcao) {
             case 1:
-                this.preferencia_adocao.editarPreferencia(scanner);
+                this.preferenciaAdocao.editarPreferencia(scanner);
                 break;
 
             case 2:
-                this.historico_adotante.editarHistorico(scanner);
+                this.historicoAdotante.editarHistorico(scanner);
                 break;
 
             case 3:
@@ -69,29 +71,29 @@ public class Adotante extends Pessoa implements Papel {
     }
 
     // Chama o construtor
-    public int getId_adotante() {
-        return id_adotante;
+    public int getIdAdotante() {
+        return idAdotante;
     }
 
     // Getters e Setters
-    public void setId_adotante(int id_adotante) {
-        this.id_adotante = id_adotante;
+    public void setIdAdotante(int id_adotante) {
+        this.idAdotante = id_adotante;
     }
 
-    public PreferenciaAdocao getPreferencia_adocao() {
-        return preferencia_adocao;
+    public PreferenciaAdocao getPreferenciaAdocao() {
+        return preferenciaAdocao;
     }
 
-    public void setPreferencia_adocao(PreferenciaAdocao preferencia_adocao) {
-        this.preferencia_adocao = preferencia_adocao;
+    public void setPreferenciaAdocao(PreferenciaAdocao preferencia_adocao) {
+        this.preferenciaAdocao = preferencia_adocao;
     }
 
     public HistoricoAdotante getHistorico_Adotante() {
-        return historico_adotante;
+        return historicoAdotante;
     }
 
-    public void setHistorico_adotante(HistoricoAdotante historico_adotante) {
-        this.historico_adotante = historico_adotante;
+    public void setHistoricoAdotante(HistoricoAdotante historico_adotante) {
+        this.historicoAdotante = historico_adotante;
     }
 
     public Boolean getStatus() {

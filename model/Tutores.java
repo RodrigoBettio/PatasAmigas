@@ -24,10 +24,10 @@ public class Tutores extends Pessoa implements Papel {
 
     @Override
     public void exibirDetalhes() {
-        System.out.printf("%-15s %-30", "Tutor ID: \n" + idTutor);
-        System.out.printf("%-15s %-30","Animais sob Custódia: \n" + animaisCustodia);
-        System.out.printf("%-15s %-30","Historico de %s: %s\n", this.getNome(), historicoTutor.toString());
-        System.out.printf("%-15s %-30","O status de %s é: %s\n", this.getNome(), status ? "Ativo" : "Inativo");
+        System.out.printf("%-25s %-30s\n", "Tutor ID: ", idTutor);
+        System.out.printf("%-25s %-30s\n","Animais sob Custódia: ", animaisCustodia);
+        System.out.printf(historicoTutor.exibirHistoricoTutor());
+        System.out.printf("%-25s %-30s\n","O status eh:", status ? "Ativo" : "Inativo");
         //Perguntar a diferença pro Quirino de usar status e de usar o construtor com o this.getStatus()
     }
 
