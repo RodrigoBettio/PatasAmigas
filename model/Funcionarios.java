@@ -26,11 +26,11 @@ public class Funcionarios extends Pessoa implements Papel {
 
     @Override
     public void exibirDetalhes() {
-        System.out.printf("%-25s %-30s\n","ID do Funcionário:", idFuncionario);
-        System.out.printf("%-25s %-30s\n","Data de contratação: ", dataContratacao);
-        System.out.printf("%-25s %-30s\n","Cargo: ", cargo);
-        System.out.printf("%-20s: R$ %-29.2f\n", "Salário:", salario);
-        System.out.printf("%-25s %-30s\n","Departamento: ", departamento);
+        System.out.printf("%-25s %-30s\n", "ID do Funcionário:", idFuncionario);
+        System.out.printf("%-25s %-30s\n", "Data de contratação: ", dataContratacao);
+        System.out.printf("%-25s %-30s\n", "Cargo: ", cargo);
+        System.out.printf("%-25s R$%-30.2f\n", "Salário:", salario);
+        System.out.printf("%-25s %-30s\n", "Departamento: ", departamento);
 
     }
 

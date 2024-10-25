@@ -27,10 +27,10 @@ public class Adotante extends Pessoa implements Papel {
 
     @Override
     public void exibirDetalhes() {
-        System.out.printf("%-15s %-30s\n", "ID do Adotante: ", idAdotante);
-        System.out.printf("%-15s %-30s\n", "Preferência de adoção: ", preferenciaAdocao);
-        System.out.printf(historicoAdotante.exibirHistoricoAdotante()); 
-        System.out.printf("%-15s %-30s\n", "O status de " + this.getNome() + " é:", status ? "Ativo" : "Inativo");
+        System.out.printf("%-25s %-30s\n", "ID do Adotante:", idAdotante);
+        System.out.println(preferenciaAdocao.exibirPreferenciaAdocao());
+        System.out.println(historicoAdotante.exibirHistoricoAdotante());
+        System.out.printf("%-25s %-30s\n", "Status:", status ? "Ativo" : "Inativo");
     }
 
     @Override

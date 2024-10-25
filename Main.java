@@ -56,7 +56,7 @@ public class Main {
                         case 1:
                             PessoaController.visualizarDadosPessoa(scanner);
                             break;
-                        
+
                         case 2:
                             AnimalController.visualizarDadosAnimal(scanner);
                             break;

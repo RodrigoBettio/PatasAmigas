@@ -20,7 +20,7 @@ public class Menus {
         return escolha;
     }
 
-    public static int menuCadastro(Scanner scanner, int escolhaCadastro){
+    public static int menuCadastro(Scanner scanner, int escolhaCadastro) {
         System.out.println("Deseja cadastrar");
         System.out.println("1- Pessoa");
         System.out.println("2- Animal");
@@ -31,7 +31,7 @@ public class Menus {
         return escolhaCadastro;
     }
 
-    public static int menuVisualizacao(Scanner scanner, int escolhaVisualizacao){
+    public static int menuVisualizacao(Scanner scanner, int escolhaVisualizacao) {
         System.out.println("Deseja visualizar");
         System.out.println("1- Pessoa");
         System.out.println("2- Animal");

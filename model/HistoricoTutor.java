@@ -1,6 +1,7 @@
 package model;
 
 public class HistoricoTutor {
+
     private String descricaoHistoricoTutor;
     private int numeroAdocoesTutor;
 
@@ -27,11 +28,11 @@ public class HistoricoTutor {
     }
 
     public String exibirHistoricoTutor() {
-        return String.format("%-25s %-30s\n%-25s %-30d\n", 
-                             "Descrição do Histórico:", this.getDescricaoHistoricoTutor(), 
-                             "Número de Adoções:", numeroAdocoesTutor);
+        return String.format("%-25s %-30s\n%-25s %-30d\n",
+                "Descrição do Histórico:", this.getDescricaoHistoricoTutor(),
+                "Número de Adoções:", numeroAdocoesTutor);
     }
-    
+
     @Override
     public String toString() {
         return "\nDescricao: " + descricaoHistoricoTutor + " \nNúmero de adoções: " + numeroAdocoesTutor;

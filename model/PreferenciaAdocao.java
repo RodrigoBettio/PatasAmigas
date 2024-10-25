@@ -1,6 +1,9 @@
 package model;
+
 import java.util.Scanner;
+
 public class PreferenciaAdocao {
+
     private String descricao;
     private int numeroAdocoes;
     private TipoAnimal tipoAnimal;
@@ -97,6 +100,20 @@ public class PreferenciaAdocao {
     public void setNecessidadeEspeciais(boolean necessidadeEspeciais) {
         this.necessidadeEspeciais = necessidadeEspeciais;
     }
+
+    public String exibirPreferenciaAdocao() {
+        return String.format(
+                "%-25s %-30s\n%-25s %-30d\n%-25s %-30s\n%-25s %-30s\n%-25s %-30s\n%-25s %-30s\n",
+                "Descrição da Preferência:", this.getDescricao(),
+                "Número de adoções desejadas:", this.getNumeroAdocoes(),
+                "Tipo de Animal:", this.getTipoAnimal(),
+                "Idade preferida:", this.getIdadePreferida(),
+                "Tamanho preferido:", this.getTamanhoPreferido(),  
+                "Sexo preferido:", this.getSexoPreferido(),
+                "Necessidades Especiais:", necessidadeEspeciais ? "Sim" : "Não"  
+        );
+    }
+    
 
     // Método toString()
     @Override

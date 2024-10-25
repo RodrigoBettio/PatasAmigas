@@ -113,7 +113,7 @@ public class PessoaController {
             String descricaoPreferencia = scanner.nextLine();
 
             System.out.print("Qual o tipo de animal preferido? (CACHORRO, GATO ou COELHO): ");
-            TipoAnimal tipoAnimal = TipoAnimal.valueOf(scanner.nextLine().toUpperCase()); 
+            TipoAnimal tipoAnimal = TipoAnimal.valueOf(scanner.nextLine().toUpperCase());
             //valueOf é utilizado para converter String em Enum
 
             System.out.print("Qual a idade preferida do animal? (Apenas o número):");
@@ -265,8 +265,9 @@ public class PessoaController {
             System.out.println("\n---- Infos dos Papeis ----");
             for (Papel papel : pessoaEscolhida.getPapeis()) {
                 System.out.println("-----------------------------------------------");
-                System.out.printf("\n---- %s ----\n", papel.getNomePapel());
+                System.out.printf("\n         ---- %s ----\n", papel.getNomePapel());
                 System.out.printf("%-25s %-30s\n", "Atributo", "Valor");
+                System.out.println("-----------------------------------------------");
                 papel.exibirDetalhes();
             }
 

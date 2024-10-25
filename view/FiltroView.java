@@ -23,12 +23,10 @@ public class FiltroView {
                 AnimalController.filtrarAnimal(scanner);
                 break;
             default:
-            System.out.println("Opção inválida!");
-            buscaPorFiltro(scanner);
+                System.out.println("Opção inválida!");
+                buscaPorFiltro(scanner);
                 break;
         }
     }
-    
+
 }
-
-
