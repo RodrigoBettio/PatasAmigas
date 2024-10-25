@@ -19,7 +19,7 @@ public class Main {
                 case 1:
                     int escolhaCadastro = 0;
                     System.out.println();
-                    escolhaCadastro = Menus.menuCadastro(scanner, escolhaCadastro);
+                    escolhaCadastro = Menus.menuEscolhaPessoaAnimal(scanner, escolhaCadastro);
 
                     switch (escolhaCadastro) {
                         case 1:
@@ -39,18 +39,34 @@ public class Main {
                     break;
 
                 case 2:
+                    int escolhaEdicao = 0;
                     System.out.println();
-                    Pessoa pessoa = PessoaController.escolherPessoa(scanner);
-                    if (pessoa != null) {
-                        PessoaController.editarPessoa(scanner, pessoa);
-                        System.out.println("Pessoa editada com sucesso!");
+                    escolhaEdicao = Menus.menuEscolhaPessoaAnimal(scanner, escolhaEdicao);
+
+                    switch (escolhaEdicao) {
+                        case 1:
+                            System.out.println();
+                            Pessoa pessoa = PessoaController.escolherPessoa(scanner);
+                            if (pessoa != null) {
+                                PessoaController.editarPessoa(scanner, pessoa);
+                                System.out.println("Pessoa editada com sucesso!");
+                                break;
+                            }
+                        case 2:
+                            System.out.println();
+                            Animal animal = AnimalController.escolherAnimal(scanner);
+                            if (animal != null) {
+                                AnimalController.editarAnimal(scanner, animal);
+                                System.out.println("Animal editado com sucesso!");
+                                break;
+                            }
                     }
                     break;
 
                 case 3:
                     int escolhaVisualizacao = 0;
                     System.out.println();
-                    escolhaVisualizacao = Menus.menuVisualizacao(scanner, escolhaVisualizacao);
+                    escolhaVisualizacao = Menus.menuEscolhaPessoaAnimal(scanner, escolhaVisualizacao);
 
                     switch (escolhaVisualizacao) {
                         case 1:

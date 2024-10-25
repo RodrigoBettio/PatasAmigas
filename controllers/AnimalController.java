@@ -12,7 +12,6 @@ public class AnimalController {
     public static Animal cadastrarAnimal(Scanner scanner) {
 
         String nome, especie, tutor, descricaoMed, tratamentoMed, medicacaoMed, obsMed;
-        HistoricoMedico historicoMedico;
         Integer id, idade;
         Double pesoMed;
 
@@ -46,9 +45,9 @@ public class AnimalController {
         System.out.println("\nO animal faz ou fez algum tipo de tratamento recentemente? Se sim, qual? ");
         tratamentoMed = scanner.nextLine();
 
-        System.out.println("\nQual o peso do animal? ");
+        System.out.println("\nQual o peso do animal? (Em kg) ");
         pesoMed = scanner.nextDouble();
-        scanner.nextLine(); 
+        scanner.nextLine();
 
         System.out.println("\nO animal toma alguma medicação controlada? Se sim, qual? ");
         medicacaoMed = scanner.nextLine();
@@ -97,23 +96,157 @@ public class AnimalController {
         if (escolha > 0 && escolha <= listaAnimais.size()) {
             Animal animalEscolhido = listaAnimais.get(escolha - 1);
             System.out.printf("\n---- Detalhes de %s ----\n", animalEscolhido.getNome());
-            System.out.printf("%-15s %-30s\n", "Atributo", "Valor");
+            System.out.printf("%-25s %-30s\n", "Atributo", "Valor");
             System.out.println("------------------------------");
 
-            System.out.printf("%-15s %-30s\n", "Id:", animalEscolhido.getIdAnimal());
-            System.out.printf("%-15s %-30s\n", "Nome:", animalEscolhido.getNome());
-            System.out.printf("%-15s %-30s\n", "Especie:", animalEscolhido.getEspecie());
-            System.out.printf("%-15s %-30s\n", "Idade:", animalEscolhido.getIdade());
-            System.out.printf("%-15s %-30s\n", "Histórico médico: ", animalEscolhido.getHistoricoMed().getDescricao());
-            System.out.printf("%-15s %-30s\n", "Tratamento: ", animalEscolhido.getHistoricoMed().getTratamento());
-            System.out.printf("%-15s %-30s\n", "Peso: ", animalEscolhido.getHistoricoMed().getPeso());
-            System.out.printf("%-15s %-30s\n", "Medicação: ", animalEscolhido.getHistoricoMed().getMedicacao());
-            System.out.printf("%-15s %-30s\n", "Observações: ", animalEscolhido.getHistoricoMed().getObservacoes());
-            System.out.printf("%-15s %-30s\n", "Status da Adoção:", animalEscolhido.getStatusAdocao());
-            System.out.printf("%-15s %-30s\n", "Tutor:", animalEscolhido.getTutor());
+            System.out.printf("%-25s %-30s\n", "Id:", animalEscolhido.getIdAnimal());
+            System.out.printf("%-25s %-30s\n", "Nome:", animalEscolhido.getNome());
+            System.out.printf("%-25s %-30s\n", "Especie:", animalEscolhido.getEspecie());
+            System.out.printf("%-25s %-30s\n", "Idade:", animalEscolhido.getIdade());
+            System.out.printf("%-25s %-30s\n", "Histórico médico: ", animalEscolhido.getHistoricoMed().getDescricao());
+            System.out.printf("%-25s %-30s\n", "Tratamento: ", animalEscolhido.getHistoricoMed().getTratamento());
+            System.out.printf("%-25s %-30s\n", "Peso: ", animalEscolhido.getHistoricoMed().getPeso());
+            System.out.printf("%-25s %-30s\n", "Medicação: ", animalEscolhido.getHistoricoMed().getMedicacao());
+            System.out.printf("%-25s %-30s\n", "Observações: ", animalEscolhido.getHistoricoMed().getObservacoes());
+            System.out.printf("%-25s %-30s\n", "Status da Adoção:", animalEscolhido.getStatusAdocao());
+            System.out.printf("%-25s %-30s\n", "Tutor:", animalEscolhido.getTutor());
 
         } else {
             System.out.println("Escolha inválida.");
         }
     }
+
+    public static Animal escolherAnimal(Scanner scanner) {
+
+        System.out.println("---- Animais Cadastrados ----");
+
+        for (int i = 0; i < listaAnimais.size(); i++) {
+            Animal animal = listaAnimais.get(i);
+            System.out.println((i + 1) + ". " + animal.getNome());
+        }
+
+        System.out.print("Escolha a pessoa que deseja editar: ");
+        int escolha = scanner.nextInt();
+        scanner.nextLine(); // Consumir a nova linha do buffer
+
+        if (escolha > 0 && escolha <= listaAnimais.size()) {
+            Animal animalSelecionado = listaAnimais.get(escolha - 1);
+            return animalSelecionado;
+        } else {
+            System.out.println("Esse animal ainda não foi cadastrado. Tente novamente");
+            return null;
+        }
+
+    }
+
+    public static void editarAnimal(Scanner scanner, Animal animal) {
+        System.out.println();
+        System.out.println("Editando informações do animal: " + animal.getNome());
+        System.out.println("Escolha o atributo que deseja editar:");
+        System.out.println("1 - Nome");
+        System.out.println("2 - Espécie");
+        System.out.println("3 - Idade");
+        System.out.println("4 - Tutor");
+        System.out.println("5 - Status de Adoção");
+        System.out.println("6 - Histórico Médico");
+
+        System.out.printf("Digite o número do campo que deseja editar: ");
+        int opcao = scanner.nextInt();
+        scanner.nextLine(); // Consumir nova linha
+
+        switch (opcao) {
+            case 1:
+                System.out.println("Digite o novo nome: ");
+                String novoNome = scanner.nextLine();
+                animal.setNome(novoNome);
+                break;
+
+            case 2:
+                System.out.println("Digite a nova espécie: ");
+                String novaEspecie = scanner.nextLine();
+                animal.setEspecie(novaEspecie);
+                break;
+
+            case 3:
+                System.out.println("Digite a nova idade: ");
+                int novaIdade = scanner.nextInt();
+                scanner.nextLine(); // Consumir nova linha
+                animal.setIdade(novaIdade);
+                break;
+
+            case 4:
+                System.out.println("Digite o novo tutor: ");
+                String novoTutor = scanner.nextLine();
+                animal.setTutor(novoTutor);
+                break;
+
+            case 5:
+                System.out.println("Digite o novo status de adoção (ativo/inativo): ");
+                String resposta = scanner.nextLine();
+                boolean novoStatus = resposta.equalsIgnoreCase("ativo");
+                animal.setStatusAdocao(novoStatus);
+                break;
+
+            case 6:
+                editarHistoricoMedico(scanner, animal.getHistoricoMed());
+                break;
+
+            default:
+                System.out.println("Opção inválida!");
+                break;
+        }
+    }
+
+    public static void editarHistoricoMedico(Scanner scanner, HistoricoMedico historicoMed) {
+        System.out.println();
+        System.out.println("Editando histórico médico:");
+        System.out.println("Escolha o atributo que deseja editar:");
+        System.out.println("1 - Descrição");
+        System.out.println("2 - Tratamento");
+        System.out.println("3 - Peso");
+        System.out.println("4 - Medicação");
+        System.out.println("5 - Observações");
+
+        System.out.printf("Digite o número do campo que deseja editar: ");
+        int opcao = scanner.nextInt();
+        scanner.nextLine(); // Consumir nova linha
+
+        switch (opcao) {
+            case 1:
+                System.out.println("Digite a nova descrição: ");
+                String novaDescricao = scanner.nextLine();
+                historicoMed.setDescricao(novaDescricao);
+                break;
+
+            case 2:
+                System.out.println("Digite o novo tratamento: ");
+                String novoTratamento = scanner.nextLine();
+                historicoMed.setTratamento(novoTratamento);
+                break;
+
+            case 3:
+                System.out.println("Digite o novo peso: ");
+                double novoPeso = scanner.nextDouble();
+                scanner.nextLine(); // Consumir nova linha
+                historicoMed.setPeso(novoPeso);
+                break;
+
+            case 4:
+                System.out.println("Digite a nova medicação: ");
+                String novaMedicacao = scanner.nextLine();
+                historicoMed.setMedicacao(novaMedicacao);
+                break;
+
+            case 5:
+                System.out.println("Digite as novas observações: ");
+                String novasObservacoes = scanner.nextLine();
+                historicoMed.setObservacoes(novasObservacoes);
+                break;
+
+            default:
+                System.out.println("Opção inválida!");
+                break;
+        }
+    }
+
 }

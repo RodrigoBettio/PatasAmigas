@@ -3,6 +3,7 @@ package model;
 import java.util.Optional;
 
 public class Animal {
+
     private Integer idAnimal;
     private String nome;
     private String especie;
@@ -11,7 +12,7 @@ public class Animal {
     private Optional<Boolean> statusAdocao;
     private String tutor;
 
-    public Animal(Integer idAnimal, Integer idade, String nome, String especie, HistoricoMedico historicoMed, Boolean statusAdocao, String tutor){
+    public Animal(Integer idAnimal, Integer idade, String nome, String especie, HistoricoMedico historicoMed, Boolean statusAdocao, String tutor) {
         this.idAnimal = idAnimal;
         this.nome = nome;
         this.especie = especie;
@@ -29,7 +30,6 @@ public class Animal {
         this.idAnimal = idAnimal;
     }
 
-    
     public String getNome() {
         return nome;
     }
@@ -62,7 +62,6 @@ public class Animal {
         this.historicoMed = historicoMed;
     }
 
-
     public Optional<Boolean> getStatusAdocao() {
         return statusAdocao;
     }
@@ -81,11 +80,11 @@ public class Animal {
 
     @Override
     public String toString() {
-        return "Animal: " + nome +
-                "especie: " + especie  +
-                ", idade: " + idade +
-                ", historico: " + historicoMed  +
-                ", statusAdocao: " + statusAdocao +
-                ", tutor: " + tutor;
+        return "Animal: " + nome
+                + "especie: " + especie
+                + ", idade: " + idade
+                + ", historico: " + historicoMed
+                + ", statusAdocao: " + statusAdocao
+                + ", tutor: " + tutor;
     }
 }

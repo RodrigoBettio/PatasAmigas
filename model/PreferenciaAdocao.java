@@ -108,12 +108,11 @@ public class PreferenciaAdocao {
                 "Número de adoções desejadas:", this.getNumeroAdocoes(),
                 "Tipo de Animal:", this.getTipoAnimal(),
                 "Idade preferida:", this.getIdadePreferida(),
-                "Tamanho preferido:", this.getTamanhoPreferido(),  
+                "Tamanho preferido:", this.getTamanhoPreferido(),
                 "Sexo preferido:", this.getSexoPreferido(),
-                "Necessidades Especiais:", necessidadeEspeciais ? "Sim" : "Não"  
+                "Necessidades Especiais:", necessidadeEspeciais ? "Sim" : "Não"
         );
     }
-    
 
     // Método toString()
     @Override

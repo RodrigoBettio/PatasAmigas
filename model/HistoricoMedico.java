@@ -1,12 +1,12 @@
 package model;
 
 public class HistoricoMedico {
+
     private String descricao;
     private String tratamento;
     private Double peso;
     private String medicacao;
     private String observacoes;
-
 
     public HistoricoMedico(String descricao, String tratamento, Double peso, String medicacao, String observacoes) {
         this.descricao = descricao;
@@ -44,7 +44,7 @@ public class HistoricoMedico {
         return medicacao;
     }
 
-    public void setMedicacao (String medicacao) {
+    public void setMedicacao(String medicacao) {
         this.medicacao = medicacao;
     }
 
@@ -58,10 +58,10 @@ public class HistoricoMedico {
 
     @Override
     public String toString() {
-        return "Descrição do histórico médico: " + descricao +
-               ", " + tratamento +
-               ", " + peso +
-               ", " + medicacao +
-               ", " + observacoes;
+        return "Descrição do histórico médico: " + descricao
+                + ", " + tratamento
+                + ", " + peso
+                + ", " + medicacao
+                + ", " + observacoes;
     }
 }
