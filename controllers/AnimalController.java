@@ -1,7 +1,9 @@
 package controllers;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 import model.Animal;
 import model.HistoricoMedico;
 
@@ -14,6 +16,7 @@ public class AnimalController {
         String nome, especie, tutor, descricaoMed, tratamentoMed, medicacaoMed, obsMed;
         Integer id, idade;
         Double pesoMed;
+        boolean statusAdocao;
 
         System.out.println("Qual é o ID do animal?");
         id = scanner.nextInt();
@@ -59,28 +62,65 @@ public class AnimalController {
         tutor = scanner.nextLine();
 
         HistoricoMedico historicoMed = new HistoricoMedico(descricaoMed, tratamentoMed, pesoMed, medicacaoMed, obsMed);
+        statusAdocao = false;
 
-        Animal novoAnimal = new Animal(id, idade, nome, especie, historicoMed, null, tutor);
+
+        Animal novoAnimal = new Animal(id, idade, nome, especie, historicoMed, statusAdocao, tutor);
 
         listaAnimais.add(novoAnimal);
         return novoAnimal;
     }
 
     public static void filtrarAnimal(Scanner scanner) {
+        int escolha;
 
+        System.out.println("Desejar filtrar por: ");
+        System.out.println("1 - Espécie");
+        System.out.println("2 - Idade");
+        escolha = scanner.nextInt();
+        
+        switch (escolha) {
+            case 1:
+                filtrarEspecie(scanner);
+                break;
+        
+            default:
+            filtrarIdade(scanner);
+                break;
+        }
+    }
+
+    public static void filtrarEspecie(Scanner scanner){
         System.out.println("Qual é a especie do animal?");
         String escolhaEspecie = scanner.nextLine();
+       
+        List<Animal> animaisEncontrados = listaAnimais.stream()
+        .filter(a -> a.getEspecie().equalsIgnoreCase(escolhaEspecie))
+        .collect(Collectors.toList());
 
-        Animal animalEncontrado = listaAnimais.stream()
-                .filter(a -> a.getEspecie().equalsIgnoreCase(escolhaEspecie))
-                .findFirst()
-                .orElse(null);
-
-        if (animalEncontrado != null) {
-            System.out.println("Animais dessa espécie encontrados: \n\n" + animalEncontrado);
+        if(animaisEncontrados != null){
+            System.out.println("Animais dessa espécie encontrados: \n" );
+            animaisEncontrados.forEach(animal -> System.out.println(animal));
         } else {
             System.out.println("Nenhum animal da espécie " + escolhaEspecie + " foi encontrado!");
         }
+    }
+
+    public static void filtrarIdade(Scanner scanner){
+        System.out.println("Qual é a idade do animal?");
+        int escolhaIdade = scanner.nextInt();
+       
+        List<Animal> animaisEncontrados = listaAnimais.stream()
+        .filter(a -> a.getIdade().equals(escolhaIdade))
+        .collect(Collectors.toList());
+
+        if(animaisEncontrados != null){
+            System.out.println("Animais com essa idade foram encontrados: \n" );
+            animaisEncontrados.forEach(animal -> System.out.println(animal));
+        } else {
+            System.out.println("Nenhum animal da idade: " + escolhaIdade + ", foi encontrado!");
+        }
+
     }
 
     public static void visualizarDadosAnimal(Scanner scanner) {
@@ -248,5 +288,4 @@ public class AnimalController {
                 break;
         }
     }
-
 }
