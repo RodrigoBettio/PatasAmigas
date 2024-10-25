@@ -31,6 +31,9 @@ public class Main {
                             AnimalController.cadastrarAnimal(scanner);
                             System.out.println("\nAnimal cadastrado com sucesso!!!");
                             break;
+                        case 3:
+                            System.out.println("Saindo...");
+                            break;
 
                         default:
                             System.out.println("Opção Inválida");
@@ -60,6 +63,13 @@ public class Main {
                                 System.out.println("Animal editado com sucesso!");
                                 break;
                             }
+                        case 3:
+                            System.out.println("Saindo...");
+                            break;
+
+                        default:
+                            System.out.println("Opção Inválida");
+                            break;
                     }
                     break;
 
@@ -77,6 +87,10 @@ public class Main {
                             AnimalController.visualizarDadosAnimal(scanner);
                             break;
 
+                        case 3:
+                            System.out.println("Saindo...");
+                            break;
+
                         default:
                             System.out.println("Opção Inválida");
                             break;
@@ -84,7 +98,10 @@ public class Main {
                     break;
 
                 case 4:
-                    FiltroView.buscaPorFiltro(scanner);
+                    int escolhaBuscar = 0;
+                    System.out.println();
+                    escolhaBuscar = Menus.menuEscolhaPessoaAnimal(scanner, escolhaBuscar);
+                    FiltroView.buscaPorFiltro(scanner, escolhaBuscar);
                     break;
 
                 case 5:

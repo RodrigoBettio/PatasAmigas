@@ -24,6 +24,7 @@ public class Menus {
         System.out.println("Deseja cadastrar");
         System.out.println("1- Pessoa");
         System.out.println("2- Animal");
+        System.out.println("3- Sair");
 
         novaEscolha = scanner.nextInt();
         scanner.nextLine();
