@@ -1,18 +1,17 @@
 package model;
-
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class Funcionarios extends Pessoa implements Papel {
 
     // Atributos privados da classe Funcionarios
     private int idFuncionario;
-    private String dataContratacao;
-    private String cargo;
+    private LocalDate dataContratacao;
+    private String cargo, departamento;
     private Float salario;
-    private String departamento;
 
     // Construtor da classe Funcionarios
-    public Funcionarios(String nome, String nascimento, String genero, String CPF, String logradouro, String numero, String bairro, String cidade, String estado, String pais, String telefone, String email, String hashsenha, int idFuncionario, String dataContratacao, String cargo, Float salario, String departamento) {
+    public Funcionarios(String nome, LocalDate nascimento, String genero, String CPF, String logradouro, String numero, String bairro, String cidade, String estado, String pais, String telefone, String email, String hashsenha, int idFuncionario, LocalDate dataContratacao, String cargo, Float salario, String departamento) {
 
         // Chama o construtor da classe Pessoa para inicializar os atributos que foram herdados
         super(nome, nascimento, genero, CPF, logradouro, numero, bairro, cidade, estado, pais, telefone, email, hashsenha);
@@ -80,11 +79,11 @@ public class Funcionarios extends Pessoa implements Papel {
         this.idFuncionario = id_funcionario;
     }
 
-    public String getDataContratacao() {
+    public LocalDate getDataContratacao() {
         return dataContratacao;
     }
 
-    public void setDataContratacao(String data_contratacao) {
+    public void setDataContratacao(LocalDate data_contratacao) {
         this.dataContratacao = data_contratacao;
     }
 

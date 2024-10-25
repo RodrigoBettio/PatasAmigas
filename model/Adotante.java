@@ -1,5 +1,6 @@
 package model;
 
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class Adotante extends Pessoa implements Papel {
@@ -11,7 +12,7 @@ public class Adotante extends Pessoa implements Papel {
     private Boolean status;
 
     // Construtor da classe Adotante
-    public Adotante(String nome, String nascimento, String genero, String CPF, String logradouro, String numero,
+    public Adotante(String nome, LocalDate nascimento, String genero, String CPF, String logradouro, String numero,
             String bairro, String cidade, String estado, String pais, String telefone, String email, String hashsenha,
             int idAdotante, PreferenciaAdocao preferenciaAdocao, HistoricoAdotante historicoAdotante, Boolean status) {
 

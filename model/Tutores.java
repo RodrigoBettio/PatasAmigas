@@ -1,5 +1,5 @@
 package model;
-
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class Tutores extends Pessoa implements Papel {
@@ -11,7 +11,7 @@ public class Tutores extends Pessoa implements Papel {
     private Boolean status;
 
     // Construtor da classe Tutores
-    public Tutores(String nome, String nascimento, String genero, String CPF, String logradouro, String numero, String bairro, String cidade, String estado, String pais, String telefone, String email, String hashsenha, int idTutor, int animaisCustodia, HistoricoTutor historicoTutor, Boolean status) {
+    public Tutores(String nome, LocalDate nascimento, String genero, String CPF, String logradouro, String numero, String bairro, String cidade, String estado, String pais, String telefone, String email, String hashsenha, int idTutor, int animaisCustodia, HistoricoTutor historicoTutor, Boolean status) {
 
         // Chama o construtor da classe Pessoa para inicializar os atributos que foram herdados
         super(nome, nascimento, genero, CPF, logradouro, numero, bairro, cidade, estado, pais, telefone, email, hashsenha);

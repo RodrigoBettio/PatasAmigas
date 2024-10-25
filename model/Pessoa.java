@@ -1,16 +1,16 @@
 package model;
-
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Pessoa {
 
-    private String nome, nascimento, genero, CPF, logradouro, numero, bairro, cidade, estado, pais, telefone, email, hashsenha;
-
+    private String nome, genero, CPF, logradouro, numero, bairro, cidade, estado, pais, telefone, email, hashsenha;
+    private LocalDate nascimento;
     private List<Papel> papeis;
 
     // Construtor da classe Pessoa
-    public Pessoa(String nome, String nascimento, String genero, String CPF, String logradouro, String numero,
+    public Pessoa(String nome, LocalDate nascimento, String genero, String CPF, String logradouro, String numero,
             String bairro, String cidade, String estado, String pais, String telefone, String email, String hashsenha) {
         this.nome = nome;
         this.nascimento = nascimento;
@@ -65,11 +65,11 @@ public class Pessoa {
         this.nome = nome;
     }
 
-    public String getNascimento() {
+    public LocalDate getNascimento() {
         return nascimento;
     }
 
-    public void setNascimento(String nascimento) {
+    public void setNascimento(LocalDate nascimento) {
         this.nascimento = nascimento;
     }
 

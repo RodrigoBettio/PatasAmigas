@@ -21,47 +21,46 @@ public class PessoaController {
     private static ArrayList<Pessoa> listaPessoas = new ArrayList<>();
 
     public static Pessoa cadastrarPessoa(Scanner scanner) {
-        String nome, nascimento, genero, CPF, logradouro, numero, bairro, cidade, estado, pais, telefone, email, hashsenha;
 
         System.out.print("Digite o nome: ");
-        nome = scanner.nextLine();
+        String nome = scanner.nextLine();
 
-        System.out.print("Digite a data de nascimento: ");
-        nascimento = scanner.nextLine();
+        System.out.print("Digite a data de nascimento (formato: AAAA-MM-DD): ");
+        LocalDate nascimento = LocalDate.parse(scanner.nextLine());
 
         System.out.print("Digite o gênero : ('M' para masculino, 'F' para feminino e 'O' para outros): ");
-        genero = scanner.nextLine();
+        String genero = scanner.nextLine();
 
         System.out.print("Digite o CPF: (ex.: 123.123.123-12): ");
-        CPF = scanner.nextLine();
+        String CPF = scanner.nextLine();
 
         System.out.print("Digite o logradouro: ");
-        logradouro = scanner.nextLine();
+        String logradouro = scanner.nextLine();
 
         System.out.print("Digite o número: ");
-        numero = scanner.nextLine();
+        String numero = scanner.nextLine();
 
         System.out.print("Digite o bairro: ");
-        bairro = scanner.nextLine();
+        String bairro = scanner.nextLine();
 
         System.out.print("Digite a cidade: ");
-        cidade = scanner.nextLine();
+        String cidade = scanner.nextLine();
 
         System.out.print("Digite o estado: ");
-        estado = scanner.nextLine();
+        String estado = scanner.nextLine();
 
         System.out.print("Digite o país: ");
-        pais = scanner.nextLine();
+        String pais = scanner.nextLine();
 
         System.out.print("Digite o telefone: (ex.: '11 11111-1111'): ");
-        telefone = scanner.nextLine();
+        String telefone = scanner.nextLine();
 
         System.out.print("Digite o email: ");
-        email = scanner.nextLine();
+        String email = scanner.nextLine();
 
         System.out.print("Digite a senha: ");
         String senha = scanner.nextLine();
-        hashsenha = Funcoes.generateHash(senha);
+        String hashsenha = Funcoes.generateHash(senha);
 
         System.out.println();
 
@@ -191,8 +190,8 @@ public class PessoaController {
             int id_funcionario = scanner.nextInt();
             scanner.nextLine(); // Consumir a nova linha para tirar do buffer
 
-            System.out.print("Digite a data de contratação: ");
-            String dataContratacao = scanner.nextLine();
+            System.out.print("Digite a data de contratação (formato: AAAA-MM-DD): ");
+            LocalDate dataContratacao = LocalDate.parse(scanner.nextLine());
 
             System.out.print("Digite o cargo do funcionário: ");
             String cargo = scanner.nextLine();
@@ -328,8 +327,8 @@ public class PessoaController {
                 break;
 
             case 2:
-                System.out.println("Digite a nova data de nascimento:");
-                String novaData = scanner.nextLine();
+                System.out.println("Digite a nova data de nascimento (formato: AAAA-MM-DD):");
+                LocalDate novaData = LocalDate.parse(scanner.nextLine());
                 pessoa.setNascimento(novaData);
                 break;
 
