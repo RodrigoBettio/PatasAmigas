@@ -7,15 +7,15 @@ public class Animal {
     private String nome;
     private String especie;
     private Integer idade;
-    private String historico;
+    private HistoricoMedico historicoMed;
     private Optional<Boolean> statusAdocao;
     private String tutor;
 
-    public Animal(Integer idAnimal, Integer idade, String nome, String especie, String historico, Boolean statusAdocao, String tutor){
+    public Animal(Integer idAnimal, Integer idade, String nome, String especie, HistoricoMedico historicoMed, Boolean statusAdocao, String tutor){
         this.idAnimal = idAnimal;
         this.nome = nome;
         this.especie = especie;
-        this.historico = historico;
+        this.historicoMed = historicoMed;
         this.statusAdocao = Optional.ofNullable(statusAdocao);
         this.tutor = tutor;
         this.idade = idade;
@@ -54,13 +54,14 @@ public class Animal {
         this.idade = idade;
     }
 
-    public String getHistorico() {
-        return historico;
+    public HistoricoMedico getHistoricoMed() {
+        return historicoMed;
     }
 
-    public void setHistorico(String historico) {
-        this.historico = historico;
+    public void setHistoricoAdotante(HistoricoMedico historicoMed) {
+        this.historicoMed = historicoMed;
     }
+
 
     public Optional<Boolean> getStatusAdocao() {
         return statusAdocao;
@@ -83,7 +84,7 @@ public class Animal {
         return "Animal: " + nome +
                 "especie: " + especie  +
                 ", idade: " + idade +
-                ", historico: " + historico  +
+                ", historico: " + historicoMed  +
                 ", statusAdocao: " + statusAdocao +
                 ", tutor: " + tutor;
     }
