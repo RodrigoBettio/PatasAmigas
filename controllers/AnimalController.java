@@ -14,7 +14,7 @@ public class AnimalController {
 
         String nome, especie, historico, tutor;
         Integer id, idade;
-        boolean foiAdotado;
+        boolean statusAdocao;
 
         System.out.println("Qual é o ID do animal?");
         id = scanner.nextInt();
@@ -46,16 +46,34 @@ public class AnimalController {
         System.out.println("\nPor último, ele está sob a tutoria de quem? \nDigite o nome da pessoa:" );
         tutor = scanner.nextLine();
 
-        foiAdotado = false;
+        statusAdocao = false;
 
-        Animal novoAnimal = new Animal(id, idade, nome, especie, historico, foiAdotado, tutor);
+        Animal novoAnimal = new Animal(id, idade, nome, especie, historico, statusAdocao, tutor);
 
         listaAnimais.add(novoAnimal);
         return novoAnimal;
     }
 
     public static void FiltrarAnimal(Scanner scanner) {
+        int escolha;
 
+        System.out.println("Desejar filtrar por: ");
+        System.out.println("1 - Espécie");
+        System.out.println("2 - Idade");
+        escolha = scanner.nextInt();
+        
+        switch (escolha) {
+            case 1:
+                FiltroEspecie(scanner);
+                break;
+        
+            default:
+            FiltroIdade(scanner);
+                break;
+        }
+    }
+
+    public static void FiltroEspecie(Scanner scanner){
         System.out.println("Qual é a especie do animal?");
         String escolhaEspecie = scanner.nextLine();
        
@@ -69,5 +87,22 @@ public class AnimalController {
         } else {
             System.out.println("Nenhum animal da espécie " + escolhaEspecie + " foi encontrado!");
         }
+    }
+
+    public static void FiltroIdade(Scanner scanner){
+        System.out.println("Qual é a idade do animal?");
+        int escolhaIdade = scanner.nextInt();
+       
+        List<Animal> animaisEncontrados = listaAnimais.stream()
+        .filter(a -> a.getIdade().equals(escolhaIdade))
+        .collect(Collectors.toList());
+
+        if(animaisEncontrados != null){
+            System.out.println("Animais com essa idade foram encontrados: \n" );
+            animaisEncontrados.forEach(animal -> System.out.println(animal));
+        } else {
+            System.out.println("Nenhum animal da idade: " + escolhaIdade + ", foi encontrado!");
+        }
+
     }
 }

@@ -435,7 +435,7 @@ public class PessoaController {
 
         // Verifica se a pessoa foi encontrada
         if (pessoasEncontradas != null) {
-            System.out.println("Pessoas encontradas: \n\n" + pessoasEncontradas);
+            System.out.println("Pessoas encontradas': \n\n" + pessoasEncontradas);
             pessoasEncontradas.forEach(pessoa -> System.out.println(pessoa));
         } else {
             System.out.println("Nenhuma pessoa com o nome '" + escolhaNome + "' foi encontrada.");
