@@ -6,6 +6,7 @@ import java.util.Scanner;
 import java.util.stream.Collectors;
 import model.Animal;
 import model.HistoricoMedico;
+import view.Menus;
 
 public class AnimalController {
 
@@ -42,7 +43,8 @@ public class AnimalController {
             idade = null;
         }
 
-        System.out.println("\nJá estamos finalizando! Mas precisamos saber do histórico do animal.\nDigite aqui uma descrição breve do estado de saúde do animal: ");
+        System.out.println(
+                "\nJá estamos finalizando! Mas precisamos saber do histórico do animal.\nDigite aqui uma descrição breve do estado de saúde do animal: ");
         descricaoMed = scanner.nextLine();
 
         System.out.println("\nO animal faz ou fez algum tipo de tratamento recentemente? Se sim, qual? ");
@@ -55,7 +57,8 @@ public class AnimalController {
         System.out.println("\nO animal toma alguma medicação controlada? Se sim, qual? ");
         medicacaoMed = scanner.nextLine();
 
-        System.out.println("\nIndique no espaço abaixo outras observações que julgue importante sobre a saúde do pet! ");
+        System.out
+                .println("\nIndique no espaço abaixo outras observações que julgue importante sobre a saúde do pet! ");
         obsMed = scanner.nextLine();
 
         System.out.println("\nPor último, ele está sob a tutoria de quem? \nDigite o nome da pessoa: ");
@@ -63,7 +66,6 @@ public class AnimalController {
 
         HistoricoMedico historicoMed = new HistoricoMedico(descricaoMed, tratamentoMed, pesoMed, medicacaoMed, obsMed);
         statusAdocao = false;
-
 
         Animal novoAnimal = new Animal(id, idade, nome, especie, historicoMed, statusAdocao, tutor);
 
@@ -77,50 +79,99 @@ public class AnimalController {
         System.out.println("Desejar filtrar por: ");
         System.out.println("1 - Espécie");
         System.out.println("2 - Idade");
+        System.out.println("3 - Status de Adoção");
+        System.out.println("4 - Voltar");
         escolha = scanner.nextInt();
-        
+
         switch (escolha) {
             case 1:
                 filtrarEspecie(scanner);
                 break;
-        
-            default:
-            filtrarIdade(scanner);
+
+            case 2:
+                filtrarIdade(scanner);
                 break;
+
+            case 3:
+                filtrarStatusAdocao(scanner);
+
+            default:
+            Menus.menuEscolhaPessoaAnimal(scanner, escolha);
+            break;
         }
     }
 
-    public static void filtrarEspecie(Scanner scanner){
+    public static void filtrarEspecie(Scanner scanner) {
         System.out.println("Qual é a especie do animal?");
         String escolhaEspecie = scanner.nextLine();
-       
-        List<Animal> animaisEncontrados = listaAnimais.stream()
-        .filter(a -> a.getEspecie().equalsIgnoreCase(escolhaEspecie))
-        .collect(Collectors.toList());
 
-        if(animaisEncontrados != null){
-            System.out.println("Animais dessa espécie encontrados: \n" );
+        List<Animal> animaisEncontrados = listaAnimais.stream()
+                .filter(a -> a.getEspecie().equalsIgnoreCase(escolhaEspecie))
+                .collect(Collectors.toList());
+
+        if (animaisEncontrados != null) {
+            System.out.println("Animais dessa espécie encontrados: \n");
             animaisEncontrados.forEach(animal -> System.out.println(animal));
         } else {
             System.out.println("Nenhum animal da espécie " + escolhaEspecie + " foi encontrado!");
         }
     }
 
-    public static void filtrarIdade(Scanner scanner){
+    public static void filtrarIdade(Scanner scanner) {
         System.out.println("Qual é a idade do animal?");
         int escolhaIdade = scanner.nextInt();
-       
-        List<Animal> animaisEncontrados = listaAnimais.stream()
-        .filter(a -> a.getIdade().equals(escolhaIdade))
-        .collect(Collectors.toList());
 
-        if(animaisEncontrados != null){
-            System.out.println("Animais com essa idade foram encontrados: \n" );
+        List<Animal> animaisEncontrados = listaAnimais.stream()
+                .filter(a -> a.getIdade().equals(escolhaIdade))
+                .collect(Collectors.toList());
+
+        if (animaisEncontrados != null) {
+            System.out.println("Animais com essa idade foram encontrados: \n");
             animaisEncontrados.forEach(animal -> System.out.println(animal));
         } else {
             System.out.println("Nenhum animal da idade: " + escolhaIdade + ", foi encontrado!");
         }
+    }
 
+    public static void filtrarStatusAdocao(Scanner scanner) {
+        System.out.println("Você deseja filtrar animais:");
+        System.out.println("1 - Adotados");
+        System.out.println("2 - Disponíveis");
+        System.out.println("3 - Voltar");
+        int escolha = scanner.nextInt();
+
+        boolean adotado;
+
+        switch (escolha) {
+            case 1:
+            adotado = true;
+            List<Animal> animaisAdotados = listaAnimais.stream()
+                .filter(a -> a.getStatusAdocao().equals(adotado))
+                .collect(Collectors.toList());
+
+                if (animaisAdotados!= null) {
+                    System.out.println("Foram encontrados" + animaisAdotados.size() + " adotados\n");
+                    animaisAdotados.forEach(animal -> System.out.println(animal));
+                } else {
+                    System.out.println("Nenhum animal adotado foi encontrado!");
+                }
+                break;
+            case 2:
+            adotado = false;
+            List<Animal> animaisDisponiveis = listaAnimais.stream()
+                .filter(a -> a.getStatusAdocao().equals(adotado))
+                .collect(Collectors.toList());
+
+                if (animaisDisponiveis != null) {
+                    System.out.println("Foram encontrados" + animaisDisponiveis.size() + " disponíveis\n");
+                    animaisDisponiveis.forEach(animal -> System.out.println(animal));
+                } else {
+                    System.out.println("Nenhum animal disponível para a adoção foi encontrado!");
+                }
+                break;
+            default:
+            filtrarAnimal(scanner);
+        }
     }
 
     public static void visualizarDadosAnimal(Scanner scanner) {
@@ -221,9 +272,9 @@ public class AnimalController {
                 break;
 
             case 5:
-                System.out.println("Digite o novo status de adoção (ativo/inativo): ");
+                System.out.println("Digite o novo status de adoção (adotado/nao-adotado): ");
                 String resposta = scanner.nextLine();
-                boolean novoStatus = resposta.equalsIgnoreCase("ativo");
+                boolean novoStatus = resposta.equalsIgnoreCase("adotado");
                 animal.setStatusAdocao(novoStatus);
                 break;
 
@@ -288,4 +339,9 @@ public class AnimalController {
                 break;
         }
     }
+
+    // public static Void deletarPessoa() {
+    //     System.out.println("Qual pessoa você deseja ");
+
+    // }
 }
