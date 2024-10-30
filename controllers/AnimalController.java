@@ -51,8 +51,7 @@ public class AnimalController {
         tratamentoMed = scanner.nextLine();
 
         System.out.println("\nQual o peso do animal? (Em kg) ");
-        pesoMed = scanner.nextDouble();
-        scanner.nextLine();
+        pesoMed = Double.parseDouble(scanner.nextLine());
 
         System.out.println("\nO animal toma alguma medicação controlada? Se sim, qual? ");
         medicacaoMed = scanner.nextLine();

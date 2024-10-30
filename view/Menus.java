@@ -21,7 +21,7 @@ public class Menus {
     }
 
     public static int menuEscolhaPessoaAnimal(Scanner scanner, int novaEscolha) {
-        System.out.println("Deseja cadastrar");
+        System.out.println("Selecione uma das opções: ");
         System.out.println("1- Pessoa");
         System.out.println("2- Animal");
         System.out.println("3- Sair");
@@ -30,6 +30,25 @@ public class Menus {
         scanner.nextLine();
 
         return novaEscolha;
+    }
+    public static void sayhello (){
+        
+        String dogArt = 
+
+        "         / \\__\n" +
+
+        "        (    @\\___\n" +
+
+        "        /         O\n" +
+
+        "      /   (_____ / \n" +
+
+        "    /_____/    \n";
+
+
+
+System.out.println(dogArt);
+System.out.println("- PATAS AMIGAS -");
     }
 
 }

@@ -10,7 +10,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int escolha = 0;
-
+        Menus.sayhello();
         // Exibe o menu somente até o momento em que o usuário escolhe a opção 'Sair'
         do {
             escolha = Menus.menuPrincipal(scanner, escolha);
