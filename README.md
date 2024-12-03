@@ -2,7 +2,7 @@
 
 ## Sistema criado para gerenciar adoções da animais
 ## Linguagem: Java
-Última versão: 30 de Outubro
+Última versão: 02 de Dezembro
 
 ### Grupo
 #### Isabela Crestane
