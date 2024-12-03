@@ -55,6 +55,7 @@ public class Main {
                                 System.out.println("Pessoa editada com sucesso!");
                                 break;
                             }
+                            break;
                         case 2:
                             System.out.println();
                             Animal animal = AnimalController.escolherAnimal(scanner);
@@ -63,6 +64,7 @@ public class Main {
                                 System.out.println("Animal editado com sucesso!");
                                 break;
                             }
+                            break;
                         case 3:
                             System.out.println("Saindo...");
                             break;
