@@ -215,7 +215,7 @@ public class AnimalController {
             System.out.println((i + 1) + ". " + animal.getNome());
         }
 
-        System.out.print("Escolha a pessoa que deseja editar: ");
+        System.out.print("Escolha o animal que deseja editar: ");
         int escolha = scanner.nextInt();
         scanner.nextLine(); // Consumir a nova linha do buffer
 
